@@ -164,21 +164,46 @@ vector<pair<int, int>> Paard::geldige_zetten(const Game &game) {
     int k = this->position.second;
     zw color = getKleur();
 
-    pair <int, int> moveOne;
-    moveOne.first = (r - 1); moveOne.second = (k + 2);
+    // Alle mogelijke zetten die een Paard kan uitvoeren
+    pair <int, int> move1;
+    move1.first = (r - 1); move1.second = (k + 2);
+    possibleMoves.push_back(move1);
 
-    pair <int, int> moveTwo;
-    moveTwo.first = (r - 2); moveTwo.second = (k - 1);
+    pair <int, int> move2;
+    move2.first = (r - 2); move2.second = (k - 1);
+    possibleMoves.push_back(move2);
 
-    pair <int, int> moveThree;
-    moveThree.first = (r - 1); moveThree.second = (k - 2);
+    pair <int, int> move3;
+    move3.first = (r - 1); move3.second = (k - 2);
+    possibleMoves.push_back(move3);
 
-    pair <int, int> moveFour;
-    moveFour.first = (r + 1); moveFour.second = (k - 2);
+    pair <int, int> move4;
+    move4.first = (r + 1); move4.second = (k - 2);
+    possibleMoves.push_back(move4);
 
-    pair <int, int> moveFive;
-    moveFive.first = (r + 2); moveFive.second = (k + 1);
+    pair <int, int> move5;
+    move5.first = (r + 2); move5.second = (k - 1);
+    possibleMoves.push_back(move5);
 
+    pair <int, int> move6;
+    move6.first = (r + 2); move6.second = (k + 1);
+    possibleMoves.push_back(move6);
+
+    pair <int, int> move7;
+    move7.first = (r + 1); move7.second = (k + 2);
+    possibleMoves.push_back(move7);
+
+    pair <int, int> move8;
+    move8.first = (r - 2); move8.second = (k + 1);
+    possibleMoves.push_back(move8);
+
+    for ( const pair<int, int> & i : possibleMoves ) {
+        SchaakStuk * moveTo = game.getPiece(i.first, i.second);
+        // Als stap buiten dimensies valt kan deze verwijdert worden OF de kleur heeft dezelfde kleur
+        if ( !checkDimensions(i) || moveTo->getKleur() == color ) {
+            possibleMoves.erase(remove(possibleMoves.begin(), possibleMoves.end(), i), possibleMoves.end());
+        }
+    }
 
     return possibleMoves;
 }
