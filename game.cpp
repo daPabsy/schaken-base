@@ -12,10 +12,19 @@ Game::~Game() {}
 // Zet het bord klaar; voeg de stukken op de juiste plaats toe
 void Game::setStartBord() {
 
+    SchaakStuk * null = nullptr; // Maak nullptr aan van SchaakStuk object
+
+    // Zet het schaakbord vol met nullptr's die later vervangen zullen worden met schaakstukken
+    for ( int i = 0; i < 8; i++ ) {
+        for ( int j = 0; j < 8; j++ ) {
+            setPiece(i, j, null );
+        }
+    }
+
     // Zet alle pionen klaar op het bord
     int i = 0;
     while ( i != 8 ) {
-        setPawns(i);
+         setPawns(i);
     }
 
     // Zet witte schaakstukken klaar op schaakbord
@@ -37,14 +46,16 @@ void Game::setStartBord() {
     setPiece(7, 7, new Loper(zwart));
     setPiece(7, 6, new Paard(zwart));
     setPiece(7, 5, new Toren(zwart));
+
+
 }
 
 // Zet alle pionen klaar op het bord
 void Game::setPawns(int &i) {
 
-    setPiece(0, i, new Pion(wit));
-    setPiece(7, i, new Pion(zwart));
-    i++;
+    setPiece(1, i, new Pion(wit));
+    setPiece(6, i, new Pion(zwart));
+    i++; // overloop elke plaats waar een pion kan staan
 
 }
 
@@ -57,16 +68,28 @@ SchaakStuk* Game::getPiece(const int r, const int k) {
 
 // Verplaatst een schaakstuk naar de gegeven positie op het spelbord
 void Game::setPiece(const int r, const int k, SchaakStuk* s) {
-
+    s->position.first = r;
+    s->position.second = k;
     bord[r][k] = s;
 }
+
 
 // Verplaats stuk s naar positie (r,k)
 // Als deze move niet mogelijk is, wordt false teruggegeven
 // en verandert er niets aan het schaakbord.
 // Anders wordt de move uitgevoerd en wordt true teruggegeven
-bool Game::move(SchaakStuk* s, int r, int k) {
-    return true;
+bool Game::move(SchaakStuk* s, const pair<int, int> &p) {
+
+    bool found = false;
+    // Itereer over alle geldige zetten
+    for ( const pair<int, int> &i : s->geldige_zetten(*this) ) {
+        if ( i == p ) {
+            // Wanneer gevonden wordt boolean op true gezet en onmiddelijk returnt
+            found = true;
+            break;
+        }
+    }
+    return found;
 }
 
 // Geeft true als kleur schaak staat

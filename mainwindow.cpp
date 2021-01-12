@@ -2,12 +2,16 @@
 #include "SchaakStuk.h"
 #include <QMessageBox>
 #include <QtWidgets>
+#include <iostream>
+using namespace std;
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
     scene = new ChessBoard;
     QGraphicsView *view = new QGraphicsView(scene);
     setCentralWidget(view);
+    g.setStartBord(); // zet alle schaakstukken op hun startpositie
+    update(); // weergeeft de huige staat van het spel
 
     connect(scene,SIGNAL(clicked(int,int)),this,SLOT(clicked(int,int)));
 
@@ -216,18 +220,18 @@ void MainWindow::visualizationChange() {
 // Update de inhoud van de grafische weergave van het schaakbord (scene)
 // en maak het consistent met de game state in variabele g.
 void MainWindow::update() {
+    // Itereer over alle mogelijke plaatsen van het schaakbord
+    for ( int r = 0; r < 8; r++) {
+        for ( int k = 0; k < 8; k++ ) {
+            SchaakStuk * updatePiece = g.getPiece(r, k);
 
+            // als updatePiece geen nullptr is kan deze gevisualiseerd worden
+            if ( updatePiece != nullptr ) {
+                scene->setItem(r, k, updatePiece->piece());
+            }
+        }
+    }
 }
-
-
-
-
-
-////////////////
-
-
-
-
 
 
 void MainWindow::createActions() {

@@ -4,12 +4,12 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "C:/Users/Pabsy/CLionProjects/schaken-base/SchaakStuk.cpp" "C:/Users/Pabsy/CLionProjects/schaken-base/cmake-build-debug/CMakeFiles/schaken.dir/SchaakStuk.cpp.obj"
-  "C:/Users/Pabsy/CLionProjects/schaken-base/chessboard.cpp" "C:/Users/Pabsy/CLionProjects/schaken-base/cmake-build-debug/CMakeFiles/schaken.dir/chessboard.cpp.obj"
-  "C:/Users/Pabsy/CLionProjects/schaken-base/game.cpp" "C:/Users/Pabsy/CLionProjects/schaken-base/cmake-build-debug/CMakeFiles/schaken.dir/game.cpp.obj"
-  "C:/Users/Pabsy/CLionProjects/schaken-base/main.cpp" "C:/Users/Pabsy/CLionProjects/schaken-base/cmake-build-debug/CMakeFiles/schaken.dir/main.cpp.obj"
-  "C:/Users/Pabsy/CLionProjects/schaken-base/mainwindow.cpp" "C:/Users/Pabsy/CLionProjects/schaken-base/cmake-build-debug/CMakeFiles/schaken.dir/mainwindow.cpp.obj"
-  "C:/Users/Pabsy/CLionProjects/schaken-base/cmake-build-debug/schaken_autogen/mocs_compilation.cpp" "C:/Users/Pabsy/CLionProjects/schaken-base/cmake-build-debug/CMakeFiles/schaken.dir/schaken_autogen/mocs_compilation.cpp.obj"
+  "C:/Users/Pabsy/Documents/GitHub/schaken-base/SchaakStuk.cpp" "C:/Users/Pabsy/Documents/GitHub/schaken-base/cmake-build-debug/CMakeFiles/schaken.dir/SchaakStuk.cpp.obj"
+  "C:/Users/Pabsy/Documents/GitHub/schaken-base/chessboard.cpp" "C:/Users/Pabsy/Documents/GitHub/schaken-base/cmake-build-debug/CMakeFiles/schaken.dir/chessboard.cpp.obj"
+  "C:/Users/Pabsy/Documents/GitHub/schaken-base/game.cpp" "C:/Users/Pabsy/Documents/GitHub/schaken-base/cmake-build-debug/CMakeFiles/schaken.dir/game.cpp.obj"
+  "C:/Users/Pabsy/Documents/GitHub/schaken-base/main.cpp" "C:/Users/Pabsy/Documents/GitHub/schaken-base/cmake-build-debug/CMakeFiles/schaken.dir/main.cpp.obj"
+  "C:/Users/Pabsy/Documents/GitHub/schaken-base/mainwindow.cpp" "C:/Users/Pabsy/Documents/GitHub/schaken-base/cmake-build-debug/CMakeFiles/schaken.dir/mainwindow.cpp.obj"
+  "C:/Users/Pabsy/Documents/GitHub/schaken-base/cmake-build-debug/schaken_autogen/mocs_compilation.cpp" "C:/Users/Pabsy/Documents/GitHub/schaken-base/cmake-build-debug/CMakeFiles/schaken.dir/schaken_autogen/mocs_compilation.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -23,7 +23,7 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "."
-  ".."
+  "../"
   "schaken_autogen/include"
   "C:/Qt/5.15.2/mingw81_64/include"
   "C:/Qt/5.15.2/mingw81_64/include/QtCore"

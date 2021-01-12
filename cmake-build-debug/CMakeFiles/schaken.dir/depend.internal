@@ -87,8 +87,8 @@ CMakeFiles/schaken.dir/SchaakStuk.cpp.obj
  C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qgraphicsscene.h
  C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qtwidgets-config.h
  C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qtwidgetsglobal.h
- C:/Users/Pabsy/CLionProjects/schaken-base/SchaakStuk.cpp
- C:/Users/Pabsy/CLionProjects/schaken-base/SchaakStuk.h
+ C:/Users/Pabsy/Documents/GitHub/schaken-base/SchaakStuk.cpp
+ C:/Users/Pabsy/Documents/GitHub/schaken-base/SchaakStuk.h
 CMakeFiles/schaken.dir/chessboard.cpp.obj
  C:/Qt/5.15.2/mingw81_64/include/QtANGLE/GLES2/gl2.h
  C:/Qt/5.15.2/mingw81_64/include/QtANGLE/GLES2/gl2platform.h
@@ -565,9 +565,9 @@ CMakeFiles/schaken.dir/chessboard.cpp.obj
  C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qwidget.h
  C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qwidgetaction.h
  C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qwizard.h
- C:/Users/Pabsy/CLionProjects/schaken-base/chessboard.cpp
- C:/Users/Pabsy/CLionProjects/schaken-base/chessboard.h
- C:/Users/Pabsy/CLionProjects/schaken-base/resources.h
+ C:/Users/Pabsy/Documents/GitHub/schaken-base/chessboard.cpp
+ C:/Users/Pabsy/Documents/GitHub/schaken-base/chessboard.h
+ C:/Users/Pabsy/Documents/GitHub/schaken-base/resources.h
 CMakeFiles/schaken.dir/game.cpp.obj
  ../chessboard.h
  C:/Qt/5.15.2/mingw81_64/include/QtCore/qalgorithms.h
@@ -654,9 +654,9 @@ CMakeFiles/schaken.dir/game.cpp.obj
  C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qgraphicsscene.h
  C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qtwidgets-config.h
  C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qtwidgetsglobal.h
- C:/Users/Pabsy/CLionProjects/schaken-base/SchaakStuk.h
- C:/Users/Pabsy/CLionProjects/schaken-base/game.cpp
- C:/Users/Pabsy/CLionProjects/schaken-base/game.h
+ C:/Users/Pabsy/Documents/GitHub/schaken-base/SchaakStuk.h
+ C:/Users/Pabsy/Documents/GitHub/schaken-base/game.cpp
+ C:/Users/Pabsy/Documents/GitHub/schaken-base/game.h
 CMakeFiles/schaken.dir/main.cpp.obj
  ../chessboard.h
  C:/Qt/5.15.2/mingw81_64/include/QtCore/qalgorithms.h
@@ -776,10 +776,10 @@ CMakeFiles/schaken.dir/main.cpp.obj
  C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qtwidgets-config.h
  C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qtwidgetsglobal.h
  C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qwidget.h
- C:/Users/Pabsy/CLionProjects/schaken-base/SchaakStuk.h
- C:/Users/Pabsy/CLionProjects/schaken-base/game.h
- C:/Users/Pabsy/CLionProjects/schaken-base/main.cpp
- C:/Users/Pabsy/CLionProjects/schaken-base/mainwindow.h
+ C:/Users/Pabsy/Documents/GitHub/schaken-base/SchaakStuk.h
+ C:/Users/Pabsy/Documents/GitHub/schaken-base/game.h
+ C:/Users/Pabsy/Documents/GitHub/schaken-base/main.cpp
+ C:/Users/Pabsy/Documents/GitHub/schaken-base/mainwindow.h
 CMakeFiles/schaken.dir/mainwindow.cpp.obj
  ../chessboard.h
  C:/Qt/5.15.2/mingw81_64/include/QtANGLE/GLES2/gl2.h
@@ -1259,10 +1259,10 @@ CMakeFiles/schaken.dir/mainwindow.cpp.obj
  C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qwidget.h
  C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qwidgetaction.h
  C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qwizard.h
- C:/Users/Pabsy/CLionProjects/schaken-base/SchaakStuk.h
- C:/Users/Pabsy/CLionProjects/schaken-base/game.h
- C:/Users/Pabsy/CLionProjects/schaken-base/mainwindow.cpp
- C:/Users/Pabsy/CLionProjects/schaken-base/mainwindow.h
+ C:/Users/Pabsy/Documents/GitHub/schaken-base/SchaakStuk.h
+ C:/Users/Pabsy/Documents/GitHub/schaken-base/game.h
+ C:/Users/Pabsy/Documents/GitHub/schaken-base/mainwindow.cpp
+ C:/Users/Pabsy/Documents/GitHub/schaken-base/mainwindow.h
 CMakeFiles/schaken.dir/schaken_autogen/mocs_compilation.cpp.obj
  ../chessboard.h
  C:/Qt/5.15.2/mingw81_64/include/QtCore/qalgorithms.h
@@ -1375,10 +1375,10 @@ CMakeFiles/schaken.dir/schaken_autogen/mocs_compilation.cpp.obj
  C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qtwidgets-config.h
  C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qtwidgetsglobal.h
  C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qwidget.h
- C:/Users/Pabsy/CLionProjects/schaken-base/SchaakStuk.h
- C:/Users/Pabsy/CLionProjects/schaken-base/chessboard.h
- C:/Users/Pabsy/CLionProjects/schaken-base/cmake-build-debug/schaken_autogen/EWIEGA46WW/moc_chessboard.cpp
- C:/Users/Pabsy/CLionProjects/schaken-base/cmake-build-debug/schaken_autogen/EWIEGA46WW/moc_mainwindow.cpp
- C:/Users/Pabsy/CLionProjects/schaken-base/cmake-build-debug/schaken_autogen/mocs_compilation.cpp
- C:/Users/Pabsy/CLionProjects/schaken-base/game.h
- C:/Users/Pabsy/CLionProjects/schaken-base/mainwindow.h
+ C:/Users/Pabsy/Documents/GitHub/schaken-base/SchaakStuk.h
+ C:/Users/Pabsy/Documents/GitHub/schaken-base/chessboard.h
+ C:/Users/Pabsy/Documents/GitHub/schaken-base/cmake-build-debug/schaken_autogen/EWIEGA46WW/moc_chessboard.cpp
+ C:/Users/Pabsy/Documents/GitHub/schaken-base/cmake-build-debug/schaken_autogen/EWIEGA46WW/moc_mainwindow.cpp
+ C:/Users/Pabsy/Documents/GitHub/schaken-base/cmake-build-debug/schaken_autogen/mocs_compilation.cpp
+ C:/Users/Pabsy/Documents/GitHub/schaken-base/game.h
+ C:/Users/Pabsy/Documents/GitHub/schaken-base/mainwindow.h

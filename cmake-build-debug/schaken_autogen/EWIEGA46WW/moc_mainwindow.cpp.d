@@ -1,5 +1,5 @@
-C:/Users/Pabsy/CLionProjects/schaken-base/cmake-build-debug/schaken_autogen/EWIEGA46WW/moc_mainwindow.cpp: C:/Users/Pabsy/CLionProjects/schaken-base/mainwindow.h \
-  C:/Users/Pabsy/CLionProjects/schaken-base/cmake-build-debug/schaken_autogen/moc_predefs.h \
+C:/Users/Pabsy/Documents/GitHub/schaken-base/cmake-build-debug/schaken_autogen/EWIEGA46WW/moc_mainwindow.cpp: C:/Users/Pabsy/Documents/GitHub/schaken-base/mainwindow.h \
+  C:/Users/Pabsy/Documents/GitHub/schaken-base/cmake-build-debug/schaken_autogen/moc_predefs.h \
   C:/Qt/5.15.2/mingw81_64/include/QtCore/qalgorithms.h \
   C:/Qt/5.15.2/mingw81_64/include/QtCore/qarraydata.h \
   C:/Qt/5.15.2/mingw81_64/include/QtCore/qatomic.h \
@@ -273,6 +273,6 @@ C:/Users/Pabsy/CLionProjects/schaken-base/cmake-build-debug/schaken_autogen/EWIE
   C:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include/vadefs.h \
   C:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include/wchar.h \
   C:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include/wctype.h \
-  C:/Users/Pabsy/CLionProjects/schaken-base/SchaakStuk.h \
-  C:/Users/Pabsy/CLionProjects/schaken-base/chessboard.h \
-  C:/Users/Pabsy/CLionProjects/schaken-base/game.h
+  C:/Users/Pabsy/Documents/GitHub/schaken-base/SchaakStuk.h \
+  C:/Users/Pabsy/Documents/GitHub/schaken-base/chessboard.h \
+  C:/Users/Pabsy/Documents/GitHub/schaken-base/game.h

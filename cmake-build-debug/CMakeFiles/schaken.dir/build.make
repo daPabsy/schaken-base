@@ -62,10 +62,10 @@ RM = C:\Users\Pabsy\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\203.6682.181
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\Pabsy\CLionProjects\schaken-base
+CMAKE_SOURCE_DIR = C:\Users\Pabsy\Documents\GitHub\schaken-base
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\Pabsy\CLionProjects\schaken-base\cmake-build-debug
+CMAKE_BINARY_DIR = C:\Users\Pabsy\Documents\GitHub\schaken-base\cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/schaken.dir/depend.make
@@ -79,86 +79,86 @@ include CMakeFiles/schaken.dir/flags.make
 CMakeFiles/schaken.dir/schaken_autogen/mocs_compilation.cpp.obj: CMakeFiles/schaken.dir/flags.make
 CMakeFiles/schaken.dir/schaken_autogen/mocs_compilation.cpp.obj: CMakeFiles/schaken.dir/includes_CXX.rsp
 CMakeFiles/schaken.dir/schaken_autogen/mocs_compilation.cpp.obj: schaken_autogen/mocs_compilation.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Pabsy\CLionProjects\schaken-base\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/schaken.dir/schaken_autogen/mocs_compilation.cpp.obj"
-	C:\Qt\Tools\mingw810_64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\schaken.dir\schaken_autogen\mocs_compilation.cpp.obj -c C:\Users\Pabsy\CLionProjects\schaken-base\cmake-build-debug\schaken_autogen\mocs_compilation.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Pabsy\Documents\GitHub\schaken-base\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/schaken.dir/schaken_autogen/mocs_compilation.cpp.obj"
+	C:\Qt\Tools\mingw810_64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\schaken.dir\schaken_autogen\mocs_compilation.cpp.obj -c C:\Users\Pabsy\Documents\GitHub\schaken-base\cmake-build-debug\schaken_autogen\mocs_compilation.cpp
 
 CMakeFiles/schaken.dir/schaken_autogen/mocs_compilation.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/schaken.dir/schaken_autogen/mocs_compilation.cpp.i"
-	C:\Qt\Tools\mingw810_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Pabsy\CLionProjects\schaken-base\cmake-build-debug\schaken_autogen\mocs_compilation.cpp > CMakeFiles\schaken.dir\schaken_autogen\mocs_compilation.cpp.i
+	C:\Qt\Tools\mingw810_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Pabsy\Documents\GitHub\schaken-base\cmake-build-debug\schaken_autogen\mocs_compilation.cpp > CMakeFiles\schaken.dir\schaken_autogen\mocs_compilation.cpp.i
 
 CMakeFiles/schaken.dir/schaken_autogen/mocs_compilation.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/schaken.dir/schaken_autogen/mocs_compilation.cpp.s"
-	C:\Qt\Tools\mingw810_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Pabsy\CLionProjects\schaken-base\cmake-build-debug\schaken_autogen\mocs_compilation.cpp -o CMakeFiles\schaken.dir\schaken_autogen\mocs_compilation.cpp.s
+	C:\Qt\Tools\mingw810_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Pabsy\Documents\GitHub\schaken-base\cmake-build-debug\schaken_autogen\mocs_compilation.cpp -o CMakeFiles\schaken.dir\schaken_autogen\mocs_compilation.cpp.s
 
 CMakeFiles/schaken.dir/main.cpp.obj: CMakeFiles/schaken.dir/flags.make
 CMakeFiles/schaken.dir/main.cpp.obj: CMakeFiles/schaken.dir/includes_CXX.rsp
 CMakeFiles/schaken.dir/main.cpp.obj: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Pabsy\CLionProjects\schaken-base\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/schaken.dir/main.cpp.obj"
-	C:\Qt\Tools\mingw810_64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\schaken.dir\main.cpp.obj -c C:\Users\Pabsy\CLionProjects\schaken-base\main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Pabsy\Documents\GitHub\schaken-base\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/schaken.dir/main.cpp.obj"
+	C:\Qt\Tools\mingw810_64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\schaken.dir\main.cpp.obj -c C:\Users\Pabsy\Documents\GitHub\schaken-base\main.cpp
 
 CMakeFiles/schaken.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/schaken.dir/main.cpp.i"
-	C:\Qt\Tools\mingw810_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Pabsy\CLionProjects\schaken-base\main.cpp > CMakeFiles\schaken.dir\main.cpp.i
+	C:\Qt\Tools\mingw810_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Pabsy\Documents\GitHub\schaken-base\main.cpp > CMakeFiles\schaken.dir\main.cpp.i
 
 CMakeFiles/schaken.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/schaken.dir/main.cpp.s"
-	C:\Qt\Tools\mingw810_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Pabsy\CLionProjects\schaken-base\main.cpp -o CMakeFiles\schaken.dir\main.cpp.s
+	C:\Qt\Tools\mingw810_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Pabsy\Documents\GitHub\schaken-base\main.cpp -o CMakeFiles\schaken.dir\main.cpp.s
 
 CMakeFiles/schaken.dir/mainwindow.cpp.obj: CMakeFiles/schaken.dir/flags.make
 CMakeFiles/schaken.dir/mainwindow.cpp.obj: CMakeFiles/schaken.dir/includes_CXX.rsp
 CMakeFiles/schaken.dir/mainwindow.cpp.obj: ../mainwindow.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Pabsy\CLionProjects\schaken-base\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/schaken.dir/mainwindow.cpp.obj"
-	C:\Qt\Tools\mingw810_64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\schaken.dir\mainwindow.cpp.obj -c C:\Users\Pabsy\CLionProjects\schaken-base\mainwindow.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Pabsy\Documents\GitHub\schaken-base\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/schaken.dir/mainwindow.cpp.obj"
+	C:\Qt\Tools\mingw810_64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\schaken.dir\mainwindow.cpp.obj -c C:\Users\Pabsy\Documents\GitHub\schaken-base\mainwindow.cpp
 
 CMakeFiles/schaken.dir/mainwindow.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/schaken.dir/mainwindow.cpp.i"
-	C:\Qt\Tools\mingw810_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Pabsy\CLionProjects\schaken-base\mainwindow.cpp > CMakeFiles\schaken.dir\mainwindow.cpp.i
+	C:\Qt\Tools\mingw810_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Pabsy\Documents\GitHub\schaken-base\mainwindow.cpp > CMakeFiles\schaken.dir\mainwindow.cpp.i
 
 CMakeFiles/schaken.dir/mainwindow.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/schaken.dir/mainwindow.cpp.s"
-	C:\Qt\Tools\mingw810_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Pabsy\CLionProjects\schaken-base\mainwindow.cpp -o CMakeFiles\schaken.dir\mainwindow.cpp.s
+	C:\Qt\Tools\mingw810_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Pabsy\Documents\GitHub\schaken-base\mainwindow.cpp -o CMakeFiles\schaken.dir\mainwindow.cpp.s
 
 CMakeFiles/schaken.dir/chessboard.cpp.obj: CMakeFiles/schaken.dir/flags.make
 CMakeFiles/schaken.dir/chessboard.cpp.obj: CMakeFiles/schaken.dir/includes_CXX.rsp
 CMakeFiles/schaken.dir/chessboard.cpp.obj: ../chessboard.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Pabsy\CLionProjects\schaken-base\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/schaken.dir/chessboard.cpp.obj"
-	C:\Qt\Tools\mingw810_64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\schaken.dir\chessboard.cpp.obj -c C:\Users\Pabsy\CLionProjects\schaken-base\chessboard.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Pabsy\Documents\GitHub\schaken-base\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/schaken.dir/chessboard.cpp.obj"
+	C:\Qt\Tools\mingw810_64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\schaken.dir\chessboard.cpp.obj -c C:\Users\Pabsy\Documents\GitHub\schaken-base\chessboard.cpp
 
 CMakeFiles/schaken.dir/chessboard.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/schaken.dir/chessboard.cpp.i"
-	C:\Qt\Tools\mingw810_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Pabsy\CLionProjects\schaken-base\chessboard.cpp > CMakeFiles\schaken.dir\chessboard.cpp.i
+	C:\Qt\Tools\mingw810_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Pabsy\Documents\GitHub\schaken-base\chessboard.cpp > CMakeFiles\schaken.dir\chessboard.cpp.i
 
 CMakeFiles/schaken.dir/chessboard.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/schaken.dir/chessboard.cpp.s"
-	C:\Qt\Tools\mingw810_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Pabsy\CLionProjects\schaken-base\chessboard.cpp -o CMakeFiles\schaken.dir\chessboard.cpp.s
+	C:\Qt\Tools\mingw810_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Pabsy\Documents\GitHub\schaken-base\chessboard.cpp -o CMakeFiles\schaken.dir\chessboard.cpp.s
 
 CMakeFiles/schaken.dir/game.cpp.obj: CMakeFiles/schaken.dir/flags.make
 CMakeFiles/schaken.dir/game.cpp.obj: CMakeFiles/schaken.dir/includes_CXX.rsp
 CMakeFiles/schaken.dir/game.cpp.obj: ../game.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Pabsy\CLionProjects\schaken-base\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/schaken.dir/game.cpp.obj"
-	C:\Qt\Tools\mingw810_64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\schaken.dir\game.cpp.obj -c C:\Users\Pabsy\CLionProjects\schaken-base\game.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Pabsy\Documents\GitHub\schaken-base\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/schaken.dir/game.cpp.obj"
+	C:\Qt\Tools\mingw810_64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\schaken.dir\game.cpp.obj -c C:\Users\Pabsy\Documents\GitHub\schaken-base\game.cpp
 
 CMakeFiles/schaken.dir/game.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/schaken.dir/game.cpp.i"
-	C:\Qt\Tools\mingw810_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Pabsy\CLionProjects\schaken-base\game.cpp > CMakeFiles\schaken.dir\game.cpp.i
+	C:\Qt\Tools\mingw810_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Pabsy\Documents\GitHub\schaken-base\game.cpp > CMakeFiles\schaken.dir\game.cpp.i
 
 CMakeFiles/schaken.dir/game.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/schaken.dir/game.cpp.s"
-	C:\Qt\Tools\mingw810_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Pabsy\CLionProjects\schaken-base\game.cpp -o CMakeFiles\schaken.dir\game.cpp.s
+	C:\Qt\Tools\mingw810_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Pabsy\Documents\GitHub\schaken-base\game.cpp -o CMakeFiles\schaken.dir\game.cpp.s
 
 CMakeFiles/schaken.dir/SchaakStuk.cpp.obj: CMakeFiles/schaken.dir/flags.make
 CMakeFiles/schaken.dir/SchaakStuk.cpp.obj: CMakeFiles/schaken.dir/includes_CXX.rsp
 CMakeFiles/schaken.dir/SchaakStuk.cpp.obj: ../SchaakStuk.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Pabsy\CLionProjects\schaken-base\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/schaken.dir/SchaakStuk.cpp.obj"
-	C:\Qt\Tools\mingw810_64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\schaken.dir\SchaakStuk.cpp.obj -c C:\Users\Pabsy\CLionProjects\schaken-base\SchaakStuk.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Pabsy\Documents\GitHub\schaken-base\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/schaken.dir/SchaakStuk.cpp.obj"
+	C:\Qt\Tools\mingw810_64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\schaken.dir\SchaakStuk.cpp.obj -c C:\Users\Pabsy\Documents\GitHub\schaken-base\SchaakStuk.cpp
 
 CMakeFiles/schaken.dir/SchaakStuk.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/schaken.dir/SchaakStuk.cpp.i"
-	C:\Qt\Tools\mingw810_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Pabsy\CLionProjects\schaken-base\SchaakStuk.cpp > CMakeFiles\schaken.dir\SchaakStuk.cpp.i
+	C:\Qt\Tools\mingw810_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Pabsy\Documents\GitHub\schaken-base\SchaakStuk.cpp > CMakeFiles\schaken.dir\SchaakStuk.cpp.i
 
 CMakeFiles/schaken.dir/SchaakStuk.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/schaken.dir/SchaakStuk.cpp.s"
-	C:\Qt\Tools\mingw810_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Pabsy\CLionProjects\schaken-base\SchaakStuk.cpp -o CMakeFiles\schaken.dir\SchaakStuk.cpp.s
+	C:\Qt\Tools\mingw810_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Pabsy\Documents\GitHub\schaken-base\SchaakStuk.cpp -o CMakeFiles\schaken.dir\SchaakStuk.cpp.s
 
 # Object files for target schaken
 schaken_OBJECTS = \
@@ -185,7 +185,7 @@ schaken.exe: C:/Qt/5.15.2/mingw81_64/lib/libQt5Core.a
 schaken.exe: CMakeFiles/schaken.dir/linklibs.rsp
 schaken.exe: CMakeFiles/schaken.dir/objects1.rsp
 schaken.exe: CMakeFiles/schaken.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\Pabsy\CLionProjects\schaken-base\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable schaken.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\Pabsy\Documents\GitHub\schaken-base\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable schaken.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\schaken.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -198,6 +198,6 @@ CMakeFiles/schaken.dir/clean:
 .PHONY : CMakeFiles/schaken.dir/clean
 
 CMakeFiles/schaken.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\Pabsy\CLionProjects\schaken-base C:\Users\Pabsy\CLionProjects\schaken-base C:\Users\Pabsy\CLionProjects\schaken-base\cmake-build-debug C:\Users\Pabsy\CLionProjects\schaken-base\cmake-build-debug C:\Users\Pabsy\CLionProjects\schaken-base\cmake-build-debug\CMakeFiles\schaken.dir\DependInfo.cmake --color=$(COLOR)
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\Pabsy\Documents\GitHub\schaken-base C:\Users\Pabsy\Documents\GitHub\schaken-base C:\Users\Pabsy\Documents\GitHub\schaken-base\cmake-build-debug C:\Users\Pabsy\Documents\GitHub\schaken-base\cmake-build-debug C:\Users\Pabsy\Documents\GitHub\schaken-base\cmake-build-debug\CMakeFiles\schaken.dir\DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/schaken.dir/depend
 

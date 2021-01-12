@@ -1,5 +1,5 @@
-C:/Users/Pabsy/CLionProjects/schaken-base/cmake-build-debug/schaken_autogen/EWIEGA46WW/moc_chessboard.cpp: C:/Users/Pabsy/CLionProjects/schaken-base/chessboard.h \
-  C:/Users/Pabsy/CLionProjects/schaken-base/cmake-build-debug/schaken_autogen/moc_predefs.h \
+C:/Users/Pabsy/Documents/GitHub/schaken-base/cmake-build-debug/schaken_autogen/EWIEGA46WW/moc_chessboard.cpp: C:/Users/Pabsy/Documents/GitHub/schaken-base/chessboard.h \
+  C:/Users/Pabsy/Documents/GitHub/schaken-base/cmake-build-debug/schaken_autogen/moc_predefs.h \
   C:/Qt/5.15.2/mingw81_64/include/QtCore/qalgorithms.h \
   C:/Qt/5.15.2/mingw81_64/include/QtCore/qarraydata.h \
   C:/Qt/5.15.2/mingw81_64/include/QtCore/qatomic.h \

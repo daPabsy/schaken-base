@@ -3580,10 +3580,6 @@ C:/Qt/5.15.2/mingw81_64/include/QtGui/qwindowdefs_win.h
 QtGui/qtguiglobal.h
 -
 
-C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QApplication
-qapplication.h
-C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qapplication.h
-
 C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QCommonStyle
 qcommonstyle.h
 C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qcommonstyle.h
@@ -5034,71 +5030,37 @@ QtWidgets/qtwidgetsglobal.h
 QtWidgets/qdialog.h
 -
 
-C:/Users/Pabsy/CLionProjects/schaken-base/SchaakStuk.h
+C:/Users/Pabsy/Documents/GitHub/schaken-base/SchaakStuk.h
 chessboard.h
 -
 
-C:/Users/Pabsy/CLionProjects/schaken-base/chessboard.h
-QGraphicsScene
--
-
-C:/Users/Pabsy/CLionProjects/schaken-base/cmake-build-debug/schaken_autogen/EWIEGA46WW/moc_chessboard.cpp
-memory
--
-../../../chessboard.h
-C:/Users/Pabsy/CLionProjects/schaken-base/chessboard.h
-QtCore/qbytearray.h
--
-QtCore/qmetatype.h
--
-
-C:/Users/Pabsy/CLionProjects/schaken-base/cmake-build-debug/schaken_autogen/EWIEGA46WW/moc_mainwindow.cpp
-memory
--
-../../../mainwindow.h
-C:/Users/Pabsy/CLionProjects/schaken-base/mainwindow.h
-QtCore/qbytearray.h
--
-QtCore/qmetatype.h
--
-
-C:/Users/Pabsy/CLionProjects/schaken-base/cmake-build-debug/schaken_autogen/mocs_compilation.cpp
-EWIEGA46WW/moc_chessboard.cpp
-C:/Users/Pabsy/CLionProjects/schaken-base/cmake-build-debug/schaken_autogen/EWIEGA46WW/moc_chessboard.cpp
-EWIEGA46WW/moc_mainwindow.cpp
-C:/Users/Pabsy/CLionProjects/schaken-base/cmake-build-debug/schaken_autogen/EWIEGA46WW/moc_mainwindow.cpp
-
-C:/Users/Pabsy/CLionProjects/schaken-base/game.cpp
+C:/Users/Pabsy/Documents/GitHub/schaken-base/game.cpp
 game.h
-C:/Users/Pabsy/CLionProjects/schaken-base/game.h
+C:/Users/Pabsy/Documents/GitHub/schaken-base/game.h
 
-C:/Users/Pabsy/CLionProjects/schaken-base/game.h
+C:/Users/Pabsy/Documents/GitHub/schaken-base/game.h
 SchaakStuk.h
-C:/Users/Pabsy/CLionProjects/schaken-base/SchaakStuk.h
+C:/Users/Pabsy/Documents/GitHub/schaken-base/SchaakStuk.h
 
-C:/Users/Pabsy/CLionProjects/schaken-base/main.cpp
-QApplication
--
+C:/Users/Pabsy/Documents/GitHub/schaken-base/mainwindow.cpp
 mainwindow.h
-C:/Users/Pabsy/CLionProjects/schaken-base/mainwindow.h
-
-C:/Users/Pabsy/CLionProjects/schaken-base/mainwindow.cpp
-mainwindow.h
-C:/Users/Pabsy/CLionProjects/schaken-base/mainwindow.h
+C:/Users/Pabsy/Documents/GitHub/schaken-base/mainwindow.h
 SchaakStuk.h
-C:/Users/Pabsy/CLionProjects/schaken-base/SchaakStuk.h
+C:/Users/Pabsy/Documents/GitHub/schaken-base/SchaakStuk.h
 QMessageBox
 -
 QtWidgets
 -
+iostream
+-
 
-C:/Users/Pabsy/CLionProjects/schaken-base/mainwindow.h
+C:/Users/Pabsy/Documents/GitHub/schaken-base/mainwindow.h
 QMainWindow
 -
 game.h
-C:/Users/Pabsy/CLionProjects/schaken-base/game.h
+C:/Users/Pabsy/Documents/GitHub/schaken-base/game.h
 SchaakStuk.h
-C:/Users/Pabsy/CLionProjects/schaken-base/SchaakStuk.h
+C:/Users/Pabsy/Documents/GitHub/schaken-base/SchaakStuk.h
 QCloseEvent
 -
 

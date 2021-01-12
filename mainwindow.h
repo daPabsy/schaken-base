@@ -5,6 +5,7 @@
 #include "game.h"
 #include "SchaakStuk.h"
 #include <QCloseEvent>
+
 class ChessBoard;
 class QSettings;
 
@@ -13,13 +14,17 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
+
     MainWindow(QWidget *parent = 0);
     void update();
 
 private:
+
     ChessBoard *scene;
-    Game g;
+    Game g; // game g
+
 private slots:
+
     void clicked(int x, int y);
     void newGame();
     void open();
@@ -39,6 +44,7 @@ private slots:
     }
 
 private:
+
     void createActions();
     void createMenus();
     QMenu *fileMenu;

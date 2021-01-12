@@ -1,11 +1,13 @@
-//  Student:
-//  Rolnummer:
+//  Student: Deputter Pablo
+//  Rolnummer: s0205440
 //  Opmerkingen: (bvb aanpassingen van de opgave)
 //
 
 #ifndef SCHAKEN_SCHAAKSTUK_H
 #define SCHAKEN_SCHAAKSTUK_H
 #include <chessboard.h>
+#include <vector>
+using namespace std;
 
 class Game;
 
@@ -21,6 +23,13 @@ public:
                                         // Meer info: kijk naar mainwindow.cpp, lijn 27
 
     zw getKleur() const { return kleur; }
+
+    virtual vector<pair<int, int>> geldige_zetten(const Game & game); // game verandert niet
+
+    // positie van SchaakStuk
+    pair<int, int> position;
+
+
 private:
     zw kleur;
 };
@@ -31,6 +40,8 @@ public:
     virtual Piece piece() const override {
         return Piece(Piece::Pawn,getKleur()==wit?Piece::White:Piece::Black);
     }
+
+    vector<pair<int, int>> geldige_zetten(const Game & game) override;
 };
 
 class Toren:public SchaakStuk {

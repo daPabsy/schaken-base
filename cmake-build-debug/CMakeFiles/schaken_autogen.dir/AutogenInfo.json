@@ -1,16 +1,16 @@
 {
-	"BUILD_DIR" : "C:/Users/Pabsy/CLionProjects/schaken-base/cmake-build-debug/schaken_autogen",
-	"CMAKE_BINARY_DIR" : "C:/Users/Pabsy/CLionProjects/schaken-base/cmake-build-debug",
-	"CMAKE_CURRENT_BINARY_DIR" : "C:/Users/Pabsy/CLionProjects/schaken-base/cmake-build-debug",
-	"CMAKE_CURRENT_SOURCE_DIR" : "C:/Users/Pabsy/CLionProjects/schaken-base",
+	"BUILD_DIR" : "C:/Users/Pabsy/Documents/GitHub/schaken-base/cmake-build-debug/schaken_autogen",
+	"CMAKE_BINARY_DIR" : "C:/Users/Pabsy/Documents/GitHub/schaken-base/cmake-build-debug",
+	"CMAKE_CURRENT_BINARY_DIR" : "C:/Users/Pabsy/Documents/GitHub/schaken-base/cmake-build-debug",
+	"CMAKE_CURRENT_SOURCE_DIR" : "C:/Users/Pabsy/Documents/GitHub/schaken-base",
 	"CMAKE_EXECUTABLE" : "C:/Users/Pabsy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/203.6682.181/bin/cmake/win/bin/cmake.exe",
 	"CMAKE_LIST_FILES" : 
 	[
-		"C:/Users/Pabsy/CLionProjects/schaken-base/CMakeLists.txt",
+		"C:/Users/Pabsy/Documents/GitHub/schaken-base/CMakeLists.txt",
 		"C:/Users/Pabsy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/203.6682.181/bin/cmake/win/share/cmake-3.17/Modules/CMakeMinGWFindMake.cmake",
 		"C:/Users/Pabsy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/203.6682.181/bin/cmake/win/share/cmake-3.17/Modules/CMakeDetermineSystem.cmake",
 		"C:/Users/Pabsy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/203.6682.181/bin/cmake/win/share/cmake-3.17/Modules/CMakeSystem.cmake.in",
-		"C:/Users/Pabsy/CLionProjects/schaken-base/cmake-build-debug/CMakeFiles/3.17.5/CMakeSystem.cmake",
+		"C:/Users/Pabsy/Documents/GitHub/schaken-base/cmake-build-debug/CMakeFiles/3.17.5/CMakeSystem.cmake",
 		"C:/Users/Pabsy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/203.6682.181/bin/cmake/win/share/cmake-3.17/Modules/CMakeSystemSpecificInitialize.cmake",
 		"C:/Users/Pabsy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/203.6682.181/bin/cmake/win/share/cmake-3.17/Modules/CMakeDetermineCCompiler.cmake",
 		"C:/Users/Pabsy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/203.6682.181/bin/cmake/win/share/cmake-3.17/Modules/CMakeDetermineCompiler.cmake",
@@ -55,7 +55,7 @@
 		"C:/Users/Pabsy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/203.6682.181/bin/cmake/win/share/cmake-3.17/Modules/CMakeFindBinUtils.cmake",
 		"C:/Users/Pabsy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/203.6682.181/bin/cmake/win/share/cmake-3.17/Modules/Compiler/GNU-FindBinUtils.cmake",
 		"C:/Users/Pabsy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/203.6682.181/bin/cmake/win/share/cmake-3.17/Modules/CMakeCCompiler.cmake.in",
-		"C:/Users/Pabsy/CLionProjects/schaken-base/cmake-build-debug/CMakeFiles/3.17.5/CMakeCCompiler.cmake",
+		"C:/Users/Pabsy/Documents/GitHub/schaken-base/cmake-build-debug/CMakeFiles/3.17.5/CMakeCCompiler.cmake",
 		"C:/Users/Pabsy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/203.6682.181/bin/cmake/win/share/cmake-3.17/Modules/CMakeDetermineCXXCompiler.cmake",
 		"C:/Users/Pabsy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/203.6682.181/bin/cmake/win/share/cmake-3.17/Modules/CMakeDetermineCompiler.cmake",
 		"C:/Users/Pabsy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/203.6682.181/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-Determine-CXX.cmake",
@@ -98,7 +98,7 @@
 		"C:/Users/Pabsy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/203.6682.181/bin/cmake/win/share/cmake-3.17/Modules/CMakeFindBinUtils.cmake",
 		"C:/Users/Pabsy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/203.6682.181/bin/cmake/win/share/cmake-3.17/Modules/Compiler/GNU-FindBinUtils.cmake",
 		"C:/Users/Pabsy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/203.6682.181/bin/cmake/win/share/cmake-3.17/Modules/CMakeCXXCompiler.cmake.in",
-		"C:/Users/Pabsy/CLionProjects/schaken-base/cmake-build-debug/CMakeFiles/3.17.5/CMakeCXXCompiler.cmake",
+		"C:/Users/Pabsy/Documents/GitHub/schaken-base/cmake-build-debug/CMakeFiles/3.17.5/CMakeCXXCompiler.cmake",
 		"C:/Users/Pabsy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/203.6682.181/bin/cmake/win/share/cmake-3.17/Modules/CMakeSystemSpecificInformation.cmake",
 		"C:/Users/Pabsy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/203.6682.181/bin/cmake/win/share/cmake-3.17/Modules/CMakeGenericSystem.cmake",
 		"C:/Users/Pabsy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/203.6682.181/bin/cmake/win/share/cmake-3.17/Modules/CMakeInitializeConfigs.cmake",
@@ -118,7 +118,7 @@
 		"C:/Users/Pabsy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/203.6682.181/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-GNU.cmake",
 		"C:/Users/Pabsy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/203.6682.181/bin/cmake/win/share/cmake-3.17/Modules/CMakeDetermineRCCompiler.cmake",
 		"C:/Users/Pabsy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/203.6682.181/bin/cmake/win/share/cmake-3.17/Modules/CMakeRCCompiler.cmake.in",
-		"C:/Users/Pabsy/CLionProjects/schaken-base/cmake-build-debug/CMakeFiles/3.17.5/CMakeRCCompiler.cmake",
+		"C:/Users/Pabsy/Documents/GitHub/schaken-base/cmake-build-debug/CMakeFiles/3.17.5/CMakeRCCompiler.cmake",
 		"C:/Users/Pabsy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/203.6682.181/bin/cmake/win/share/cmake-3.17/Modules/CMakeRCInformation.cmake",
 		"C:/Users/Pabsy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/203.6682.181/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-windres.cmake",
 		"C:/Users/Pabsy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/203.6682.181/bin/cmake/win/share/cmake-3.17/Modules/CMakeTestRCCompiler.cmake",
@@ -133,7 +133,7 @@
 		"C:/Users/Pabsy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/203.6682.181/bin/cmake/win/share/cmake-3.17/Modules/CMakeDetermineCompileFeatures.cmake",
 		"C:/Users/Pabsy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/203.6682.181/bin/cmake/win/share/cmake-3.17/Modules/Internal/FeatureTesting.cmake",
 		"C:/Users/Pabsy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/203.6682.181/bin/cmake/win/share/cmake-3.17/Modules/CMakeCCompiler.cmake.in",
-		"C:/Users/Pabsy/CLionProjects/schaken-base/cmake-build-debug/CMakeFiles/3.17.5/CMakeCCompiler.cmake",
+		"C:/Users/Pabsy/Documents/GitHub/schaken-base/cmake-build-debug/CMakeFiles/3.17.5/CMakeCCompiler.cmake",
 		"C:/Users/Pabsy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/203.6682.181/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-GNU-C-ABI.cmake",
 		"C:/Users/Pabsy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/203.6682.181/bin/cmake/win/share/cmake-3.17/Modules/CMakeCXXInformation.cmake",
 		"C:/Users/Pabsy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/203.6682.181/bin/cmake/win/share/cmake-3.17/Modules/CMakeLanguageInformation.cmake",
@@ -152,7 +152,7 @@
 		"C:/Users/Pabsy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/203.6682.181/bin/cmake/win/share/cmake-3.17/Modules/CMakeDetermineCompileFeatures.cmake",
 		"C:/Users/Pabsy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/203.6682.181/bin/cmake/win/share/cmake-3.17/Modules/Internal/FeatureTesting.cmake",
 		"C:/Users/Pabsy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/203.6682.181/bin/cmake/win/share/cmake-3.17/Modules/CMakeCXXCompiler.cmake.in",
-		"C:/Users/Pabsy/CLionProjects/schaken-base/cmake-build-debug/CMakeFiles/3.17.5/CMakeCXXCompiler.cmake",
+		"C:/Users/Pabsy/Documents/GitHub/schaken-base/cmake-build-debug/CMakeFiles/3.17.5/CMakeCXXCompiler.cmake",
 		"C:/Users/Pabsy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/203.6682.181/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-GNU-CXX-ABI.cmake",
 		"C:/Qt/5.15.2/mingw81_64/lib/cmake/Qt5Core/Qt5CoreConfigVersion.cmake",
 		"C:/Qt/5.15.2/mingw81_64/lib/cmake/Qt5Core/Qt5CoreConfig.cmake",
@@ -188,40 +188,40 @@
 		"C:/Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5GuiConfigVersion.cmake",
 		"C:/Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5GuiConfig.cmake"
 	],
-	"CMAKE_SOURCE_DIR" : "C:/Users/Pabsy/CLionProjects/schaken-base",
+	"CMAKE_SOURCE_DIR" : "C:/Users/Pabsy/Documents/GitHub/schaken-base",
 	"DEP_FILE" : "",
 	"DEP_FILE_RULE_NAME" : "",
 	"HEADERS" : 
 	[
 		[
-			"C:/Users/Pabsy/CLionProjects/schaken-base/SchaakStuk.h",
+			"C:/Users/Pabsy/Documents/GitHub/schaken-base/SchaakStuk.h",
 			"Mu",
 			"EWIEGA46WW/moc_SchaakStuk.cpp"
 		],
 		[
-			"C:/Users/Pabsy/CLionProjects/schaken-base/chessboard.h",
+			"C:/Users/Pabsy/Documents/GitHub/schaken-base/chessboard.h",
 			"Mu",
 			"EWIEGA46WW/moc_chessboard.cpp"
 		],
 		[
-			"C:/Users/Pabsy/CLionProjects/schaken-base/game.h",
+			"C:/Users/Pabsy/Documents/GitHub/schaken-base/game.h",
 			"Mu",
 			"EWIEGA46WW/moc_game.cpp"
 		],
 		[
-			"C:/Users/Pabsy/CLionProjects/schaken-base/mainwindow.h",
+			"C:/Users/Pabsy/Documents/GitHub/schaken-base/mainwindow.h",
 			"Mu",
 			"EWIEGA46WW/moc_mainwindow.cpp"
 		],
 		[
-			"C:/Users/Pabsy/CLionProjects/schaken-base/resources.h",
+			"C:/Users/Pabsy/Documents/GitHub/schaken-base/resources.h",
 			"Mu",
 			"EWIEGA46WW/moc_resources.cpp"
 		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
-	"INCLUDE_DIR" : "C:/Users/Pabsy/CLionProjects/schaken-base/cmake-build-debug/schaken_autogen/include",
-	"MOC_COMPILATION_FILE" : "C:/Users/Pabsy/CLionProjects/schaken-base/cmake-build-debug/schaken_autogen/mocs_compilation.cpp",
+	"INCLUDE_DIR" : "C:/Users/Pabsy/Documents/GitHub/schaken-base/cmake-build-debug/schaken_autogen/include",
+	"MOC_COMPILATION_FILE" : "C:/Users/Pabsy/Documents/GitHub/schaken-base/cmake-build-debug/schaken_autogen/mocs_compilation.cpp",
 	"MOC_DEFINITIONS" : [ "QT_CORE_LIB", "QT_GUI_LIB", "QT_WIDGETS_LIB" ],
 	"MOC_DEPEND_FILTERS" : 
 	[
@@ -232,8 +232,8 @@
 	],
 	"MOC_INCLUDES" : 
 	[
-		"C:/Users/Pabsy/CLionProjects/schaken-base/cmake-build-debug",
-		"C:/Users/Pabsy/CLionProjects/schaken-base",
+		"C:/Users/Pabsy/Documents/GitHub/schaken-base/cmake-build-debug",
+		"C:/Users/Pabsy/Documents/GitHub/schaken-base",
 		"C:/Qt/5.15.2/mingw81_64/include",
 		"C:/Qt/5.15.2/mingw81_64/include/QtCore",
 		"C:/Qt/5.15.2/mingw81_64/mkspecs/win32-g++",
@@ -258,24 +258,24 @@
 		"-c",
 		"C:/Users/Pabsy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/203.6682.181/bin/cmake/win/share/cmake-3.17/Modules/CMakeCXXCompilerABI.cpp"
 	],
-	"MOC_PREDEFS_FILE" : "C:/Users/Pabsy/CLionProjects/schaken-base/cmake-build-debug/schaken_autogen/moc_predefs.h",
+	"MOC_PREDEFS_FILE" : "C:/Users/Pabsy/Documents/GitHub/schaken-base/cmake-build-debug/schaken_autogen/moc_predefs.h",
 	"MOC_RELAXED_MODE" : false,
 	"MOC_SKIP" : [],
 	"MULTI_CONFIG" : false,
 	"PARALLEL" : 4,
-	"PARSE_CACHE_FILE" : "C:/Users/Pabsy/CLionProjects/schaken-base/cmake-build-debug/CMakeFiles/schaken_autogen.dir/ParseCache.txt",
+	"PARSE_CACHE_FILE" : "C:/Users/Pabsy/Documents/GitHub/schaken-base/cmake-build-debug/CMakeFiles/schaken_autogen.dir/ParseCache.txt",
 	"QT_MOC_EXECUTABLE" : "C:/Qt/5.15.2/mingw81_64/bin/moc.exe",
 	"QT_UIC_EXECUTABLE" : "",
 	"QT_VERSION_MAJOR" : 5,
 	"QT_VERSION_MINOR" : 15,
-	"SETTINGS_FILE" : "C:/Users/Pabsy/CLionProjects/schaken-base/cmake-build-debug/CMakeFiles/schaken_autogen.dir/AutogenUsed.txt",
+	"SETTINGS_FILE" : "C:/Users/Pabsy/Documents/GitHub/schaken-base/cmake-build-debug/CMakeFiles/schaken_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
-		[ "C:/Users/Pabsy/CLionProjects/schaken-base/SchaakStuk.cpp", "Mu" ],
-		[ "C:/Users/Pabsy/CLionProjects/schaken-base/chessboard.cpp", "Mu" ],
-		[ "C:/Users/Pabsy/CLionProjects/schaken-base/game.cpp", "Mu" ],
-		[ "C:/Users/Pabsy/CLionProjects/schaken-base/main.cpp", "Mu" ],
-		[ "C:/Users/Pabsy/CLionProjects/schaken-base/mainwindow.cpp", "Mu" ]
+		[ "C:/Users/Pabsy/Documents/GitHub/schaken-base/SchaakStuk.cpp", "Mu" ],
+		[ "C:/Users/Pabsy/Documents/GitHub/schaken-base/chessboard.cpp", "Mu" ],
+		[ "C:/Users/Pabsy/Documents/GitHub/schaken-base/game.cpp", "Mu" ],
+		[ "C:/Users/Pabsy/Documents/GitHub/schaken-base/main.cpp", "Mu" ],
+		[ "C:/Users/Pabsy/Documents/GitHub/schaken-base/mainwindow.cpp", "Mu" ]
 	],
 	"VERBOSITY" : 0
 }

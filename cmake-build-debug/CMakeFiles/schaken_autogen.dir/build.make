@@ -62,10 +62,10 @@ RM = C:\Users\Pabsy\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\203.6682.181
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\Pabsy\CLionProjects\schaken-base
+CMAKE_SOURCE_DIR = C:\Users\Pabsy\Documents\GitHub\schaken-base
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\Pabsy\CLionProjects\schaken-base\cmake-build-debug
+CMAKE_BINARY_DIR = C:\Users\Pabsy\Documents\GitHub\schaken-base\cmake-build-debug
 
 # Utility rule file for schaken_autogen.
 
@@ -73,8 +73,8 @@ CMAKE_BINARY_DIR = C:\Users\Pabsy\CLionProjects\schaken-base\cmake-build-debug
 include CMakeFiles/schaken_autogen.dir/progress.make
 
 CMakeFiles/schaken_autogen:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=C:\Users\Pabsy\CLionProjects\schaken-base\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC for target schaken"
-	C:\Users\Pabsy\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\203.6682.181\bin\cmake\win\bin\cmake.exe -E cmake_autogen C:/Users/Pabsy/CLionProjects/schaken-base/cmake-build-debug/CMakeFiles/schaken_autogen.dir/AutogenInfo.json Debug
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=C:\Users\Pabsy\Documents\GitHub\schaken-base\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC for target schaken"
+	C:\Users\Pabsy\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\203.6682.181\bin\cmake\win\bin\cmake.exe -E cmake_autogen C:/Users/Pabsy/Documents/GitHub/schaken-base/cmake-build-debug/CMakeFiles/schaken_autogen.dir/AutogenInfo.json Debug
 
 schaken_autogen: CMakeFiles/schaken_autogen
 schaken_autogen: CMakeFiles/schaken_autogen.dir/build.make
@@ -91,6 +91,6 @@ CMakeFiles/schaken_autogen.dir/clean:
 .PHONY : CMakeFiles/schaken_autogen.dir/clean
 
 CMakeFiles/schaken_autogen.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\Pabsy\CLionProjects\schaken-base C:\Users\Pabsy\CLionProjects\schaken-base C:\Users\Pabsy\CLionProjects\schaken-base\cmake-build-debug C:\Users\Pabsy\CLionProjects\schaken-base\cmake-build-debug C:\Users\Pabsy\CLionProjects\schaken-base\cmake-build-debug\CMakeFiles\schaken_autogen.dir\DependInfo.cmake --color=$(COLOR)
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\Pabsy\Documents\GitHub\schaken-base C:\Users\Pabsy\Documents\GitHub\schaken-base C:\Users\Pabsy\Documents\GitHub\schaken-base\cmake-build-debug C:\Users\Pabsy\Documents\GitHub\schaken-base\cmake-build-debug C:\Users\Pabsy\Documents\GitHub\schaken-base\cmake-build-debug\CMakeFiles\schaken_autogen.dir\DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/schaken_autogen.dir/depend
 
