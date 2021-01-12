@@ -19,7 +19,7 @@ void Game::setStartBord() {
     // Zet het schaakbord vol met nullptr's die later vervangen zullen worden met schaakstukken
     for ( int i = 0; i < 8; i++ ) {
         for ( int j = 0; j < 8; j++ ) {
-            setPiece(i, j, null );
+            setNullptr(i, j, null );
         }
     }
 
@@ -70,8 +70,13 @@ SchaakStuk* Game::getPiece(const int r, const int k) {
 
 // Verplaatst een schaakstuk naar de gegeven positie op het spelbord
 void Game::setPiece(int r, int k, SchaakStuk* s) {
-    //s->position.first = r; // TODO
-    //s->position.second = k;
+    s->position.first = r; // TODO
+    s->position.second = k;
+    bord[r][k] = s;
+}
+
+// Verplaatst een nullptr naar de gegeven positie op het spelbord
+void Game::setNullptr(int r, int k, SchaakStuk* s) {
     bord[r][k] = s;
 }
 

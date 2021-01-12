@@ -25,8 +25,9 @@ public:
     bool pat(zw kleur);
     void setStartBord();
 
-    SchaakStuk* getPiece(const int r, const int k);
+    SchaakStuk* getPiece(const int r, const int k) const;
     void setPiece(const int r, const int k, SchaakStuk* s);
+    void setNullptr(int r, int k, SchaakStuk *s);
     void setPawns(int &i);
 
 private:
