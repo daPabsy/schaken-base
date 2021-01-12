@@ -3,6 +3,7 @@
 
 CMakeFiles/schaken.dir/SchaakStuk.cpp.obj
  ../chessboard.h
+ ../game.h
  C:/Qt/5.15.2/mingw81_64/include/QtCore/qalgorithms.h
  C:/Qt/5.15.2/mingw81_64/include/QtCore/qarraydata.h
  C:/Qt/5.15.2/mingw81_64/include/QtCore/qatomic.h
@@ -89,7 +90,6 @@ CMakeFiles/schaken.dir/SchaakStuk.cpp.obj
  C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qtwidgetsglobal.h
  C:/Users/Pabsy/Documents/GitHub/schaken-base/SchaakStuk.cpp
  C:/Users/Pabsy/Documents/GitHub/schaken-base/SchaakStuk.h
- C:/Users/Pabsy/Documents/GitHub/schaken-base/game.h
 CMakeFiles/schaken.dir/chessboard.cpp.obj
  C:/Qt/5.15.2/mingw81_64/include/QtANGLE/GLES2/gl2.h
  C:/Qt/5.15.2/mingw81_64/include/QtANGLE/GLES2/gl2platform.h

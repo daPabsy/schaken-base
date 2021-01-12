@@ -62,7 +62,7 @@ void Game::setPawns(int &i) {
 }
 
 // Geeft terug welk schaakstuk op een bepaalde positie op het spelbord staat
-SchaakStuk* Game::getPiece(const int r, const int k) {
+SchaakStuk* Game::getPiece(const int r, const int k) const {
 
     return bord[r][k];
 
