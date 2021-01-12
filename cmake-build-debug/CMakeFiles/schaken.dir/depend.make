@@ -88,6 +88,7 @@ CMakeFiles/schaken.dir/SchaakStuk.cpp.obj: C:/Qt/5.15.2/mingw81_64/include/QtWid
 CMakeFiles/schaken.dir/SchaakStuk.cpp.obj: C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qtwidgetsglobal.h
 CMakeFiles/schaken.dir/SchaakStuk.cpp.obj: ../SchaakStuk.cpp
 CMakeFiles/schaken.dir/SchaakStuk.cpp.obj: ../SchaakStuk.h
+CMakeFiles/schaken.dir/SchaakStuk.cpp.obj: ../game.h
 
 CMakeFiles/schaken.dir/chessboard.cpp.obj: C:/Qt/5.15.2/mingw81_64/include/QtANGLE/GLES2/gl2.h
 CMakeFiles/schaken.dir/chessboard.cpp.obj: C:/Qt/5.15.2/mingw81_64/include/QtANGLE/GLES2/gl2platform.h

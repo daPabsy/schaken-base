@@ -4,6 +4,8 @@
 //
 
 #include "game.h"
+#include <iostream>
+using namespace std;
 
 Game::Game() {}
 
@@ -67,9 +69,9 @@ SchaakStuk* Game::getPiece(const int r, const int k) {
 }
 
 // Verplaatst een schaakstuk naar de gegeven positie op het spelbord
-void Game::setPiece(const int r, const int k, SchaakStuk* s) {
-    s->position.first = r;
-    s->position.second = k;
+void Game::setPiece(int r, int k, SchaakStuk* s) {
+    //s->position.first = r; // TODO
+    //s->position.second = k;
     bord[r][k] = s;
 }
 
