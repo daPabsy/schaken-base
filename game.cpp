@@ -8,7 +8,11 @@
 #include <algorithm> // Voor te zoeken in vectoren
 using namespace std;
 
-Game::Game() {}
+Game::Game() {
+    turnToMove = wit; // Wit begint met zetten
+    moving = false;
+    pieceToMove = nullptr;
+}
 
 Game::~Game() {}
 
@@ -49,8 +53,6 @@ void Game::setStartBord() {
     setPiece(7, 5, new Loper(wit));
     setPiece(7, 6, new Paard(wit));
     setPiece(7, 7, new Toren(wit));
-
-
 }
 
 // Zet alle pionen klaar op het bord
@@ -59,14 +61,12 @@ void Game::setPawns(int &i) {
     setPiece(1, i, new Pion(zwart));
     setPiece(6, i, new Pion(wit));
     i++; // overloop elke plaats waar een pion kan staan
-
 }
 
 
 // Geeft terug welk schaakstuk op een bepaalde positie op het spelbord staat
 SchaakStuk* Game::getPiece(const int r, const int k) const {
     return bord[r][k];
-
 }
 
 // Verplaatst een schaakstuk naar de gegeven positie op het spelbord
@@ -81,6 +81,19 @@ void Game::setNullptr(int r, int k, SchaakStuk* s) {
     bord[r][k] = s;
 }
 
+// Zet moving op false --> men is bezig met een SchaakStuk te verplaatsen
+// Zet moving op true --> men is NIET bezig met een SchaakStuk te verplaatsen
+void Game::setMovingAndPieceToMove(bool i, SchaakStuk * s) {
+    moving = i;
+    pieceToMove = s;
+}
+
+// Zet moving op false en pieceToMove op nullptr voor volgende stap
+void Game::resetMovingAndPieceToMove() {
+    moving = false;
+    pieceToMove = nullptr;
+}
+
 
 // Verplaats stuk s naar positie (r,k)
 // Als deze move niet mogelijk is, wordt false teruggegeven
@@ -89,18 +102,20 @@ void Game::setNullptr(int r, int k, SchaakStuk* s) {
 bool Game::move(SchaakStuk * s, const pair<int, int> & p) {
     bool found = false;
     vector<pair<int, int>> possibleMoves = s->geldige_zetten(*this); // Verkrijg geldige zetten
-    cout << "MOVETO: " << p.first << " " << p.second << endl;
-    cout << "MOVEFROM: " << s->position.first << " " << s->position.second << endl;
-    cout << "POSSIBLE MOVES: " << endl;
-    for ( int i = 0; i < possibleMoves.size(); i++ ) {
-        cout << possibleMoves[i].first << " " << possibleMoves[i].second << endl;
+
+    for ( const pair<int, int> & i : possibleMoves ) {
+        cout << i.first << " " << i.second << endl;
     }
 
     if ( find(possibleMoves.begin(), possibleMoves.end(), p ) != possibleMoves.end() ) {
-        found = true;
-        setNullptr(s->position.first, s->position.second, nullptr);
+        found = true; // Wanneer gevonden kan het SchaakStuk verplaatst worden
+        setNullptr(s->position.first, s->position.second, nullptr); // Originele plaatst wordt vervangen met nullptr
         setPiece(p.first, p.second, s);
+        setTurnMove();
         cout << "Piece moved!" << endl;
+    }
+    else {
+        cout << "Select a valid move!" << endl;
     }
     resetMovingAndPieceToMove();
     return found;

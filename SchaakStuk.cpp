@@ -253,7 +253,6 @@ bool Pion::startPosition(Game & game) {
 
 // Berekent geldige zetten van een Pion
 vector<pair<int, int>> Pion::geldige_zetten(Game &game) {
-    cout << "Pion" << endl;
     vector<pair<int, int>> possibleMoves;
 
     int fact = 1;
@@ -265,46 +264,55 @@ vector<pair<int, int>> Pion::geldige_zetten(Game &game) {
     int k = this->position.second;
 
     // Als de pion op de startpositie staat kan deze onmiddelijk 2 stappen zetten
-    if ( 0 <= (r +(2 * fact)) << 7 && startPosition(game) ) { // Mag dimensies van chessBoard niet overschrijven
+    // Mag dimensies niet overschrijven + er mag nog geen ander SchaakStuk staan
+    if ( 0 <= (r + (2 * fact)) << 7 && startPosition(game) && game.getPiece(r + (2 * fact), k) == nullptr ) {
         possibleMoves.emplace_back(r + (2 * fact), k);
     }
-    // Als de pion NIET op de startpositie staat kan deze, maar 1 stap zetten
-    if ( 0 <= (r + (1 * fact)) ) {
+    // Als de pion NIET op de startpositie staat kan deze 1 stap verder zetten
+    // Er mag weer geen ander SchaakStuk staan
+    if ( 0 <= (r + (1 * fact)) && game.getPiece(r + (1 * fact), k) == nullptr ) {
         possibleMoves.emplace_back(r + (1 * fact), k);
     }
 
-    // Mogelijke stappen verwijderen waar al een SchaakStuk staat
-    for ( const pair<int, int> &i : possibleMoves ) {
-        SchaakStuk * moveTo = game.getPiece(i.first, i.second);
-        if ( moveTo != nullptr ) {
-            // Verwijder stap die niet mogelijk is
-            possibleMoves.erase(remove(possibleMoves.begin(), possibleMoves.end(), i), possibleMoves.end());
+    // Pion kan ook rechts aanvallen (=SchaakStuk mag niet van dezelfde kleur zijn)
+    if ( 0 <= (r + (1 * fact)) << 7 ) {
+        SchaakStuk * attackRight = game.getPiece(r + (1 * fact), (k + 1));
+        if ( attackRight != nullptr && attackRight->getKleur() != getKleur() ) {
+            possibleMoves.emplace_back(r + (1 * fact), (k + 1));
         }
     }
 
-    // Pion kan ook rechts aanvallen (=SchaakStuk mag niet van dezelfde kleur zijn)
-    SchaakStuk * attackRight = game.getPiece(r + (1 * fact), (k + 1)); // Dimensies moeten hier niet gecheckt worden
-    if ( attackRight != nullptr && attackRight->getKleur() != getKleur() ) {
-        possibleMoves.emplace_back(r + (1 * fact), (k + 1));
+    // Pion kan ook links aanvallen (=SchaakStuk mag niet van dezelfde kleur zijn)
+    if ( 0 <= (r + (1 * fact)) << 7 ) {
+        SchaakStuk * attackLeft = game.getPiece(r + (1 * fact), (k - 1));
+        if ( attackLeft != nullptr && attackLeft->getKleur() != getKleur() ) {
+            possibleMoves.emplace_back(r + (1 * fact), (k - 1));
+        }
     }
 
-    // Pion kan ook links aanvallen (=SchaakStuk mag niet van dezelfde kleur zijn)
-    SchaakStuk * attackLeft = game.getPiece(r + (1 * fact), (k - 1));
-    if ( attackRight != nullptr && attackRight->getKleur() != getKleur() ) {
-        possibleMoves.emplace_back(r + (1 * fact), (k - 1));
+    int end = 0;
+    for ( int i = 0; i < possibleMoves.size(); i++, end++ ) {
+        while ( !checkDimensions(possibleMoves[i]) ) {
+            i++;
+        }
+        if ( i >= possibleMoves.size() ) {
+            break;
+        }
+        possibleMoves[end] = possibleMoves[i];
     }
+    possibleMoves.resize(end);
+    return possibleMoves;
+
     return possibleMoves;
 }
 
 // Berekent geldige zetten van een Toren
 vector<pair<int, int>> Toren::geldige_zetten(Game &game) {
-    cout << "Toren" << endl;
     return straightMoves(game);
 }
 
 // Berekent geldige zetten van een Paard
 vector<pair<int, int>> Paard::geldige_zetten(Game &game) {
-    cout << "Paard" << endl;
     vector<pair<int, int>> possibleMoves;
 
     // verkrijg de rij en kolom van het Paard
@@ -378,13 +386,11 @@ vector<pair<int, int>> Paard::geldige_zetten(Game &game) {
 
 // Berekent geldige zetten van een Loper
 vector<pair<int, int>> Loper::geldige_zetten(Game &game) {
-    cout << "Loper" << endl;
     return diagonalMoves(game);
 }
 
 // Berekent geldige zetten van een koningin
 vector<pair<int, int>> Koningin::geldige_zetten(Game &game) {
-    cout << "Koningin" << endl;
     vector<pair<int, int>> possibleMoves;
     vector<pair<int, int>> straightmoves = straightMoves(game);
     vector<pair<int, int>> diagonalmoves = diagonalMoves(game);
@@ -398,7 +404,6 @@ vector<pair<int, int>> Koningin::geldige_zetten(Game &game) {
 }
 
 vector<pair<int, int>> Koning::geldige_zetten(Game &game) {
-    cout << "Koning" << endl;
     vector<pair<int, int>> possibleMoves;
     int r = this->position.first;
     int k = this->position.second;
@@ -422,7 +427,6 @@ vector<pair<int, int>> Koning::geldige_zetten(Game &game) {
         possibleMoves.emplace_back(r - 1, k);
     }
 
-    cout << "working" << endl;
     // Beweeg naar links
     if ( checkNullptr(game.getPiece(r, k - 1)) || game.getPiece(r, k - 1)->getKleur() != color ) {
         possibleMoves.emplace_back(r, k - 1);

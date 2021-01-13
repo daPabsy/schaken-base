@@ -36,13 +36,20 @@ void MainWindow::clicked(int r, int k) {
 //
 //    }
     // TODO Is juiste kleur aan de beurt?
+    scene->removeAllMarking();
 
     if ( g.getMoving() == nullptr ) { // Er is nog GEEN SchaakStuk aangeklikt
         if ( g.getPiece(r, k) == nullptr ) {
             cout << "Select a valid piece!" << endl;
         }
+        else if ( g.getPiece(r, k)->getKleur() != g.getTurnMove() ) {
+            cout << "Seleect a piece of your color!" << endl;
+        }
         else {
             g.setMovingAndPieceToMove(true, g.getPiece(r, k));
+            for( const pair<int, int> & i : g.getPiece(r, k)->geldige_zetten(g) ) {
+                scene->setTileFocus(i.first, i.second, true);
+            }
             cout << "Selected a piece!" << endl;
         }
     }
@@ -55,10 +62,6 @@ void MainWindow::clicked(int r, int k) {
             update(); // Maak chessBoard opnieuw
         }
     }
-
-
-
-
 
 
     // Volgende schaakstukken worden aangemaakt om het voorbeeld te illustreren.

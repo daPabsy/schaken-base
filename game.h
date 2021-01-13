@@ -9,6 +9,7 @@
 #include "SchaakStuk.h"
 using namespace std;
 
+// TODO setters wat op orde zetten
 
 class Game {
 // variabelen om de status van het spel/bord te bewaren
@@ -32,30 +33,32 @@ public:
     void setNullptr(int r, int k, SchaakStuk * s);
     void setPawns(int & i);
 
-    // Als moving true is wordt het te verplaatsen SchaakStuk
-    // teruggegeven, wanneer dit niet zo is wordt er een nullptr teruggegeven
-    SchaakStuk * getMoving() {
+    // Verkrijg het te verplaatsen SchaakStuk ALS moving true is
+    SchaakStuk * getMoving() const {
         if ( moving ) {
             return pieceToMove;
         }
         return nullptr;
     }
 
-    // Zet moving op false --> men is bezig met een SchaakStuk te verplaatsen
-    // Zet moving op true --> men is NIET bezig met een SchaakStuk te verplaatsen
-    void setMovingAndPieceToMove(bool i, SchaakStuk * s) {
-        moving = i;
-        pieceToMove = s;
-    }
+    void setMovingAndPieceToMove(bool i, SchaakStuk * s);
 
-    void resetMovingAndPieceToMove() {
-        moving = false;
-        pieceToMove = nullptr;
+    void resetMovingAndPieceToMove();
+
+    // Verkrijg wies beurt het is
+    zw getTurnMove() const { return turnToMove; }
+
+    // Verander wies beurt het is
+    void setTurnMove() {
+        if ( getTurnMove() == zwart ) {
+            turnToMove = wit;
+            return;
+        }
+        turnToMove = zwart;
     }
 
 private:
 
-    // i.v.m. wanneer er verplaatst moet worden
     zw turnToMove;
     bool moving;
     SchaakStuk * pieceToMove;
