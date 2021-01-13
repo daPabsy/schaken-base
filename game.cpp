@@ -1,10 +1,11 @@
-//  Student:
-//  Rolnummer:
+//  Student: Deputter Pablo
+//  Rolnummer: s0205440
 //  Opmerkingen: (bvb aanpassingen van de opgave)
 //
 
 #include "game.h"
 #include <iostream>
+#include <algorithm> // Voor te zoeken in vectoren
 using namespace std;
 
 Game::Game() {}
@@ -30,24 +31,24 @@ void Game::setStartBord() {
     }
 
     // Zet witte schaakstukken klaar op schaakbord
-    setPiece(0, 0, new Toren(wit));
-    setPiece(0, 1, new Paard(wit));
-    setPiece(0, 2, new Loper(wit));
-    setPiece(0, 3, new Koningin(wit));
-    setPiece(0, 4, new Koning(wit));
-    setPiece(0, 7, new Loper(wit));
-    setPiece(0, 6, new Paard(wit));
-    setPiece(0, 5, new Toren(wit));
+    setPiece(0, 0, new Toren(zwart));
+    setPiece(0, 1, new Paard(zwart));
+    setPiece(0, 2, new Loper(zwart));
+    setPiece(0, 3, new Koningin(zwart));
+    setPiece(0, 4, new Koning(zwart));
+    setPiece(0, 5, new Loper(zwart));
+    setPiece(0, 6, new Paard(zwart));
+    setPiece(0, 7, new Toren(zwart));
 
     // Zet zwarte schaakstukken klaar op schaakbord
-    setPiece(7, 0, new Toren(zwart));
-    setPiece(7, 1, new Paard(zwart));
-    setPiece(7, 2, new Loper(zwart));
-    setPiece(7, 3, new Koningin(zwart));
-    setPiece(7, 4, new Koning(zwart));
-    setPiece(7, 7, new Loper(zwart));
-    setPiece(7, 6, new Paard(zwart));
-    setPiece(7, 5, new Toren(zwart));
+    setPiece(7, 0, new Toren(wit));
+    setPiece(7, 1, new Paard(wit));
+    setPiece(7, 2, new Loper(wit));
+    setPiece(7, 3, new Koningin(wit));
+    setPiece(7, 4, new Koning(wit));
+    setPiece(7, 5, new Loper(wit));
+    setPiece(7, 6, new Paard(wit));
+    setPiece(7, 7, new Toren(wit));
 
 
 }
@@ -55,22 +56,22 @@ void Game::setStartBord() {
 // Zet alle pionen klaar op het bord
 void Game::setPawns(int &i) {
 
-    setPiece(1, i, new Pion(wit));
-    setPiece(6, i, new Pion(zwart));
+    setPiece(1, i, new Pion(zwart));
+    setPiece(6, i, new Pion(wit));
     i++; // overloop elke plaats waar een pion kan staan
 
 }
 
+
 // Geeft terug welk schaakstuk op een bepaalde positie op het spelbord staat
 SchaakStuk* Game::getPiece(const int r, const int k) const {
-
     return bord[r][k];
 
 }
 
 // Verplaatst een schaakstuk naar de gegeven positie op het spelbord
 void Game::setPiece(int r, int k, SchaakStuk* s) {
-    s->position.first = r; // TODO
+    s->position.first = r;
     s->position.second = k;
     bord[r][k] = s;
 }
@@ -85,17 +86,23 @@ void Game::setNullptr(int r, int k, SchaakStuk* s) {
 // Als deze move niet mogelijk is, wordt false teruggegeven
 // en verandert er niets aan het schaakbord.
 // Anders wordt de move uitgevoerd en wordt true teruggegeven
-bool Game::move(SchaakStuk* s, const pair<int, int> &p) {
-
+bool Game::move(SchaakStuk * s, const pair<int, int> & p) {
     bool found = false;
-    // Itereer over alle geldige zetten
-    for ( const pair<int, int> &i : s->geldige_zetten(*this) ) {
-        if ( i == p ) {
-            // Wanneer gevonden wordt boolean op true gezet en onmiddelijk returnt
-            found = true;
-            break;
-        }
+    vector<pair<int, int>> possibleMoves = s->geldige_zetten(*this); // Verkrijg geldige zetten
+    cout << "MOVETO: " << p.first << " " << p.second << endl;
+    cout << "MOVEFROM: " << s->position.first << " " << s->position.second << endl;
+    cout << "POSSIBLE MOVES: " << endl;
+    for ( int i = 0; i < possibleMoves.size(); i++ ) {
+        cout << possibleMoves[i].first << " " << possibleMoves[i].second << endl;
     }
+
+    if ( find(possibleMoves.begin(), possibleMoves.end(), p ) != possibleMoves.end() ) {
+        found = true;
+        setNullptr(s->position.first, s->position.second, nullptr);
+        setPiece(p.first, p.second, s);
+        cout << "Piece moved!" << endl;
+    }
+    resetMovingAndPieceToMove();
     return found;
 }
 

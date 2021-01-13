@@ -6,7 +6,6 @@
 #ifndef SCHAKEN_SCHAAKSTUK_H
 #define SCHAKEN_SCHAAKSTUK_H
 #include <chessboard.h>
-#include <vector>
 using namespace std;
 
 class Game;
@@ -24,12 +23,14 @@ public:
 
     zw getKleur() const { return kleur; }
 
-    virtual vector<pair<int, int>> geldige_zetten(const Game & game);
-    bool checkDimensions(const pair<int, int> & i);
+    virtual vector<pair<int, int>> geldige_zetten(Game & game);
+    vector<pair<int, int>> diagonalMoves(Game & game);
+    vector<pair<int, int>> straightMoves(Game & game);
+    bool checkDimensions(pair<int, int> i);
+    bool checkNullptr(SchaakStuk * s);
 
-    // positie van SchaakStuk
+    // positie van SchaakStuk wordt opgeslagen in een paar van integers
     pair<int, int> position;
-
 
 private:
     zw kleur;
@@ -41,8 +42,8 @@ public:
     virtual Piece piece() const override {
         return Piece(Piece::Pawn,getKleur()==wit?Piece::White:Piece::Black);
     }
-    bool startPosition(const Game & game) const;
-    vector<pair<int, int>> geldige_zetten(const Game & game) override;
+    bool startPosition(Game & game);
+    vector<pair<int, int>> geldige_zetten(Game & game) override;
 };
 
 class Toren:public SchaakStuk {
@@ -53,7 +54,7 @@ public:
         return Piece(Piece::Rook,getKleur()==wit?Piece::White:Piece::Black);
     }
 
-    vector<pair<int, int>> geldige_zetten(const Game & game) override;
+    vector<pair<int, int>> geldige_zetten(Game & game) override;
 };
 
 class Paard:public SchaakStuk {
@@ -64,7 +65,7 @@ public:
         return Piece(Piece::Knight,getKleur()==wit?Piece::White:Piece::Black);
     }
 
-    vector<pair<int, int>> geldige_zetten(const Game & game) override;
+    vector<pair<int, int>> geldige_zetten(Game & game) override;
 };
 
 class Loper:public SchaakStuk {
@@ -75,7 +76,7 @@ public:
         return Piece(Piece::Bishop,getKleur()==wit?Piece::White:Piece::Black);
     }
 
-    vector<pair<int, int>> geldige_zetten(const Game & game) override;
+    vector<pair<int, int>> geldige_zetten(Game & game) override;
 };
 
 class Koning:public SchaakStuk {
@@ -86,7 +87,7 @@ public:
         return Piece(Piece::King,getKleur()==wit?Piece::White:Piece::Black);
     }
 
-    vector<pair<int, int>> geldige_zetten(const Game & game) override;
+    vector<pair<int, int>> geldige_zetten(Game & game) override;
 };
 
 class Koningin:public SchaakStuk {
@@ -97,7 +98,7 @@ public:
         return Piece(Piece::Queen,getKleur()==wit?Piece::White:Piece::Black);
     }
 
-    vector<pair<int, int>> geldige_zetten(const Game & game) override;
+    vector<pair<int, int>> geldige_zetten(Game & game) override;
 };
 
 #endif //SCHAKEN_SCHAAKSTUK_H

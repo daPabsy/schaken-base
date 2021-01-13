@@ -15,6 +15,7 @@ class Game {
 
 public:
 
+    // Constructor van game, moving wordt standaar op false gezet
     Game();
     ~Game();
 
@@ -25,14 +26,41 @@ public:
     bool pat(zw kleur);
     void setStartBord();
 
+    // TODO
     SchaakStuk* getPiece(const int r, const int k) const;
-    void setPiece(const int r, const int k, SchaakStuk* s);
-    void setNullptr(int r, int k, SchaakStuk *s);
-    void setPawns(int &i);
+    void setPiece(const int r, const int k, SchaakStuk * s);
+    void setNullptr(int r, int k, SchaakStuk * s);
+    void setPawns(int & i);
+
+    // Als moving true is wordt het te verplaatsen SchaakStuk
+    // teruggegeven, wanneer dit niet zo is wordt er een nullptr teruggegeven
+    SchaakStuk * getMoving() {
+        if ( moving ) {
+            return pieceToMove;
+        }
+        return nullptr;
+    }
+
+    // Zet moving op false --> men is bezig met een SchaakStuk te verplaatsen
+    // Zet moving op true --> men is NIET bezig met een SchaakStuk te verplaatsen
+    void setMovingAndPieceToMove(bool i, SchaakStuk * s) {
+        moving = i;
+        pieceToMove = s;
+    }
+
+    void resetMovingAndPieceToMove() {
+        moving = false;
+        pieceToMove = nullptr;
+    }
 
 private:
 
-    SchaakStuk* bord[8][8];
+    // i.v.m. wanneer er verplaatst moet worden
+    zw turnToMove;
+    bool moving;
+    SchaakStuk * pieceToMove;
+
+    SchaakStuk * bord[8][8];
 };
 
 
