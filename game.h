@@ -27,8 +27,8 @@ public:
     bool pat(zw kleur);
     void setStartBord();
 
-    // TODO
-    SchaakStuk* getPiece(const int r, const int k) const;
+
+    SchaakStuk * getPiece(const int r, const int k) const;
     void setPiece(const int r, const int k, SchaakStuk * s);
     void setNullptr(int r, int k, SchaakStuk * s);
     void setPawns(int & i);
@@ -56,6 +56,8 @@ public:
         }
         turnToMove = zwart;
     }
+
+    void capturedPiece(const pair<int, int> & moveTo) const;
 
 private:
 

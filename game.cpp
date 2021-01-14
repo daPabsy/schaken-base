@@ -109,7 +109,8 @@ bool Game::move(SchaakStuk * s, const pair<int, int> & p) {
 
     if ( find(possibleMoves.begin(), possibleMoves.end(), p ) != possibleMoves.end() ) {
         found = true; // Wanneer gevonden kan het SchaakStuk verplaatst worden
-        setNullptr(s->position.first, s->position.second, nullptr); // Originele plaatst wordt vervangen met nullptr
+        setNullptr(s->position.first, s->position.second, nullptr); // Originele plaats wordt vervangen met nullptr
+        capturedPiece(p);
         setPiece(p.first, p.second, s);
         setTurnMove();
         cout << "Piece moved!" << endl;
@@ -119,6 +120,21 @@ bool Game::move(SchaakStuk * s, const pair<int, int> & p) {
     }
     resetMovingAndPieceToMove();
     return found;
+}
+
+// Kijkt na of de positie waar het SchaakStuk naar wilt bewegen een
+// SchaakStuk is van de tegenstander en verwijdert deze als nodig
+void Game::capturedPiece(const pair<int, int> & moveTo)const {
+
+    if ( getPiece(moveTo.first, moveTo.second) == nullptr ) {
+        cout << "Nullptr" << endl;
+        return;
+    }
+    else if ( getPiece(moveTo.first, moveTo.second)->getKleur() != turnToMove ) {
+        cout << "Piece captured!" << endl;
+        delete getPiece(moveTo.first, moveTo.second); // TODO foutmelding destructor
+    }
+    return;
 }
 
 // Geeft true als kleur schaak staat
