@@ -28,15 +28,7 @@ void MainWindow::clicked(int r, int k) {
     // Jouw code zal er helemaal anders uitzien en zal enkel de aanpassing in de spelpositie maken en er voor
     // zorgen dat de visualisatie (al dan niet via update) aangepast wordt.
 
-
-//    if ( toMove == nullptr ) {
-//        QMessageBox errorBox;
-//        // errorBox.critical(0, "Error", "Please click on a valid piece!");
-//        cout << "Pick a valid piece!" << endl;
-//
-//    }
-    // TODO Is juiste kleur aan de beurt?
-    scene->removeAllMarking();
+    scene->removeAllMarking(); // Alle markering wordt ongedaan gemaakt
 
     if ( g.getMoving() == nullptr ) { // Er is nog GEEN SchaakStuk aangeklikt
         if ( g.getPiece(r, k) == nullptr ) {
@@ -46,9 +38,14 @@ void MainWindow::clicked(int r, int k) {
             cout << "Seleect a piece of your color!" << endl;
         }
         else {
+            // Volgende keer dat er geklikt wordt kan er herkend worden of er reeds
+            // een SchaakStuk werd aangeklikt
             g.setMovingAndPieceToMove(true, g.getPiece(r, k));
-            for( const pair<int, int> & i : g.getPiece(r, k)->geldige_zetten(g) ) {
-                scene->setTileFocus(i.first, i.second, true);
+            scene->setTileSelect(r, k, true); // Markeert het SchaakStuk dat verplaatst moet worden
+            if ( display_moves->isChecked() ) { // Geldige zetten laten zien?
+                for( const pair<int, int> & i : g.getPiece(r, k)->geldige_zetten(g) ) {
+                    scene->setTileFocus(i.first, i.second, true); // Markeert de mogelijke zetten
+                }
             }
             cout << "Selected a piece!" << endl;
         }
@@ -61,34 +58,14 @@ void MainWindow::clicked(int r, int k) {
             scene->clearBoard(); // Clear chessBoard
             update(); // Maak chessBoard opnieuw
         }
+        if ( g.schaak(g.getTurnMove()) ) { // MessageBox wanneer tegenstander je schaak heeft gezet
+            QMessageBox checkBox;
+            checkBox.setWindowTitle("Pablo's Chess Simulator");
+            checkBox.setText(QString("Schaak!"));
+            checkBox.exec();
+        }
     }
 
-
-    // Volgende schaakstukken worden aangemaakt om het voorbeeld te illustreren.
-    // In jouw geval zullen de stukken uit game g komen
-//    SchaakStuk* p1=new Pion(zwart);
-//    SchaakStuk* p2=new Pion(zwart);
-//    SchaakStuk* Q=new Koningin(zwart);
-//    SchaakStuk* K=new Koning(zwart);
-//
-//    SchaakStuk* p3=new Pion(wit);
-//    SchaakStuk* P=new Paard(wit);
-//    SchaakStuk* L=new Loper(wit);
-//    SchaakStuk* Kw=new Koning(wit);
-
-
-    // scene->removeAllMarking();  // Alle markeringen weg
-    // scene->clearBoard();        // Alle stukken weg
-
-    // plaats alle stukken
-//    scene->setItem(3,0,P->piece());
-//    scene->setItem(1,1,p1->piece());
-//    scene->setItem(0,3,Q->piece());
-//    scene->setItem(0,4,K->piece());
-//    scene->setItem(2,4,p2->piece());
-//    scene->setItem(3,3,p3->piece());
-//    scene->setItem(2,7,L->piece());
-//    scene->setItem(5,3,Kw->piece());
 
 //    if (display_kills->isChecked()) {
 //        // Markeer de stukken die je kan slaan

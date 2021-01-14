@@ -127,19 +127,55 @@ bool Game::move(SchaakStuk * s, const pair<int, int> & p) {
 void Game::capturedPiece(const pair<int, int> & moveTo)const {
 
     if ( getPiece(moveTo.first, moveTo.second) == nullptr ) {
-        cout << "Nullptr" << endl;
         return;
     }
     else if ( getPiece(moveTo.first, moveTo.second)->getKleur() != turnToMove ) {
-        cout << "Piece captured!" << endl;
         delete getPiece(moveTo.first, moveTo.second); // TODO foutmelding destructor
     }
     return;
 }
 
 // Geeft true als kleur schaak staat
-bool Game::schaak(zw kleur) {
-    return false;
+bool Game::schaak(zw kleur)  {
+    bool check = false;
+    pair<int, int> King;
+    for ( int i = 0; i < 8; i++ ) {
+        for ( int j = 0; j < 8; j++ ) {
+            if ( getPiece(i, j) != nullptr && // Mag geen nullptr zijn anders seg fault
+            getPiece(i, j)->getKleur() == kleur && // Moet van kleur zijn die mom. aan de beurt is
+            getPiece(i, j)->piece().type() == Piece::King ) { // Moet van type King zijn
+            King = make_pair(i, j);
+            break;
+            }
+        }
+    }
+
+    for ( int i = 0; i < 8; i++ ) {
+        for ( int j = 0; j < 8; j++ ) {
+            // Overloop alle SchaakStukken van de tegenstander
+            if ( getPiece(i, j) != nullptr && getPiece(i, j)->getKleur() != kleur ) {
+                if ( findPosition(King, getPiece(i, j)->geldige_zetten(*this)) ) {
+                    check = true;
+                    break;
+                }
+            }
+        }
+    }
+    return check;
+}
+
+// Zoekt een opgegeven paar van integers (=positie) in een vector van
+// paren van integers
+bool Game::findPosition(pair<int, int> &p, const vector<pair<int, int>> & toSearch) const {
+    bool found = false;
+    // Itereer over alle paren en zoek de opgegeven positie
+    for ( const pair<int, int> & i : toSearch ) {
+        if ( i == p ) {
+            found = true; // Wanneer gevonden zet de returnwaarde op true
+            break;
+        }
+    }
+    return found;
 }
 
 // Geeft true als kleur schaakmat staat

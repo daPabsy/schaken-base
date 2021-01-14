@@ -119,7 +119,10 @@ vector<pair<int, int>> SchaakStuk::diagonalMoves(Game &game) {
     zw color = getKleur();
 
     // Naar rechtsBoven verplaatsen
-    while ( r != 0 || k != 7 ) {
+    while (  r != 0 || k != 7 ) { // Mag niet buiten de dimensies geraken
+        if ( r == 0 ) {
+            break;
+        }
         r--;
         k++;
         SchaakStuk * moveTo = game.getPiece(r, k);
@@ -127,10 +130,14 @@ vector<pair<int, int>> SchaakStuk::diagonalMoves(Game &game) {
         if ( checkNullptr(moveTo) ) {
             possibleMoves.emplace_back(r, k);
         }
+        // Wanneer er een SchaakStuk van een andere kleur wordt gevonden
+        // wordt deze toegevoegd aan de mogelijke zetten, maar wordt het verder
+        // zoeken onmiddelijk gestopt (= loper kan er niet over springen)
         else if ( moveTo->getKleur() != color ) {
             possibleMoves.emplace_back(r, k);
             break;
         }
+        // Loper kan niet over een SchaakStuk van dezelfde kleur springen
         else {
             break;
         }
@@ -141,8 +148,11 @@ vector<pair<int, int>> SchaakStuk::diagonalMoves(Game &game) {
 
     // Naar linksBoven verplaatsen
     while ( r != 0 || k != 0 ) {
+        if ( r == 0 || k == 0 ) {
+            break;
+        }
         r--;
-        k--; // Decrease
+        k--;
         SchaakStuk * moveTo = game.getPiece(r, k);
 
         if ( checkNullptr(moveTo) ) {
@@ -183,6 +193,9 @@ vector<pair<int, int>> SchaakStuk::diagonalMoves(Game &game) {
 
     // Naar linksBeneden verplaatsen
     while ( r != 7 || k != 0 ) {
+        if ( k == 0 ) {
+            break;
+        }
         r++;
         k--;
         SchaakStuk * moveTo = game.getPiece(r, k);
@@ -213,7 +226,6 @@ vector<pair<int, int>> SchaakStuk::diagonalMoves(Game &game) {
 
     return possibleMoves;
 }
-
 
 // Checkt of de mogelijke zet niet buiten de dimensies van het chessBoard valt
 bool SchaakStuk::checkDimensions(pair<int, int> i) {

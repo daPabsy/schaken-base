@@ -59,6 +59,8 @@ public:
 
     void capturedPiece(const pair<int, int> & moveTo) const;
 
+    bool findPosition(pair<int, int> &p, const vector<pair<int, int>> & toSearch) const;
+
 private:
 
     zw turnToMove;
