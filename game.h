@@ -9,41 +9,42 @@
 #include "SchaakStuk.h"
 using namespace std;
 
+// TODO setters wat op orde zetten
 
 class Game {
 // variabelen om de status van het spel/bord te bewaren
 
 public:
+
+    // Constructor van game, moving wordt standaar op false gezet
     Game();
     ~Game();
 
-    // Alles te maken met het zetten van het startBord
-    void setStartBord();
-    SchaakStuk * getPiece(const int & r, const int & k) const;
-    void setPiece(const int & r, const int & k, SchaakStuk * s);
-    void setNullptr(const int & r, const int & k, SchaakStuk * s);
-    void setPawns(int & i);
-
-
-    // Alles te maken met het verplaatsen van een SchaakStuk
     bool move(SchaakStuk* s, const pair<int, int> &p); // Verplaats stuk s naar rij r en kolom k
-    void capturedPiece(const pair<int, int> & moveTo) const;
 
-    // Alles te maken met schaak
-    bool schaak(const zw & kleur);
+    bool schaak(zw kleur);
+
     pair<int, int> findKing(const zw & kleur) const;
+
     bool findPosition(const pair<int, int> & p, const vector<pair<int, int>> & toSearch, SchaakStuk * s) const;
-    vector<pair<int, int>> checkForKingCheck(const vector<pair<int, int>> & possibleMoves, SchaakStuk * s);
+
+    vector<pair<int, int>> checkForKingCheck(const vector<pair<int, int>> & possibleMoves, SchaakStuk * s, const bool king);
+
     bool checkKing(const int & r, const int & k) const;
 
+    SchaakStuk * checkForPiece(const pair<int, int> & i, const zw & color);
 
-    // Schaakmat
-    bool schaakmat(const zw & kleur);
+    bool schaakmat(zw kleur);
 
 
-    // Pat
-    bool pat(const zw & kleur);
 
+    bool pat(zw kleur);
+    void setStartBord();
+
+    SchaakStuk * getPiece(const int r, const int k) const;
+    void setPiece(const int r, const int k, SchaakStuk * s);
+    void setNullptr(int r, int k, SchaakStuk * s);
+    void setPawns(int & i);
 
     // Verkrijg het te verplaatsen SchaakStuk ALS moving true is
     SchaakStuk * getMoving() const {
@@ -78,10 +79,13 @@ public:
         turnToMove = zwart;
     }
 
+    void capturedPiece(const pair<int, int> & moveTo) const;
+
 private:
+
     zw turnToMove; // Wie zijn beurt is het?
     bool moving; // Bezig met een SchaakStuk te verplaatsen?
-    SchaakStuk * pieceToMove; // Te bewegen SchaakStuk tijdens een move
+    SchaakStuk * pieceToMove;
 
     SchaakStuk * bord[8][8];
 };

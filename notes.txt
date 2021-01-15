@@ -1,1 +1,1 @@
-SchaakStuk.cpp + SchaakStuk.h in orde maken
+- illegal moves from King (=mag niet schaak komen te staan)
