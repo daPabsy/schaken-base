@@ -23,7 +23,7 @@ public:
 
     zw getKleur() const { return kleur; }
 
-    virtual vector<pair<int, int>> geldige_zetten(Game & game);
+    virtual vector<pair<int, int>> geldige_zetten(Game & game, const bool & flag);
     vector<pair<int, int>> diagonalMoves(Game & game);
     vector<pair<int, int>> straightMoves(Game & game);
     bool checkDimensions(pair<int, int> i);
@@ -43,7 +43,7 @@ public:
         return Piece(Piece::Pawn,getKleur()==wit?Piece::White:Piece::Black);
     }
     bool startPosition(Game & game);
-    vector<pair<int, int>> geldige_zetten(Game & game) override;
+    vector<pair<int, int>> geldige_zetten(Game & game, const bool & flag) override;
 };
 
 class Toren:public SchaakStuk {
@@ -54,7 +54,7 @@ public:
         return Piece(Piece::Rook,getKleur()==wit?Piece::White:Piece::Black);
     }
 
-    vector<pair<int, int>> geldige_zetten(Game & game) override;
+    vector<pair<int, int>> geldige_zetten(Game & game, const bool & flag) override;
 };
 
 class Paard:public SchaakStuk {
@@ -65,7 +65,7 @@ public:
         return Piece(Piece::Knight,getKleur()==wit?Piece::White:Piece::Black);
     }
 
-    vector<pair<int, int>> geldige_zetten(Game & game) override;
+    vector<pair<int, int>> geldige_zetten(Game & game, const bool & flag) override;
 };
 
 class Loper:public SchaakStuk {
@@ -76,7 +76,7 @@ public:
         return Piece(Piece::Bishop,getKleur()==wit?Piece::White:Piece::Black);
     }
 
-    vector<pair<int, int>> geldige_zetten(Game & game) override;
+    vector<pair<int, int>> geldige_zetten(Game & game, const bool & flag) override;
 };
 
 class Koning:public SchaakStuk {
@@ -87,7 +87,7 @@ public:
         return Piece(Piece::King,getKleur()==wit?Piece::White:Piece::Black);
     }
 
-    vector<pair<int, int>> geldige_zetten(Game & game) override;
+    vector<pair<int, int>> geldige_zetten(Game & game, const bool & flag) override;
 };
 
 class Koningin:public SchaakStuk {
@@ -98,7 +98,7 @@ public:
         return Piece(Piece::Queen,getKleur()==wit?Piece::White:Piece::Black);
     }
 
-    vector<pair<int, int>> geldige_zetten(Game & game) override;
+    vector<pair<int, int>> geldige_zetten(Game & game, const bool & flag) override;
 };
 
 #endif //SCHAKEN_SCHAAKSTUK_H

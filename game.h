@@ -23,10 +23,23 @@ public:
     bool move(SchaakStuk* s, const pair<int, int> &p); // Verplaats stuk s naar rij r en kolom k
 
     bool schaak(zw kleur);
+
+    pair<int, int> findKing(const zw & kleur) const;
+
+    bool findPosition(const pair<int, int> & p, const vector<pair<int, int>> & toSearch, SchaakStuk * s) const;
+
+    vector<pair<int, int>> checkForKingCheck(const vector<pair<int, int>> & possibleMoves, SchaakStuk * s, const bool king);
+
+    bool checkKing(const int & r, const int & k) const;
+
+    SchaakStuk * checkForPiece(const pair<int, int> & i, const zw & color);
+
     bool schaakmat(zw kleur);
+
+
+
     bool pat(zw kleur);
     void setStartBord();
-
 
     SchaakStuk * getPiece(const int r, const int k) const;
     void setPiece(const int r, const int k, SchaakStuk * s);
@@ -41,9 +54,18 @@ public:
         return nullptr;
     }
 
-    void setMovingAndPieceToMove(bool i, SchaakStuk * s);
+    // Zet moving op false --> men is bezig met een SchaakStuk te verplaatsen
+    // Zet moving op true --> men is NIET bezig met een SchaakStuk te verplaatsen
+    void setMovingAndPieceToMove(bool i, SchaakStuk * s) {
+        moving = i;
+        pieceToMove = s;
+    }
 
-    void resetMovingAndPieceToMove();
+    // Zet moving op false en pieceToMove op nullptr voor volgende stap
+    void resetMovingAndPieceToMove() {
+        moving = false;
+        pieceToMove = nullptr;
+    }
 
     // Verkrijg wies beurt het is
     zw getTurnMove() const { return turnToMove; }
@@ -59,12 +81,10 @@ public:
 
     void capturedPiece(const pair<int, int> & moveTo) const;
 
-    bool findPosition(pair<int, int> &p, const vector<pair<int, int>> & toSearch) const;
-
 private:
 
-    zw turnToMove;
-    bool moving;
+    zw turnToMove; // Wie zijn beurt is het?
+    bool moving; // Bezig met een SchaakStuk te verplaatsen?
     SchaakStuk * pieceToMove;
 
     SchaakStuk * bord[8][8];

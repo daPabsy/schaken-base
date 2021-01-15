@@ -35,7 +35,7 @@ void MainWindow::clicked(int r, int k) {
             cout << "Select a valid piece!" << endl;
         }
         else if ( g.getPiece(r, k)->getKleur() != g.getTurnMove() ) {
-            cout << "Seleect a piece of your color!" << endl;
+            cout << "Select a piece of your own color!" << endl;
         }
         else {
             // Volgende keer dat er geklikt wordt kan er herkend worden of er reeds
@@ -43,9 +43,25 @@ void MainWindow::clicked(int r, int k) {
             g.setMovingAndPieceToMove(true, g.getPiece(r, k));
             scene->setTileSelect(r, k, true); // Markeert het SchaakStuk dat verplaatst moet worden
             if ( display_moves->isChecked() ) { // Geldige zetten laten zien?
-                for( const pair<int, int> & i : g.getPiece(r, k)->geldige_zetten(g) ) {
-                    scene->setTileFocus(i.first, i.second, true); // Markeert de mogelijke zetten
+
+                if ( g.schaak(g.getTurnMove()) ) {
+
+                    // Verkrijg geldige zetten als King schaak staat TODO
+                    const vector<pair<int, int>> possibleMoves = g.checkForKingCheck(g.getPiece(r, k)->geldige_zetten(g, false), g.getPiece(r, k), g.checkKing(r, k));
+                    for ( auto i : possibleMoves ) {
+//                        cout << "POSITION;" << endl;
+//                        cout << i.first << " " << i.second << endl;
+                        scene->setTileFocus(i.first, i.second, true);
+                    }
                 }
+                else {
+                    // Verkrijg geldige zetten als King niet schaak staat
+                    auto possibleMoves = g.getPiece(r, k)->geldige_zetten(g, false);
+                    for ( auto i : possibleMoves ) {
+                        scene->setTileFocus(i.first, i.second, true);
+                    }
+                }
+
             }
             cout << "Selected a piece!" << endl;
         }
@@ -54,15 +70,17 @@ void MainWindow::clicked(int r, int k) {
         pair<int, int> moveTo; // Positie naar waar verplaatst moet worden
         moveTo.first = r;
         moveTo.second = k;
-        if ( g.move(g.getMoving(), moveTo) ) {
+        // Verplaats gekozen SchaakStuk
+        if ( g.move(g.getMoving(), moveTo) ) { // Verplaats
             scene->clearBoard(); // Clear chessBoard
-            update(); // Maak chessBoard opnieuw
-        }
-        if ( g.schaak(g.getTurnMove()) ) { // MessageBox wanneer tegenstander je schaak heeft gezet
-            QMessageBox checkBox;
-            checkBox.setWindowTitle("Pablo's Chess Simulator");
-            checkBox.setText(QString("Schaak!"));
-            checkBox.exec();
+            update(); // Maak chessBoard opnieuw visueel zichtbaar
+
+            if ( g.schaak(g.getTurnMove()) ) { // MessageBox wanneer tegenstander je schaak heeft gezet
+                QMessageBox checkBox;
+                checkBox.setWindowTitle("Pablo's Chess Simulator");
+                checkBox.setText(QString("Schaak!"));
+                checkBox.exec();
+            }
         }
     }
 
@@ -236,7 +254,7 @@ void MainWindow::visualizationChange() {
 
 // Update de inhoud van de grafische weergave van het schaakbord (scene)
 // en maak het consistent met de game state in variabele g.
-void MainWindow::update() {
+void MainWindow::update() const {
     // Itereer over alle mogelijke plaatsen van het schaakbord
     for ( int r = 0; r < 8; r++) {
         for ( int k = 0; k < 8; k++ ) {

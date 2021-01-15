@@ -4,17 +4,19 @@
 //
 
 #include "SchaakStuk.h"
-#include <game.h>
+#include "game.h"
+#include "mainwindow.h"
 #include <iostream>
 using namespace std;
 
 // TODO alles kan wat makkelijker geschreven worden!
 
 // Berekent geldige zetten van een schaakStuk
-vector<pair<int, int>> SchaakStuk::geldige_zetten(Game &game) {
+vector<pair<int, int>> SchaakStuk::geldige_zetten(Game & game, const bool & flag) {
     vector<pair<int, int>> possibleMoves;
     return possibleMoves; // Returnt lege vector
 }
+
 
 // Berekent (een deel van de) geldige zetten van een schaakStuk
 // dat rechte bewegingen kan maken
@@ -132,12 +134,12 @@ vector<pair<int, int>> SchaakStuk::diagonalMoves(Game &game) {
         }
         // Wanneer er een SchaakStuk van een andere kleur wordt gevonden
         // wordt deze toegevoegd aan de mogelijke zetten, maar wordt het verder
-        // zoeken onmiddelijk gestopt (= loper kan er niet over springen)
+        // zoeken onmiddelijk gestopt (= SchaakStuk kan er niet over springen)
         else if ( moveTo->getKleur() != color ) {
             possibleMoves.emplace_back(r, k);
             break;
         }
-        // Loper kan niet over een SchaakStuk van dezelfde kleur springen
+        // SchaakStuk kan niet over een SchaakStuk van dezelfde kleur springen
         else {
             break;
         }
@@ -264,7 +266,7 @@ bool Pion::startPosition(Game & game) {
 }
 
 // Berekent geldige zetten van een Pion
-vector<pair<int, int>> Pion::geldige_zetten(Game &game) {
+vector<pair<int, int>> Pion::geldige_zetten(Game & game, const bool & flag) {
     vector<pair<int, int>> possibleMoves;
 
     int fact = 1;
@@ -313,18 +315,22 @@ vector<pair<int, int>> Pion::geldige_zetten(Game &game) {
         possibleMoves[end] = possibleMoves[i];
     }
     possibleMoves.resize(end);
-    return possibleMoves;
 
     return possibleMoves;
 }
 
 // Berekent geldige zetten van een Toren
-vector<pair<int, int>> Toren::geldige_zetten(Game &game) {
-    return straightMoves(game);
+vector<pair<int, int>> Toren::geldige_zetten(Game & game, const bool & flag) {
+
+    vector<pair<int, int>> possibleMoves = straightMoves(game);
+
+
+    return possibleMoves;
+
 }
 
 // Berekent geldige zetten van een Paard
-vector<pair<int, int>> Paard::geldige_zetten(Game &game) {
+vector<pair<int, int>> Paard::geldige_zetten(Game & game, const bool & flag) {
     vector<pair<int, int>> possibleMoves;
 
     // verkrijg de rij en kolom van het Paard
@@ -393,16 +399,19 @@ vector<pair<int, int>> Paard::geldige_zetten(Game &game) {
     }
     possibleMoves.resize(end);
 
+
     return possibleMoves;
 }
 
 // Berekent geldige zetten van een Loper
-vector<pair<int, int>> Loper::geldige_zetten(Game &game) {
-    return diagonalMoves(game);
+vector<pair<int, int>> Loper::geldige_zetten(Game & game, const bool & flag) {
+    vector<pair<int, int>> possibleMoves =  diagonalMoves(game);
+
+    return possibleMoves;
 }
 
 // Berekent geldige zetten van een koningin
-vector<pair<int, int>> Koningin::geldige_zetten(Game &game) {
+vector<pair<int, int>> Koningin::geldige_zetten(Game & game, const bool & flag) {
     vector<pair<int, int>> possibleMoves;
     vector<pair<int, int>> straightmoves = straightMoves(game);
     vector<pair<int, int>> diagonalmoves = diagonalMoves(game);
@@ -412,10 +421,11 @@ vector<pair<int, int>> Koningin::geldige_zetten(Game &game) {
     possibleMoves.insert(possibleMoves.end(), straightmoves.begin(), straightmoves.end());
     possibleMoves.insert(possibleMoves.end(), diagonalmoves.begin(), diagonalmoves.end());
 
+
     return possibleMoves;
 }
 
-vector<pair<int, int>> Koning::geldige_zetten(Game &game) {
+vector<pair<int, int>> Koning::geldige_zetten(Game & game, const bool & flag) {
     vector<pair<int, int>> possibleMoves;
     int r = this->position.first;
     int k = this->position.second;
@@ -476,5 +486,7 @@ vector<pair<int, int>> Koning::geldige_zetten(Game &game) {
         possibleMoves[end] = possibleMoves[i];
     }
     possibleMoves.resize(end);
+
+
     return possibleMoves;
 }

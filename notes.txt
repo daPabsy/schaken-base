@@ -1,0 +1,1 @@
+- illegal moves from King (=mag niet schaak komen te staan)

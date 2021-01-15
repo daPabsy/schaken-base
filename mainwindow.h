@@ -16,7 +16,7 @@ class MainWindow : public QMainWindow
 public:
 
     MainWindow(QWidget *parent = 0);
-    void update();
+    void update() const;
 
 private:
 
