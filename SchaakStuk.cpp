@@ -12,7 +12,7 @@ using namespace std;
 // TODO alles kan wat makkelijker geschreven worden!
 
 // Berekent geldige zetten van een schaakStuk
-vector<pair<int, int>> SchaakStuk::geldige_zetten(Game & game, const bool & flag) {
+vector<pair<int, int>> SchaakStuk::geldige_zetten(Game & game) {
     vector<pair<int, int>> possibleMoves;
     return possibleMoves; // Returnt lege vector
 }
@@ -247,18 +247,17 @@ bool SchaakStuk::checkNullptr(SchaakStuk * s) {
 
 // Geeft een bool terug of een Pion op de originele startpositie staat of niet
 bool Pion::startPosition(Game & game) {
-    int r = this->position.first;
-    int k = this->position.second;
-
+    // Kleur van de pion is zwart
     if ( wit == this->getKleur() ) {
         for ( int i = 0; i < 8; i++ ) {
-            if ( this == game.getPiece(6, i) ) {
+            if ( this == game.getPiece(6, i) && game.getPiece(5, i) == nullptr ) {
                 return true;
             }
         }
     }
+    // Kleur van de pion is zwart
     for ( int i = 0; i < 8; i++ ) {
-        if (this == game.getPiece(1, i)) {
+        if ( this == game.getPiece(1, i) && game.getPiece(2, i) == nullptr ) {
             return true;
         }
     }
@@ -266,7 +265,7 @@ bool Pion::startPosition(Game & game) {
 }
 
 // Berekent geldige zetten van een Pion
-vector<pair<int, int>> Pion::geldige_zetten(Game & game, const bool & flag) {
+vector<pair<int, int>> Pion::geldige_zetten(Game & game) {
     vector<pair<int, int>> possibleMoves;
 
     int fact = 1;
@@ -320,7 +319,7 @@ vector<pair<int, int>> Pion::geldige_zetten(Game & game, const bool & flag) {
 }
 
 // Berekent geldige zetten van een Toren
-vector<pair<int, int>> Toren::geldige_zetten(Game & game, const bool & flag) {
+vector<pair<int, int>> Toren::geldige_zetten(Game & game) {
 
     vector<pair<int, int>> possibleMoves = straightMoves(game);
 
@@ -330,7 +329,7 @@ vector<pair<int, int>> Toren::geldige_zetten(Game & game, const bool & flag) {
 }
 
 // Berekent geldige zetten van een Paard
-vector<pair<int, int>> Paard::geldige_zetten(Game & game, const bool & flag) {
+vector<pair<int, int>> Paard::geldige_zetten(Game & game) {
     vector<pair<int, int>> possibleMoves;
 
     // verkrijg de rij en kolom van het Paard
@@ -404,14 +403,14 @@ vector<pair<int, int>> Paard::geldige_zetten(Game & game, const bool & flag) {
 }
 
 // Berekent geldige zetten van een Loper
-vector<pair<int, int>> Loper::geldige_zetten(Game & game, const bool & flag) {
+vector<pair<int, int>> Loper::geldige_zetten(Game & game) {
     vector<pair<int, int>> possibleMoves =  diagonalMoves(game);
 
     return possibleMoves;
 }
 
 // Berekent geldige zetten van een koningin
-vector<pair<int, int>> Koningin::geldige_zetten(Game & game, const bool & flag) {
+vector<pair<int, int>> Koningin::geldige_zetten(Game & game) {
     vector<pair<int, int>> possibleMoves;
     vector<pair<int, int>> straightmoves = straightMoves(game);
     vector<pair<int, int>> diagonalmoves = diagonalMoves(game);
@@ -421,11 +420,10 @@ vector<pair<int, int>> Koningin::geldige_zetten(Game & game, const bool & flag) 
     possibleMoves.insert(possibleMoves.end(), straightmoves.begin(), straightmoves.end());
     possibleMoves.insert(possibleMoves.end(), diagonalmoves.begin(), diagonalmoves.end());
 
-
     return possibleMoves;
 }
 
-vector<pair<int, int>> Koning::geldige_zetten(Game & game, const bool & flag) {
+vector<pair<int, int>> Koning::geldige_zetten(Game & game) {
     vector<pair<int, int>> possibleMoves;
     int r = this->position.first;
     int k = this->position.second;
