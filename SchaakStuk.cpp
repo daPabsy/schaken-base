@@ -12,7 +12,7 @@ using namespace std;
 // TODO alles kan wat makkelijker geschreven worden!
 
 // Berekent geldige zetten van een schaakStuk
-vector<pair<int, int>> SchaakStuk::geldige_zetten(Game & game, const bool & flag) {
+vector<pair<int, int>> SchaakStuk::geldige_zetten(Game & game, const bool & kills) {
     vector<pair<int, int>> possibleMoves;
     return possibleMoves; // Returnt lege vector
 }
@@ -35,15 +35,15 @@ vector<pair<int, int>> SchaakStuk::straightMoves(Game &game) {
         if ( checkNullptr(moveTo)) {
             possibleMoves.emplace_back(r, k);
         }
-        // Wanneer het SchaakStuk een ander SchaakStuk van een andere kleur
-        // tegenkomt wordt deze toegevoegd aan de mogelijke zetten en dan
-        // onmiddelijk wordt de "while" loop gebroken
+            // Wanneer het SchaakStuk een ander SchaakStuk van een andere kleur
+            // tegenkomt wordt deze toegevoegd aan de mogelijke zetten en dan
+            // onmiddelijk wordt de "while" loop gebroken
         else if ( moveTo->getKleur() != color ) {
             possibleMoves.emplace_back(r, k);
             break;
         }
-        // Hetzelfde gebeurt voor een SchaakStuk van dezelfde kleur, MAAR
-        // hierbij wordt de zet niet toegevoegd
+            // Hetzelfde gebeurt voor een SchaakStuk van dezelfde kleur, MAAR
+            // hierbij wordt de zet niet toegevoegd
         else {
             break;
         }
@@ -132,14 +132,14 @@ vector<pair<int, int>> SchaakStuk::diagonalMoves(Game &game) {
         if ( checkNullptr(moveTo) ) {
             possibleMoves.emplace_back(r, k);
         }
-        // Wanneer er een SchaakStuk van een andere kleur wordt gevonden
-        // wordt deze toegevoegd aan de mogelijke zetten, maar wordt het verder
-        // zoeken onmiddelijk gestopt (= SchaakStuk kan er niet over springen)
+            // Wanneer er een SchaakStuk van een andere kleur wordt gevonden
+            // wordt deze toegevoegd aan de mogelijke zetten, maar wordt het verder
+            // zoeken onmiddelijk gestopt (= SchaakStuk kan er niet over springen)
         else if ( moveTo->getKleur() != color ) {
             possibleMoves.emplace_back(r, k);
             break;
         }
-        // SchaakStuk kan niet over een SchaakStuk van dezelfde kleur springen
+            // SchaakStuk kan niet over een SchaakStuk van dezelfde kleur springen
         else {
             break;
         }
@@ -247,18 +247,17 @@ bool SchaakStuk::checkNullptr(SchaakStuk * s) {
 
 // Geeft een bool terug of een Pion op de originele startpositie staat of niet
 bool Pion::startPosition(Game & game) {
-    int r = this->position.first;
-    int k = this->position.second;
-
+    // Kleur van de pion is zwart
     if ( wit == this->getKleur() ) {
         for ( int i = 0; i < 8; i++ ) {
-            if ( this == game.getPiece(6, i) ) {
+            if ( this == game.getPiece(6, i) && game.getPiece(5, i) == nullptr ) {
                 return true;
             }
         }
     }
+    // Kleur van de pion is zwart
     for ( int i = 0; i < 8; i++ ) {
-        if (this == game.getPiece(1, i)) {
+        if ( this == game.getPiece(1, i) && game.getPiece(2, i) == nullptr ) {
             return true;
         }
     }
@@ -266,7 +265,7 @@ bool Pion::startPosition(Game & game) {
 }
 
 // Berekent geldige zetten van een Pion
-vector<pair<int, int>> Pion::geldige_zetten(Game & game, const bool & flag) {
+vector<pair<int, int>> Pion::geldige_zetten(Game & game, const bool & kills) {
     vector<pair<int, int>> possibleMoves;
 
     int fact = 1;
@@ -280,12 +279,16 @@ vector<pair<int, int>> Pion::geldige_zetten(Game & game, const bool & flag) {
     // Als de pion op de startpositie staat kan deze onmiddelijk 2 stappen zetten
     // Mag dimensies niet overschrijven + er mag nog geen ander SchaakStuk staan
     if ( 0 <= (r + (2 * fact)) << 7 && startPosition(game) && game.getPiece(r + (2 * fact), k) == nullptr ) {
-        possibleMoves.emplace_back(r + (2 * fact), k);
+        if ( !kills ) {
+            possibleMoves.emplace_back(r + (2 * fact), k);
+        }
     }
     // Als de pion NIET op de startpositie staat kan deze 1 stap verder zetten
     // Er mag weer geen ander SchaakStuk staan
     if ( 0 <= (r + (1 * fact)) && game.getPiece(r + (1 * fact), k) == nullptr ) {
-        possibleMoves.emplace_back(r + (1 * fact), k);
+        if ( !kills ) {
+            possibleMoves.emplace_back(r + (1 * fact), k);
+        }
     }
 
     // Pion kan ook rechts aanvallen (=SchaakStuk mag niet van dezelfde kleur zijn)
@@ -319,8 +322,9 @@ vector<pair<int, int>> Pion::geldige_zetten(Game & game, const bool & flag) {
     return possibleMoves;
 }
 
+
 // Berekent geldige zetten van een Toren
-vector<pair<int, int>> Toren::geldige_zetten(Game & game, const bool & flag) {
+vector<pair<int, int>> Toren::geldige_zetten(Game & game, const bool & kills) {
 
     vector<pair<int, int>> possibleMoves = straightMoves(game);
 
@@ -330,7 +334,7 @@ vector<pair<int, int>> Toren::geldige_zetten(Game & game, const bool & flag) {
 }
 
 // Berekent geldige zetten van een Paard
-vector<pair<int, int>> Paard::geldige_zetten(Game & game, const bool & flag) {
+vector<pair<int, int>> Paard::geldige_zetten(Game & game, const bool & kills) {
     vector<pair<int, int>> possibleMoves;
 
     // verkrijg de rij en kolom van het Paard
@@ -377,7 +381,7 @@ vector<pair<int, int>> Paard::geldige_zetten(Game & game, const bool & flag) {
     int end = 0;
     for (int i = 0; i < possibleMoves.size(); i++, end++) {
         while ( !checkDimensions(possibleMoves[i]) ) {
-             i++; // Vind een element dat niet verwijdert moet worden
+            i++; // Vind een element dat niet verwijdert moet worden
         }
         if (i >= possibleMoves.size()) {
             break;
@@ -387,31 +391,30 @@ vector<pair<int, int>> Paard::geldige_zetten(Game & game, const bool & flag) {
     possibleMoves.resize(end); // Alle elementen na de waarde van end worden verwijdert
     // Source StackOverflow
 
-    end = 0;
-    for ( int i = 0; i < possibleMoves.size(); i++, end++ ) {
-        while ( checkNullptr(game.getPiece(possibleMoves[i].first, possibleMoves[i].second)) == false && game.getPiece(possibleMoves[i].first, possibleMoves[i].second)->getKleur() == color ) {
-            i++;
+    vector<pair<int, int>> newMoves;
+    for ( const pair<int, int> & i : possibleMoves ) {
+
+        if ( checkNullptr(game.getPiece(i.first, i.second)) == true ) {
+            newMoves.push_back(i);
         }
-        if (i >= possibleMoves.size()) {
-            break;
+        else if ( checkNullptr(game.getPiece(i.first, i.second)) == false &&  game.getPiece(i.first, i.second)->getKleur() != color ) {
+            newMoves.push_back(i);
         }
-        possibleMoves[end] = possibleMoves[i]; // Kopieer niet te verwijderen element
+
     }
-    possibleMoves.resize(end);
 
-
-    return possibleMoves;
+    return newMoves;
 }
 
 // Berekent geldige zetten van een Loper
-vector<pair<int, int>> Loper::geldige_zetten(Game & game, const bool & flag) {
+vector<pair<int, int>> Loper::geldige_zetten(Game & game, const bool & kills) {
     vector<pair<int, int>> possibleMoves =  diagonalMoves(game);
 
     return possibleMoves;
 }
 
 // Berekent geldige zetten van een koningin
-vector<pair<int, int>> Koningin::geldige_zetten(Game & game, const bool & flag) {
+vector<pair<int, int>> Koningin::geldige_zetten(Game & game, const bool & kills) {
     vector<pair<int, int>> possibleMoves;
     vector<pair<int, int>> straightmoves = straightMoves(game);
     vector<pair<int, int>> diagonalmoves = diagonalMoves(game);
@@ -421,11 +424,10 @@ vector<pair<int, int>> Koningin::geldige_zetten(Game & game, const bool & flag) 
     possibleMoves.insert(possibleMoves.end(), straightmoves.begin(), straightmoves.end());
     possibleMoves.insert(possibleMoves.end(), diagonalmoves.begin(), diagonalmoves.end());
 
-
     return possibleMoves;
 }
 
-vector<pair<int, int>> Koning::geldige_zetten(Game & game, const bool & flag) {
+vector<pair<int, int>> Koning::geldige_zetten(Game & game, const bool & kills) {
     vector<pair<int, int>> possibleMoves;
     int r = this->position.first;
     int k = this->position.second;

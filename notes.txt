@@ -1,1 +1,4 @@
-- illegal moves from King (=mag niet schaak komen te staan)
+
+- game eindigen wanneer schaakmat is of pat
+
+- code cleanup

@@ -17,13 +17,13 @@ public:
     SchaakStuk(zw kleur): kleur(kleur) {}
 
     virtual Piece piece() const=0;      // Deze functie krijg je cadeau
-                                        // Je hebt die nodig om het stuk in de
-                                        // GUI te tekenen
-                                        // Meer info: kijk naar mainwindow.cpp, lijn 27
+    // Je hebt die nodig om het stuk in de
+    // GUI te tekenen
+    // Meer info: kijk naar mainwindow.cpp, lijn 27
 
     zw getKleur() const { return kleur; }
 
-    virtual vector<pair<int, int>> geldige_zetten(Game & game, const bool & flag);
+    virtual vector<pair<int, int>> geldige_zetten(Game & game, const bool & kills);
     vector<pair<int, int>> diagonalMoves(Game & game);
     vector<pair<int, int>> straightMoves(Game & game);
     bool checkDimensions(pair<int, int> i);
@@ -43,7 +43,7 @@ public:
         return Piece(Piece::Pawn,getKleur()==wit?Piece::White:Piece::Black);
     }
     bool startPosition(Game & game);
-    vector<pair<int, int>> geldige_zetten(Game & game, const bool & flag) override;
+    vector<pair<int, int>> geldige_zetten(Game & game, const bool & kills) override;
 };
 
 class Toren:public SchaakStuk {
@@ -54,7 +54,7 @@ public:
         return Piece(Piece::Rook,getKleur()==wit?Piece::White:Piece::Black);
     }
 
-    vector<pair<int, int>> geldige_zetten(Game & game, const bool & flag) override;
+    vector<pair<int, int>> geldige_zetten(Game & game, const bool & kills) override;
 };
 
 class Paard:public SchaakStuk {
@@ -65,7 +65,7 @@ public:
         return Piece(Piece::Knight,getKleur()==wit?Piece::White:Piece::Black);
     }
 
-    vector<pair<int, int>> geldige_zetten(Game & game, const bool & flag) override;
+    vector<pair<int, int>> geldige_zetten(Game & game, const bool & kills) override;
 };
 
 class Loper:public SchaakStuk {
@@ -76,7 +76,7 @@ public:
         return Piece(Piece::Bishop,getKleur()==wit?Piece::White:Piece::Black);
     }
 
-    vector<pair<int, int>> geldige_zetten(Game & game, const bool & flag) override;
+    vector<pair<int, int>> geldige_zetten(Game & game, const bool & kills) override;
 };
 
 class Koning:public SchaakStuk {
@@ -87,7 +87,7 @@ public:
         return Piece(Piece::King,getKleur()==wit?Piece::White:Piece::Black);
     }
 
-    vector<pair<int, int>> geldige_zetten(Game & game, const bool & flag) override;
+    vector<pair<int, int>> geldige_zetten(Game & game, const bool & kills) override;
 };
 
 class Koningin:public SchaakStuk {
@@ -98,7 +98,7 @@ public:
         return Piece(Piece::Queen,getKleur()==wit?Piece::White:Piece::Black);
     }
 
-    vector<pair<int, int>> geldige_zetten(Game & game, const bool & flag) override;
+    vector<pair<int, int>> geldige_zetten(Game & game, const bool & kills) override;
 };
 
 #endif //SCHAKEN_SCHAAKSTUK_H
