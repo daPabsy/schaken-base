@@ -1,4 +1,11 @@
 
-- game eindigen wanneer schaakmat is of pat
+
+- en passsant vakjes aanpassen first time volledige nieuwe structuur
+
+- promotie is fairly easy
+
+- rokade is fairly moeilijk
+
+- game eindigen wanneer schaakmat is of pat, en nieuw spel starten?
 
 - code cleanup
