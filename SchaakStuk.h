@@ -14,6 +14,7 @@ enum zw{zwart,wit};
 
 class SchaakStuk {
 public:
+
     SchaakStuk(zw kleur, bool startPosition): kleur(kleur), startPosition(startPosition) {}
 
     virtual Piece piece() const=0;      // Deze functie krijg je cadeau

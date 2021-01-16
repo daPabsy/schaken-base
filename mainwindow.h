@@ -16,7 +16,14 @@ Q_OBJECT
 public:
 
     MainWindow(QWidget *parent = 0);
+
     void update() const;
+
+    void displayMoves(const int & r, const int & k);
+    void displayThreats(const int & r, const int & k);
+
+    void promotionBoard(SchaakStuk * s, const zw & color);
+
 
 private:
 
@@ -42,6 +49,9 @@ private slots:
         on_actionExit_triggered();
         event->ignore();
     }
+
+public:
+
 
 private:
 

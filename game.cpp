@@ -13,7 +13,6 @@ Game::Game() {
     turnToMove = wit; // Wit begint met zetten
     moving = false;
     pieceToMove = nullptr;
-
 }
 
 Game::~Game() {}
@@ -102,12 +101,23 @@ bool Game::move(SchaakStuk * s, const pair<int, int> & p) {
     // Kijk of de zet geldig is
     if ( find(possibleMoves.begin(), possibleMoves.end(), p ) != possibleMoves.end() ) {
 
+        // Pion doet twee stappen vooruit en is WIT
+//        if ( s != nullptr && s->piece().type() == Piece::Pawn && s->getStartPosition() && p.first == 4 ) {
+//            setPassage(p);
+//        }
+//
+//        // Pion doet twee stappen vooruit en is ZWART
+//        if ( s != nullptr && s->piece().type() == Piece::Pawn && s->getStartPosition() && p.first == 3 ) {
+//            setPassage(p);
+//        }
+
         s->setStartPosition(); // SchaakStuk staat niet meer op de startpositie
 
         found = true; // Wanneer gevonden kan het SchaakStuk verplaatst worden
         setNullptr(s->position.first, s->position.second, nullptr); // Originele plaats wordt vervangen met nullptr
         capturedPiece(p); // Ander SchaakStuk verovert?
         setPiece(p.first, p.second, s); // Verplaats SchaakStuk
+
     }
 
     // Men is niet meer bezig met verplaatsen en moet dus opnieuw een SchaakStuk selecteren om te verplaatsen
@@ -260,7 +270,6 @@ bool Game::pat(const zw & kleur) {
                 if (getPiece(i, j)->getKleur() == kleur) {
 
                     if (!checkForKingCheck(getPiece(i, j)->geldige_zetten(*this, false), getPiece(i, j)).empty()) {
-
                         pat = false;
                         break;
                     }
@@ -272,8 +281,7 @@ bool Game::pat(const zw & kleur) {
         }
     }
     // Als pat true is en de koning staat niet schaak dan spreken we over pat
-    if ( !schaak(kleur) && pat == true ) {
-        return true;
+    if ( !schaak(kleur) && pat == true ) {return true;
     }
     else { // Bij schaak wordt er onmiddelijk false teruggegeven
         return false;
@@ -334,5 +342,24 @@ vector<pair<int, int>> Game::getThreats(const vector<pair<int, int>> & moves, co
         }
     }
     return threats;
+}
+
+// Geeft terug of het meegegeven SchaakStuk kan promoveren
+bool Game::promotion(SchaakStuk * s) {
+    if ( s->piece().type() == Piece::Pawn ) {
+        // Als de pion wit dan moet deze op r-0 staan om te kunnen promoveren
+        if ( s->getKleur() == wit ) {
+            if ( s->position.first == 0 ) {
+                return true;
+            }
+        }
+        // Als de pion zwart dan moet deze op r-0 staan om te kunnen promoveren
+        else if ( ( s->getKleur() == zwart ) ) {
+            if ( s->position.first == 7 ) {
+                return true;
+            }
+        }
+    }
+    return false;
 }
 

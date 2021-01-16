@@ -9,7 +9,6 @@
 #include <iostream>
 using namespace std;
 
-// TODO alles kan wat makkelijker geschreven worden!
 
 // Berekent geldige zetten van een schaakStuk
 vector<pair<int, int>> SchaakStuk::geldige_zetten(Game & game, const bool & kills) {
@@ -259,7 +258,7 @@ vector<pair<int, int>> Pion::geldige_zetten(Game & game, const bool & kills) {
 
     // Als de pion op de startpositie staat kan deze onmiddelijk 2 stappen zetten
     // Mag dimensies niet overschrijven + er mag nog geen ander SchaakStuk staan
-    if ( 0 <= (r + (2 * fact)) << 7 && getStartPosition() && game.getPiece(r + (2 * fact), k) == nullptr ) {
+    if ( 0 <= (r + (2 * fact)) << 7 && getStartPosition() && game.getPiece(r + (1 * fact), k) == nullptr && game.getPiece(r + (2 * fact), k) == nullptr ) {
         if ( !kills ) {
             possibleMoves.emplace_back(r + (2 * fact), k);
         }

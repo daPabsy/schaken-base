@@ -48,6 +48,9 @@ public:
     vector<pair<int, int>> getThreats(const vector<pair<int, int>> & moves, const zw & color, SchaakStuk * s);
 
 
+    bool promotion(SchaakStuk * s);
+
+
     // Verkrijg het te verplaatsen SchaakStuk ALS moving true is
     SchaakStuk * getMoving() const {
         if ( moving ) {
@@ -86,6 +89,7 @@ private:
     bool moving; // Bezig met een SchaakStuk te verplaatsen?
     SchaakStuk * pieceToMove; // Te bewegen SchaakStuk tijdens een move
 
+    // Alles crasht bij het toevoegen van een nieuwe variabele zoals int , bool, vector....
 
     SchaakStuk * bord[8][8];
 };

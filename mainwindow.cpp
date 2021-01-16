@@ -18,8 +18,55 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 
     createActions();
     createMenus();
+
 }
 
+
+
+// Laat geldige zetten zien op het schaakBord, worden blauw gemarkeerd
+void MainWindow::displayMoves(const int & r, const int & k) {
+
+    SchaakStuk * toMove = g.getPiece(r, k); // Verkrijg te verplaatsen SchaakStuk
+    const vector<pair<int, int>> & moves = toMove->geldige_zetten(g, false); // Verkrijg geldige zetten
+
+    // Is het de koning die we willen verplaatsen?
+    if ( g.checkKing(r, k) ){
+        for ( const pair<int, int> & i : moves ) {
+            scene->setTileFocus(i.first, i.second, true); // Markeer de geldige zetten
+        }
+    }
+    // Koning mag niet schaak komen te staan
+    else {
+        const vector<pair<int, int>> & possibleMoves = g.checkForKingCheck(moves, toMove);
+        for ( const pair<int, int> & i : possibleMoves ) {
+            cout << i.first;
+            scene->setTileFocus(i.first, i.second, true); // Markeer de geldige zetten
+        }
+    }
+}
+
+// Laat de bedreigingen zien van een bepaald SchaakStuk, worden rood gemarkeerd
+void MainWindow::displayThreats(const int & r, const int & k) {
+
+    SchaakStuk * toMove = g.getPiece(r, k); // Verkrijg te verplaatsen SchaakStuk
+    const vector<pair<int, int>> & moves = toMove->geldige_zetten(g, false); // Verkrijg geldige zetten
+
+    // Is het de koning die we willen verplaatsen?
+    if ( g.checkKing(r, k) ){
+        const vector<pair<int, int>> & threats = g.getThreats(moves, g.getTurnMove(), toMove);
+        for ( const pair<int, int> & i : threats ) {
+            scene->setTileThreat(i.first, i.second, true); // Markeer de bedreigingen
+        }
+    }
+    // Koning mag niet schaak komen te staan
+    else {
+        const vector<pair<int, int>> & possibleMoves = g.checkForKingCheck(moves, toMove); // Zetten waar King niet schaakmat staat
+        const vector<pair<int, int>> threats = g.getThreats(possibleMoves, g.getTurnMove(), toMove);
+        for ( const pair<int, int> & i : threats ) {
+            scene->setTileThreat(i.first, i.second, true); // Markeer de bedreigingen
+        }
+    }
+}
 
 // Deze functie wordt opgeroepen telkens er op het schaakbord
 // geklikt wordt. x,y geeft de positie aan waar er geklikt
@@ -41,79 +88,62 @@ void MainWindow::clicked(int r, int k) {
             // Volgende keer dat er geklikt wordt kan er herkend worden of er reeds
             // een SchaakStuk werd aangeklikt
             g.setMovingAndPieceToMove(true, g.getPiece(r, k));
-            // Markeert het SchaakStuk dat verplaatst moet worden
+
+            // Markeert het SchaakStuk dat verplaatst moet worden groen
             scene->setTileSelect(r, k, true);
 
-            if ( display_moves->isChecked() ) { // Geldige zetten laten zien?
+            // Laat de bedreigingen zien door andere SchaakStukken
+            if ( display_threats->isChecked() ) { displayThreats(r, k); }
+            // Laat de geldige zetten zien van het geselecteerde SchaakStuk
+            if ( display_moves->isChecked() ) { displayMoves(r, k); }
 
-                // Is het SchaakStuk dat we willen verplaatsen de Koning?
-                if ( g.checkKing(r, k) ) {
-                    // Koning mag zich zelf niet schaak zetten
-
-
-                    const vector<pair<int, int>> & possibleMoves = g.getPiece(r, k)->geldige_zetten(g, false);
-                    // TODO AAN UIT AAN UIT AAN UIT
-//                    const vector<pair<int, int>> & possibleMoves = g.checkForKingCheck(g.getPiece(r, k)->geldige_zetten(g, false), g.getPiece(r, k));
-                    for ( const pair<int, int> & i : possibleMoves ) {
-                        scene->setTileFocus(i.first, i.second, true); // Markeer de geldige zetten
-                    }
-                    const vector<pair<int, int>> threats = g.getThreats(possibleMoves, g.getTurnMove(), g.getPiece(r, k));
-                    for ( const pair<int, int> & j : threats ) {
-                        scene->setTileThreat(j.first, j.second, true);
-                    }
-                }
-                    // Staat de koning schaak?
-                else {
-                    const vector<pair<int, int>> possibleMoves = g.checkForKingCheck(g.getPiece(r, k)->geldige_zetten(g, false), g.getPiece(r, k));
-                    for ( const pair<int, int> & i : possibleMoves ) {
-                        scene->setTileFocus(i.first, i.second, true);
-                    }
-                    const vector<pair<int, int>> threats = g.getThreats(possibleMoves, g.getTurnMove(), g.getPiece(r, k));
-                    for ( const pair<int, int> & j : threats ) {
-                        scene->setTileThreat(j.first, j.second, true);
-                    }
-                }
-            }
             // SchaakStuk is geselecteerd voor de volgende keer dat er geklikt wordt
             cout << "Selected a piece!" << endl;
         }
     }
-        // Er is reeds een SchaakStuk aangeklikt
-    else {
-        const pair<int, int> & moveTo = make_pair(r, k); // Positie naar waar er verplaatst moet worden
 
+    else { // Er is reeds een SchaakStuk aangeklikt
+        const pair<int, int> & moveTo = make_pair(r, k); // Positie naar waar er verplaatst moet worden
 
         // Verplaats gekozen SchaakStuk
         if ( g.move(g.getMoving(), moveTo) ) { // Verplaats
+
             scene->clearBoard(); // Clear chessBoard
             update(); // Maak chessBoard opnieuw visueel zichtbaar
+
+            if ( g.getPiece(r, k)->piece().type() && g.promotion(g.getPiece(r, k)) ) { // Kan er een pion gepromoveerd worden?
+                promotionBoard(g.getPiece(r, k), g.getTurnMove()); // Haalt het selectiescherm op
+                scene->clearBoard();
+                update(); // Update het bord weer
+            }
+
             g.setTurnMove(); // Verander van beurt
 
             // Er wordt eerst gecheckt op pat en daarna pas op schaakmat anders
             // krijgen we schaakmat bij pat
 
             if ( g.pat(g.getTurnMove()) ) { // MessageBox wanneer tegenstander je pat heeft gezet
-                QMessageBox checkBox;
-                checkBox.setWindowTitle("Pablo's Chess Simulator");
-                checkBox.setText(QString("Pat!"));
-                checkBox.exec();
+                QMessageBox patBox;
+                patBox.setWindowTitle("Pablo's Chess Simulator");
+                patBox.setText(QString("Pat!; Start a new game under file!"));
+                patBox.exec();
             }
 
             else if ( g.schaakmat(g.getTurnMove()) ) { // MessageBox wanneer tegenstander je schaakmat heeft gezet
-                QMessageBox checkBox;
-                checkBox.setWindowTitle("Pablo's Chess Simulator");
-                checkBox.setText(QString("SchaakMat!"));
-                checkBox.exec();
+                QMessageBox checkMateBox;
+                checkMateBox.setWindowTitle("Pablo's Chess Simulator");
+                checkMateBox.setText(QString("Checkmate!; Start a new game under file!"));
+                checkMateBox.exec();
             }
 
             else if ( g.schaak(g.getTurnMove()) ) { // MessageBox wanneer tegenstander je schaak heeft gezet
                 QMessageBox checkBox;
                 checkBox.setWindowTitle("Pablo's Chess Simulator");
-                checkBox.setText(QString("Schaak!"));
+                checkBox.setText(QString("Check!"));
                 checkBox.exec();
             }
         }
-            // g.move geeft false terug, speler heeft een unvalid move geselecteerd
+        // g.move geeft false terug, speler heeft een unvalid move geselecteerd
         else {
             cout << "Select a valid move!" << endl;
         }
@@ -121,9 +151,64 @@ void MainWindow::clicked(int r, int k) {
 }
 
 
+// Laat een menu zien om de promotie van de pion uit te selecteren en
+// vervangt deze ook met de keuze
+void MainWindow::promotionBoard(SchaakStuk * s, const zw & color) {
 
-void MainWindow::newGame()
-{}
+    QMessageBox promotionBox;
+    promotionBox.setWindowTitle("Pablo's Chess Simulator");
+    promotionBox.setText(QString("Your pawn can be promoted!"));
+    promotionBox.exec();
+
+    // Laat een drop-down menu zien om een promotie te kiezen voor de pion
+    QInputDialog promotion;
+    QStringList pieces;
+    pieces << "Rook" << "Knight" << "Bishop" << "Queen";
+    QString piece = promotion.getItem(this, "Select your choice here!", "Promotion:", pieces);
+
+    int r = s->position.first;
+    int k = s->position.second;
+
+    if ( piece == "Rook" ) {
+        g.capturedPiece(s->position); // Verwijdert de pion
+        g.setPiece(r, k, new Toren(color, false)); // Zet een nieuwe toren op de plaats van de pion
+    }
+    else if ( piece == "Knight" ) {
+        g.capturedPiece(s->position);
+        g.setPiece(r, k, new Paard(color, false));
+    }
+    else if ( piece == "Bishop" ) {
+        g.capturedPiece(s->position);
+        g.setPiece(r, k, new Loper(color, false));
+    }
+    else if ( piece == "Queen" ) {
+        g.capturedPiece(s->position);
+        g.setPiece(r, k, new Koningin(color, false));
+    }
+}
+
+
+// Nieuw spel starten
+void MainWindow::newGame() {
+    // Verwijder elk SchaakStuk op het bord
+    for ( int i = 0; i < 8; i++ ) {
+        for ( int j = 0; j < 8; j++ ) {
+            if ( g.getPiece(i, j) != nullptr ) {
+                delete g.getPiece(i, j);
+            }
+            else {
+                g.setNullptr(i, j, nullptr);
+            }
+        }
+    }
+    if ( g.getTurnMove() == zwart ) { // Wit begint steeds met spelen
+        g.setTurnMove();
+    }
+    scene->removeAllMarking();
+    scene->clearBoard();
+    g.setStartBord(); // Zet het startBord terug op
+    update(); // Update het bord visueel
+}
 
 void MainWindow::save() {
     QString fileName = QFileDialog::getSaveFileName(this,
