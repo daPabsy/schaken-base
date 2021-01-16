@@ -82,6 +82,7 @@ void MainWindow::clicked(int r, int k) {
     else {
         const pair<int, int> & moveTo = make_pair(r, k); // Positie naar waar er verplaatst moet worden
 
+
         // Verplaats gekozen SchaakStuk
         if ( g.move(g.getMoving(), moveTo) ) { // Verplaats
             scene->clearBoard(); // Clear chessBoard

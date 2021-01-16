@@ -14,7 +14,7 @@ enum zw{zwart,wit};
 
 class SchaakStuk {
 public:
-    SchaakStuk(zw kleur): kleur(kleur) {}
+    SchaakStuk(zw kleur, bool startPosition): kleur(kleur), startPosition(startPosition) {}
 
     virtual Piece piece() const=0;      // Deze functie krijg je cadeau
     // Je hebt die nodig om het stuk in de
@@ -24,31 +24,43 @@ public:
     zw getKleur() const { return kleur; }
 
     virtual vector<pair<int, int>> geldige_zetten(Game & game, const bool & kills);
+
+
+
     vector<pair<int, int>> diagonalMoves(Game & game);
     vector<pair<int, int>> straightMoves(Game & game);
     bool checkDimensions(pair<int, int> i);
     bool checkNullptr(SchaakStuk * s);
 
-    // positie van SchaakStuk wordt opgeslagen in een paar van integers
+    // Positie van SchaakStuk wordt opgeslagen in een paar van integers
     pair<int, int> position;
+
+    // Zet de bool startPosition op false
+    void setStartPosition() { startPosition = false; }
+
+    // Geeft de waarde van de bool startPosition weer
+    bool getStartPosition() { return startPosition; }
+
 
 private:
     zw kleur;
+    bool startPosition; // Staat het SchaakStuk in de startposite?
 };
 
 class Pion:public SchaakStuk {
 public:
-    Pion(zw kleur):SchaakStuk(kleur) {}
+    Pion(zw kleur, bool startPosition):SchaakStuk(kleur, startPosition) {}
     virtual Piece piece() const override {
         return Piece(Piece::Pawn,getKleur()==wit?Piece::White:Piece::Black);
     }
-    bool startPosition(Game & game);
+    const pair<int, int> enPassant(Game & game);
     vector<pair<int, int>> geldige_zetten(Game & game, const bool & kills) override;
+
 };
 
 class Toren:public SchaakStuk {
 public:
-    Toren(zw kleur):SchaakStuk(kleur) {}
+    Toren(zw kleur, bool startPosition):SchaakStuk(kleur, startPosition) {}
 
     Piece piece() const override {
         return Piece(Piece::Rook,getKleur()==wit?Piece::White:Piece::Black);
@@ -59,7 +71,7 @@ public:
 
 class Paard:public SchaakStuk {
 public:
-    Paard(zw kleur):SchaakStuk(kleur) {}
+    Paard(zw kleur, bool startPosition):SchaakStuk(kleur, startPosition) {}
 
     Piece piece() const override {
         return Piece(Piece::Knight,getKleur()==wit?Piece::White:Piece::Black);
@@ -70,7 +82,7 @@ public:
 
 class Loper:public SchaakStuk {
 public:
-    Loper(zw kleur):SchaakStuk(kleur) {}
+    Loper(zw kleur, bool startPosition):SchaakStuk(kleur, startPosition) {}
 
     Piece piece() const override {
         return Piece(Piece::Bishop,getKleur()==wit?Piece::White:Piece::Black);
@@ -81,7 +93,7 @@ public:
 
 class Koning:public SchaakStuk {
 public:
-    Koning(zw kleur):SchaakStuk(kleur) {}
+    Koning(zw kleur, bool startPosition):SchaakStuk(kleur, startPosition) {}
 
     Piece piece() const override {
         return Piece(Piece::King,getKleur()==wit?Piece::White:Piece::Black);
@@ -92,7 +104,7 @@ public:
 
 class Koningin:public SchaakStuk {
 public:
-    Koningin(zw kleur):SchaakStuk(kleur) {}
+    Koningin(zw kleur, bool startPosition):SchaakStuk(kleur, startPosition) {}
 
     Piece piece() const override {
         return Piece(Piece::Queen,getKleur()==wit?Piece::White:Piece::Black);

@@ -245,24 +245,36 @@ bool SchaakStuk::checkNullptr(SchaakStuk * s) {
     return false;
 }
 
-// Geeft een bool terug of een Pion op de originele startpositie staat of niet
-bool Pion::startPosition(Game & game) {
-    // Kleur van de pion is zwart
-    if ( wit == this->getKleur() ) {
-        for ( int i = 0; i < 8; i++ ) {
-            if ( this == game.getPiece(6, i) && game.getPiece(5, i) == nullptr ) {
-                return true;
-            }
-        }
-    }
-    // Kleur van de pion is zwart
-    for ( int i = 0; i < 8; i++ ) {
-        if ( this == game.getPiece(1, i) && game.getPiece(2, i) == nullptr ) {
-            return true;
-        }
-    }
-    return false;
-}
+//// Geeft een bool terug of een
+/// op de originele startpositie staat of niet
+//const pair<int, int> Pion::enPassant(Game &game) {
+//    // Kleur van de pion is zwart
+//    if ( wit == this->getKleur() ) {
+//        for ( int i = 0; i < 8; i++ ) {
+//            if ( this == game.getPiece(3, i) ) {
+//
+//                if ( game.getPiece(3, i + 1) != nullptr && game.getPiece(3, i + 1)->getKleur() != getKleur() ) {
+//                    return make_pair(3, i + 1);
+//                }
+//                else if ( game.getPiece(3, i - 1) != nullptr && game.getPiece(3, i - 1)->getKleur() != getKleur() ) {
+//                    return make_pair(3, i - 1);
+//                }
+//            }
+//        }
+//    }
+//    // Kleur van de pion is zwart
+//    for ( int i = 0; i < 8; i++ ) {
+//        if ( this == game.getPiece(4, i) ) {
+//            if ( game.getPiece(4, i + 1) != nullptr && game.getPiece(4, i + 1)->getKleur() != getKleur() ) {
+//                return make_pair(4, i + 1);
+//            }
+//            else if ( game.getPiece(4, i - 1) != nullptr && game.getPiece(4, i - 1)->getKleur() != getKleur() ) {
+//                return make_pair(4, i - 1);
+//            }
+//        }
+//    }
+//    return make_pair(0, 0);
+//}
 
 // Berekent geldige zetten van een Pion
 vector<pair<int, int>> Pion::geldige_zetten(Game & game, const bool & kills) {
@@ -278,7 +290,7 @@ vector<pair<int, int>> Pion::geldige_zetten(Game & game, const bool & kills) {
 
     // Als de pion op de startpositie staat kan deze onmiddelijk 2 stappen zetten
     // Mag dimensies niet overschrijven + er mag nog geen ander SchaakStuk staan
-    if ( 0 <= (r + (2 * fact)) << 7 && startPosition(game) && game.getPiece(r + (2 * fact), k) == nullptr ) {
+    if ( 0 <= (r + (2 * fact)) << 7 && getStartPosition() && game.getPiece(r + (2 * fact), k) == nullptr ) {
         if ( !kills ) {
             possibleMoves.emplace_back(r + (2 * fact), k);
         }
@@ -286,7 +298,7 @@ vector<pair<int, int>> Pion::geldige_zetten(Game & game, const bool & kills) {
     // Als de pion NIET op de startpositie staat kan deze 1 stap verder zetten
     // Er mag weer geen ander SchaakStuk staan
     if ( 0 <= (r + (1 * fact)) && game.getPiece(r + (1 * fact), k) == nullptr ) {
-        if ( !kills ) {
+        if (!kills) {
             possibleMoves.emplace_back(r + (1 * fact), k);
         }
     }
@@ -297,6 +309,16 @@ vector<pair<int, int>> Pion::geldige_zetten(Game & game, const bool & kills) {
         if ( attackRight != nullptr && attackRight->getKleur() != getKleur() ) {
             possibleMoves.emplace_back(r + (1 * fact), (k + 1));
         }
+//        if (game.getPassantBool() && game.getPiece(r, k + 1) != nullptr &&
+//            game.getPiece(r, k + 1)->piece().type() == Piece::Pawn) {
+//
+//            if ( kills ) {
+//                possibleMoves.emplace_back(r, (k + 1));
+//            }
+//            else {
+//                possibleMoves.emplace_back(r + (1 * fact), (k + 1));
+//            }
+//        }
     }
 
     // Pion kan ook links aanvallen (=SchaakStuk mag niet van dezelfde kleur zijn)
@@ -305,7 +327,19 @@ vector<pair<int, int>> Pion::geldige_zetten(Game & game, const bool & kills) {
         if ( attackLeft != nullptr && attackLeft->getKleur() != getKleur() ) {
             possibleMoves.emplace_back(r + (1 * fact), (k - 1));
         }
+//        if (game.getPassantBool() && game.getPiece(r, k + 1) != nullptr &&
+//            game.getPiece(r, k + 1)->piece().type() == Piece::Pawn) {
+//
+//            if ( kills ) {
+//                possibleMoves.emplace_back(r, (k - 1));
+//            }
+//            else {
+//                possibleMoves.emplace_back(r, (k - 1));
+//            }
+//        }
     }
+
+
 
     int end = 0;
     for ( int i = 0; i < possibleMoves.size(); i++, end++ ) {
@@ -442,9 +476,10 @@ vector<pair<int, int>> Koning::geldige_zetten(Game & game, const bool & kills) {
     }
 
     // Beweeg naar rechts
-    if ( checkNullptr(game.getPiece(r, k + 1)) || game.getPiece(r, k + 1)->getKleur() != color ) {
+    if ( checkNullptr(game.getPiece(r, k + 1)) || game.getPiece(r, k + 1 )->getKleur() != color ) {
         possibleMoves.emplace_back(r, k + 1);
     }
+
 
     // Beweeg naar boven
     if ( checkNullptr(game.getPiece(r - 1, k)) || game.getPiece(r - 1, k)->getKleur() != color ) {
