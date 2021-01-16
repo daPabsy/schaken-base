@@ -41,7 +41,6 @@ public:
     // Geeft de waarde van de bool startPosition weer
     bool getStartPosition() { return startPosition; }
 
-
 private:
     zw kleur;
     bool startPosition; // Staat het SchaakStuk in de startposite?
@@ -53,9 +52,8 @@ public:
     virtual Piece piece() const override {
         return Piece(Piece::Pawn,getKleur()==wit?Piece::White:Piece::Black);
     }
-    const pair<int, int> enPassant(Game & game);
-    vector<pair<int, int>> geldige_zetten(Game & game, const bool & kills) override;
 
+    vector<pair<int, int>> geldige_zetten(Game & game, const bool & kills) override;
 };
 
 class Toren:public SchaakStuk {

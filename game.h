@@ -29,7 +29,6 @@ public:
     bool move(SchaakStuk* s, const pair<int, int> &p); // Verplaats stuk s naar rij r en kolom k
     void capturedPiece(const pair<int, int> & moveTo) const;
 
-
     // Alles te maken met schaak
     bool schaak(const zw & kleur);
     pair<int, int> findKing(const zw & kleur) const;
@@ -47,40 +46,6 @@ public:
 
 
     vector<pair<int, int>> getThreats(const vector<pair<int, int>> & moves, const zw & color, SchaakStuk * s);
-
-
-
-//    // En Passage
-//    bool passageCapture(pair<int, int> moveTo, SchaakStuk * s, const zw & color);
-//
-//    // Verander waarde van passant
-//    void setPassant(const pair<int, int> & p) {
-//        passant = true; counter = 0; passantPosition = p;
-//    }
-//
-//    // Verkrijg de bool van passant
-//    bool getPassantBool() {
-//        return passant;
-//    }
-//
-//    // Verkrijg de waarde van passant
-//    pair<int, int> & getPassantValue() { return passantPosition; }
-//
-//    // Reset de passant waarde
-//    void resetPassant() {
-//        if ( counter == 0 ) {
-//            counter = 1;
-//        }
-//        else if ( counter == 1 ) {
-//            counter = 2;
-//        }
-//        else if ( counter == 2 ) {
-//            counter = 0;
-//            passant = false;
-//            passantPosition = make_pair(0, 0);
-//        }
-//    }
-
 
 
     // Verkrijg het te verplaatsen SchaakStuk ALS moving true is
@@ -121,9 +86,6 @@ private:
     bool moving; // Bezig met een SchaakStuk te verplaatsen?
     SchaakStuk * pieceToMove; // Te bewegen SchaakStuk tijdens een move
 
-//    bool passant; // Staat er een SchaakStuk in een positie om via passant "veroverd" te worden?
-//    int counter;
-//    pair<int, int> passantPosition; // Positie van SchaakStuk dat "en passant" staat
 
     SchaakStuk * bord[8][8];
 };
