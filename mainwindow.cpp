@@ -123,32 +123,29 @@ void MainWindow::displayThreatsMoves(const int & r, const int & k) {
 // werd; r is de 0-based rij, k de 0-based kolom
 void MainWindow::clicked(int r, int k) {
 
-    // Alle markering van vorige click wordt ongedaan gemaakt
+    // Alle markering en threats van vorige click wordt ongedaan gemaakt
     scene->removeAllMarking();
+    scene->removeAllPieceThreats();
+
+    // Laat de stukken zien die bedreigd worden
+    actuallyDisplayThreats(g.getTurnMove());
+    // Laat stukken zien van de andere kleur die veroverd kunnen worden
+    displayKills(g.getTurnMove());
 
     if ( g.getMoving() == nullptr ) { // Er is nog GEEN SchaakStuk aangeklikt
         if ( g.getPiece(r, k) == nullptr ) { // Het aangeklikte SchaakStuk mag geen nullptr zijn
-
-            // TODO
-            // Laat de stukken zien die bedreigd worden
-            actuallyDisplayThreats(g.getTurnMove());
-            // Laat stukken zien van de andere kleur die veroverd kunnen worden
-            displayKills(g.getTurnMove());
 
             cout << "Select a valid piece!" << endl;
         }
             // SchaakStuk moet van de eigen kleur zijn
         else if ( g.getPiece(r, k)->getKleur() != g.getTurnMove() ) {
 
-            // TODO
-            // Laat de stukken zien die bedreigd worden
-            actuallyDisplayThreats(g.getTurnMove());
-            // Laat stukken zien van de andere kleur die veroverd kunnen worden
-            displayKills(g.getTurnMove());
-
             cout << "Select a piece of your own color!" << endl;
         }
         else {
+            scene->removeAllMarking();
+            scene->removeAllPieceThreats();
+
             // Volgende keer dat er geklikt wordt kan er herkend worden of er reeds
             // een SchaakStuk werd aangeklikt
             g.setMovingAndPieceToMove(true, g.getPiece(r, k));
@@ -157,21 +154,14 @@ void MainWindow::clicked(int r, int k) {
             scene->setTileSelect(r, k, true);
 
 
-            if (display_threats->isChecked()) {
-                cout << "ye" << endl;
-                scene->setTileThreat(0,5,true);
-                scene->setTileThreat(3,6,true);
-                scene->setTileThreat(5,4,true);
-                scene->setTileThreat(6,3,true);
-            }
+            // Laat de geldige zetten zien van het geselecteerde SchaakStuk
+            if ( display_moves->isChecked() ) { displayMoves(r, k); }
 
-//            // Laat de geldige zetten zien van het geselecteerde SchaakStuk
-//            if ( display_moves->isChecked() ) { displayMoves(r, k); }
-//            // Laat de bedreigingen zien door andere SchaakStukken wanneer er geklikt word op een SchaakStuk
-//            if ( display_threats->isChecked() ) { displayThreatsMoves(r, k); }
+            // TODO voor een of andere rare reden kan ik enkel rode vakjes kleuren wanneer ook display_moves is gecheckt
+            // Laat de bedreigingen zien door andere SchaakStukken wanneer er geklikt word op een SchaakStuk
+            if ( display_threats->isChecked() ) { displayThreatsMoves(r, k); }
 
             // SchaakStuk is geselecteerd voor de volgende keer dat er geklikt wordt
-            cout << "Selected a piece!" << endl;
         }
     }
 
@@ -188,14 +178,13 @@ void MainWindow::clicked(int r, int k) {
                 scene->clearBoard();
                 update(); // Update het bord weer
             }
-            g.setTurnMove(); // Verander van beurt
 
-            // TODO
             // Laat de stukken zien die bedreigd worden
             actuallyDisplayThreats(g.getTurnMove());
             // Laat stukken zien van de andere kleur die veroverd kunnen worden
             displayKills(g.getTurnMove());
 
+            g.setTurnMove(); // Verander van beurt
 
             // Er wordt eerst gecheckt op pat en daarna pas op schaakmat anders
             // krijgen we schaakmat bij pat
@@ -223,8 +212,6 @@ void MainWindow::clicked(int r, int k) {
         }
         // g.move geeft false terug, speler heeft een unvalid move geselecteerd
         else {
-
-            // TODO
             // Laat de stukken zien die bedreigd worden
             actuallyDisplayThreats(g.getTurnMove());
             // Laat stukken zien van de andere kleur die veroverd kunnen worden

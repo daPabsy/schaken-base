@@ -95,6 +95,8 @@ bool Game::move(SchaakStuk * s, const pair<int, int> & p) {
     // Kijk of de zet geldig is
     if ( find(possibleMoves.begin(), possibleMoves.end(), p ) != possibleMoves.end() ) {
 
+        resetPassage(); // Reset passage
+
         // Rokade uitvoeren?
         if ( s->piece().type() == Piece::King ) { // Moven we met de koning?
 
@@ -105,6 +107,13 @@ bool Game::move(SchaakStuk * s, const pair<int, int> & p) {
                     s->setStartPosition(); // SchaakStuk staat niet meer op de startpositie
                     return true;
                 }
+            }
+        }
+
+        if ( s->piece().type() == Piece::Pawn && s->getStartPosition() ) { // Moven we met een Pawn?
+            if ( abs(p.first - s->position.first) > 1 ) { // Stapgrootte groter dan 1?
+                cout << "passage" << endl;
+                setPassage(p); // Set passage met p de posite waar de Pawn naar toe beweegt
             }
         }
 
@@ -119,6 +128,7 @@ bool Game::move(SchaakStuk * s, const pair<int, int> & p) {
     resetMovingAndPieceToMove();
     return found; // Wanneer er geen geldige zet wordt gekozen blijft de huidige kleur aan de beurt
 }
+
 
 // Voer een rokade uit
 void Game::moveCastle(SchaakStuk * s, const pair<int, int> & p, const zw & color) {

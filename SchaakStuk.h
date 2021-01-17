@@ -53,6 +53,7 @@ public:
     }
 
     vector<pair<int, int>> geldige_zetten(Game & game, const bool & kills) override;
+
 };
 
 class Toren:public SchaakStuk {

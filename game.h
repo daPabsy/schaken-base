@@ -88,12 +88,40 @@ public:
         turnToMove = zwart;
     }
 
+    // Verkrijg de passage bool
+    bool getPassage() const { return passage; }
+
+    pair<int, int> getPassantPosition() { return passagePosition; }
+
+    // Zet passage
+    void setPassage(const pair<int, int> & p) { passage = true; counter = 1; passagePosition = p; }
+
+    // Reset passage
+    void resetPassage() {
+        if ( counter == 0 ) {
+            passage = false;
+            passagePosition = make_pair(0, 0);
+        }
+        else if ( counter == 1 ) {
+            counter += 1;
+        }
+        else if ( counter == 2) {
+            counter = 0;
+            passage = false;
+            passagePosition = make_pair(0, 0);
+        }
+    }
+
+
 private:
     zw turnToMove; // Wie zijn beurt is het?
     bool moving; // Bezig met een SchaakStuk te verplaatsen?
     SchaakStuk * pieceToMove; // Te bewegen SchaakStuk tijdens een move
 
-    // Alles crasht bij het toevoegen van een nieuwe variabele zoals int , bool, vector....
+    bool passage; // Passage?
+    // Wanneer een pion een passage zet wordt de counter op 1 gezet, wanneer de counter op 2 staat wordt de passage gereset
+    int counter;
+    pair<int, int> passagePosition; // Positie van pion die net 2 stappen zette
 
     SchaakStuk * bord[8][8];
 };
