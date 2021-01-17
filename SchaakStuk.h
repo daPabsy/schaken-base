@@ -51,7 +51,7 @@ public:
     virtual Piece piece() const override {
         return Piece(Piece::Pawn,getKleur()==wit?Piece::White:Piece::Black);
     }
-
+    const pair<int, int> enPassant(Game & game);
     vector<pair<int, int>> geldige_zetten(Game & game, const bool & kills) override;
 
 };

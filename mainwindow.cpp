@@ -178,7 +178,6 @@ void MainWindow::clicked(int r, int k) {
                 scene->clearBoard();
                 update(); // Update het bord weer
             }
-
             // Laat de stukken zien die bedreigd worden
             actuallyDisplayThreats(g.getTurnMove());
             // Laat stukken zien van de andere kleur die veroverd kunnen worden

@@ -272,32 +272,6 @@ vector<pair<int, int>> Pion::geldige_zetten(Game & game, const bool & kills) {
         }
     }
 
-    // En passage
-    if ( game.getPassage() ) {
-        if ( color == wit ) { // Witte pion moet op R-3 staan om een En passage uit te voeren
-            cout << "OOO" << endl;
-            cout << r << " " << k << endl;
-            // Links aanvallen
-            if ( game.getPassantPosition().first == r - 1 && game.getPassantPosition().second == k - 1 ) {
-                possibleMoves.emplace_back(r - 1, k - 1);
-            }
-            // Rechts aanvallen
-            if ( game.getPassantPosition().first == r - 1 && game.getPassantPosition().second == k + 1 ) {
-                possibleMoves.emplace_back(r - 1, k + 1);
-            }
-        }
-        else if ( color == zwart ) { // Zwarte pion moet op R-4 staan om een En passage uit te voeren
-            // Links aanvallen
-            if ( game.getPassantPosition().first == r + 1 && game.getPassantPosition().second == k - 1 ) {
-                possibleMoves.emplace_back(r + 1, k - 1);
-            }
-            // Rechts aanvallen
-            if ( game.getPassantPosition().first == r + 1 && game.getPassantPosition().second == k + 1 ) {
-                possibleMoves.emplace_back(r + 1, k + 1);
-            }
-        }
-    }
-
 
     // Pion kan ook rechts aanvallen (=SchaakStuk mag niet van dezelfde kleur zijn)
     if ( 0 <= (r + (1 * fact)) << 7 ) {
@@ -306,6 +280,7 @@ vector<pair<int, int>> Pion::geldige_zetten(Game & game, const bool & kills) {
             possibleMoves.emplace_back(r + (1 * fact), (k + 1));
         }
     }
+
 
     // Pion kan ook links aanvallen (=SchaakStuk mag niet van dezelfde kleur zijn)
     if ( 0 <= (r + (1 * fact)) << 7 ) {
