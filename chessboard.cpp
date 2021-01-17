@@ -10,7 +10,7 @@
 
 
 ChessBoard::ChessBoard(QObject *parent) :
-    QGraphicsScene(parent)
+        QGraphicsScene(parent)
 {
     nPieceWidth = 45;
     nBorderWidth = 0;
@@ -222,8 +222,8 @@ void ChessBoard::refreshImage(int i, int j)
         if (threatPiece[i][j]) colorize->setColor(cLightPieceColorThreat);
         else colorize->setColor(cLightPieceColor);
     else
-        if (threatPiece[i][j]) colorize->setColor(cDarkPieceColorThreat);
-        else colorize->setColor(cDarkPieceColor);
+    if (threatPiece[i][j]) colorize->setColor(cDarkPieceColorThreat);
+    else colorize->setColor(cDarkPieceColor);
 
     item->setGraphicsEffect( colorize );
 
@@ -243,37 +243,37 @@ QString ChessBoard::getPieceFilename(Piece p)
     QString filename = QString(path);
     switch(p.color())
     {
-    case Piece::White:
-        filename += "white";
-        break;
-    case Piece::Black:
-    default:
-        filename += "black";
-        break;
+        case Piece::White:
+            filename += "white";
+            break;
+        case Piece::Black:
+        default:
+            filename += "black";
+            break;
     }
 
     switch(p.type())
     {
-    case Piece::King:
-        filename += "-king";
-        break;
-    case Piece::Queen:
-        filename += "-queen";
-        break;
-    case Piece::Bishop:
-        filename += "-bishop";
-        break;
-    case Piece::Knight:
-        filename += "-knight";
-        break;
-    case Piece::Rook:
-        filename += "-rook";
-        break;
-    case Piece::Pawn:
-        filename += "-pawn";
-        break;
-    default:
-        break;
+        case Piece::King:
+            filename += "-king";
+            break;
+        case Piece::Queen:
+            filename += "-queen";
+            break;
+        case Piece::Bishop:
+            filename += "-bishop";
+            break;
+        case Piece::Knight:
+            filename += "-knight";
+            break;
+        case Piece::Rook:
+            filename += "-rook";
+            break;
+        case Piece::Pawn:
+            filename += "-pawn";
+            break;
+        default:
+            break;
     }
 
     return filename + ".svg";

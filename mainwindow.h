@@ -20,10 +20,16 @@ public:
     void update() const;
 
     void displayMoves(const int & r, const int & k);
-    void displayThreats(const int & r, const int & k);
+
+    void displayThreatsMoves(const int & r, const int & k);
+
+    void displayThreats(const zw & color);
+    void actuallyDisplayThreats(const zw & color);
+
+    void displayKills(const zw & color);
+
 
     void promotionBoard(SchaakStuk * s, const zw & color);
-
 
 private:
 
@@ -71,6 +77,7 @@ private:
     QAction* display_moves;
     QAction* display_kills;
     QAction* display_threats;
+
 };
 
 #endif // MAINWINDOW_H

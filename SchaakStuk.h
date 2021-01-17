@@ -26,8 +26,6 @@ public:
 
     virtual vector<pair<int, int>> geldige_zetten(Game & game, const bool & kills);
 
-
-
     vector<pair<int, int>> diagonalMoves(Game & game);
     vector<pair<int, int>> straightMoves(Game & game);
     bool checkDimensions(pair<int, int> i);
@@ -99,6 +97,16 @@ public:
     }
 
     vector<pair<int, int>> geldige_zetten(Game & game, const bool & kills) override;
+
+    void castle(Game & game, const zw & color, vector<pair<int, int>> & possibleMoves);
+
+    pair<int, int> whiteCastleRight(Game & game, const zw & color);
+    pair<int, int> whiteCastleLeft(Game & game, const zw & color);
+
+    pair<int, int> blackCastleRight(Game & game, const zw & color);
+    pair<int, int> blackCastleLeft(Game & game, const zw & color);
+
+
 };
 
 class Koningin:public SchaakStuk {

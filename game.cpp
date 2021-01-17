@@ -89,35 +89,30 @@ bool Game::move(SchaakStuk * s, const pair<int, int> & p) {
     bool found = false;
     vector<pair<int, int>> possibleMoves; // Vector met mogelijke zetten
 
-    // Is het SchaakStuk dat we willen verplaatsen de Koning?
-    if ( s->piece().type() == Piece::King ) {
-        // Koning mag zich zelf niet schaak zetten
-        possibleMoves = checkForKingCheck(s->geldige_zetten(*this, false), s);
-    }
+    // Koning mag nooit schaak komen te staan
+    possibleMoves = checkForKingCheck(s->geldige_zetten(*this, false), s);
 
-    else { // Wanneer koning schaak staat moeten er een omweg gemaakt worden
-        possibleMoves = checkForKingCheck(s->geldige_zetten(*this, false), s); // Verkrijg geldige zetten als King schaak staat
-    }
     // Kijk of de zet geldig is
     if ( find(possibleMoves.begin(), possibleMoves.end(), p ) != possibleMoves.end() ) {
 
-        // Pion doet twee stappen vooruit en is WIT
-//        if ( s != nullptr && s->piece().type() == Piece::Pawn && s->getStartPosition() && p.first == 4 ) {
-//            setPassage(p);
-//        }
-//
-//        // Pion doet twee stappen vooruit en is ZWART
-//        if ( s != nullptr && s->piece().type() == Piece::Pawn && s->getStartPosition() && p.first == 3 ) {
-//            setPassage(p);
-//        }
+        // Rokade uitvoeren?
+        if ( s->piece().type() == Piece::King ) { // Moven we met de koning?
 
-        s->setStartPosition(); // SchaakStuk staat niet meer op de startpositie
+            if (s->getStartPosition() ) { // Koning moet in startPositie staan
+                if ( abs(p.second - s->position.second) > 1 ) { // Stapgrootte groter dan 1?
+                    moveCastle(s, p, getTurnMove());
+                    resetMovingAndPieceToMove();
+                    s->setStartPosition(); // SchaakStuk staat niet meer op de startpositie
+                    return true;
+                }
+            }
+        }
 
         found = true; // Wanneer gevonden kan het SchaakStuk verplaatst worden
         setNullptr(s->position.first, s->position.second, nullptr); // Originele plaats wordt vervangen met nullptr
         capturedPiece(p); // Ander SchaakStuk verovert?
         setPiece(p.first, p.second, s); // Verplaats SchaakStuk
-
+        s->setStartPosition(); // SchaakStuk staat niet meer op de startpositie
     }
 
     // Men is niet meer bezig met verplaatsen en moet dus opnieuw een SchaakStuk selecteren om te verplaatsen
@@ -125,12 +120,51 @@ bool Game::move(SchaakStuk * s, const pair<int, int> & p) {
     return found; // Wanneer er geen geldige zet wordt gekozen blijft de huidige kleur aan de beurt
 }
 
+// Voer een rokade uit
+void Game::moveCastle(SchaakStuk * s, const pair<int, int> & p, const zw & color) {
+
+    if ( p.second == 6 ) { // Korte castle naar rechts
+        if ( color == wit ) {
+            // Originele plaats wordt vervangen met nullptr
+            setNullptr(s->position.first, s->position.second, nullptr);
+            setPiece(7, 5, getPiece(7, 7)); // Verplaats de rook
+            setNullptr(7, 7, nullptr); // Rook wordt vervangen met nullptr
+            setPiece(p.first, p.second, s); // Verplaats koning
+            return;
+        }
+        // Originele plaats wordt vervangen met nullptr
+        setNullptr(s->position.first, s->position.second, nullptr);
+        setPiece(0, 5, getPiece(0, 7)); // Verplaats de rook
+        setNullptr(0, 7, nullptr); // Rook wordt vervangen met nullptr
+        setPiece(p.first, p.second, s); // Verplaats koning
+        return;
+    }
+
+    else if ( p.second == 2 ) { // Lange castle naar links
+        if ( color == wit ) {
+            // Originele plaats wordt vervangen met nullptr
+            setNullptr(s->position.first, s->position.second, nullptr);
+            setPiece(7, 3, getPiece(7, 0)); // Verplaats de rook
+            setNullptr(7, 0, nullptr); // Rook wordt vervangen met nullptr
+            setPiece(p.first, p.second, s); // Verplaats koning
+            return;
+        }
+        // Originele plaats wordt vervangen met nullptr
+        setNullptr(s->position.first, s->position.second, nullptr);
+        setPiece(0, 3, getPiece(0, 0)); // Verplaats de rook
+        setNullptr(0, 0, nullptr); // Rook wordt vervangen met nullptr
+        setPiece(p.first, p.second, s); // Verplaats koning
+        return;
+    }
+}
+
 // Kijkt na of de positie waar het SchaakStuk naar wilt bewegen een
 // SchaakStuk is van de tegenstander en verwijdert deze wanneer nodig
 void Game::capturedPiece(const pair<int, int> & moveTo) const {
     if ( getPiece(moveTo.first, moveTo.second) == nullptr ) { // Er moet niks gedaan worden bij een nullptr
+        return;
     }
-        // Bij een SchaakStuk wordt deze verwijdert uit de heap
+    // Bij een SchaakStuk wordt deze verwijdert uit de heap
     else if ( getPiece(moveTo.first, moveTo.second)->getKleur() != turnToMove ) {
         delete getPiece(moveTo.first, moveTo.second);
     }
@@ -139,26 +173,23 @@ void Game::capturedPiece(const pair<int, int> & moveTo) const {
 
 // Geeft true als koning van de speler die aan de beurt is schaak staat
 bool Game::schaak(const zw & kleur) {
-    bool found = false;
     // Zoek de positie van de koning
     const pair<int, int> & king = findKing(kleur);
 
     // Itereer over alle vakjes
     for ( int i = 0; i < 8; i++ ) {
         for ( int j = 0; j < 8; j++ ) {
-
             // Overloop alle SchaakStukken van de tegenstander
-            if ( getPiece(i, j) != nullptr && getPiece(i, j)->getKleur() != kleur ) {
+            if ( getPiece(i, j) != nullptr && getPiece(i, j)->getKleur() != kleur && getPiece(i, j)->piece().type() != Piece::King ) {
                 // Is positie van een van de geldige zetten van de tegenstander gelijk aan die van "onze" koning
                 const vector<pair<int, int>> & moves = getPiece(i, j)->geldige_zetten(*this, false);
                 if ( find(moves.begin(), moves.end(), king) != moves.end() ) {
-                    found = true; // Schaak --> Stop onmiddleijk met zoeken
-                    break;
+                    return true; // Schaak --> Stop onmiddleijk met zoeken
                 }
             }
         }
     }
-    return found;
+    return false;
 }
 
 // Zoek de positie van de koning van de kleur die momenteel aan de beurt is
@@ -178,7 +209,6 @@ pair<int, int> Game::findKing(const zw & kleur) const {
 }
 
 vector<pair<int, int>> Game::checkForKingCheck(const vector<pair<int, int>> & possibleMoves, SchaakStuk * s) {
-
     vector<pair<int, int>> newMoves; // Vector waar we de geldige zetten in gaan opslaan
 
     // Originele positie van het SchaakStuk dat we steeds gaan verschuiven
@@ -191,10 +221,8 @@ vector<pair<int, int>> Game::checkForKingCheck(const vector<pair<int, int>> & po
     }
     // Overloop alle mogelijke zetten die het SchaakStuk kan zetten wanneer de koning NIET schaak staat
     for ( const pair<int, int> & i : possibleMoves ) {
-
         // Verkrijg het SchaakStuk waar we naar gaan verplaatsen
         SchaakStuk * oldPiece = getPiece(i.first, i.second);
-
         // Verplaats SchaakStuk naar positie
         setPiece(i.first, i.second, s);
 
@@ -202,11 +230,9 @@ vector<pair<int, int>> Game::checkForKingCheck(const vector<pair<int, int>> & po
         setNullptr(originalPosition.first, originalPosition.second, nullptr);
 
         if ( !schaak(getTurnMove()) ) { // Check of de king nog steeds schaak staat
-
             newMoves.push_back(i); // Koning staat niet meer schaak en kan dus toegevoegd worden aan nieuwe vector
 
         }
-        capturedPiece(i);
 
         // Verplaatst SchaakStuk wordt terug naar zijn originele plaatst verzet
         setPiece(originalPosition.first, originalPosition.second, s);
@@ -264,7 +290,6 @@ bool Game::pat(const zw & kleur) {
     bool pat = true;
     for ( int i = 0; i < 8; i++ ) {
         for ( int j = 0; j < 8; j++ ) {
-
             if ( getPiece(i, j) != nullptr ) {
 
                 if (getPiece(i, j)->getKleur() == kleur) {
@@ -290,20 +315,16 @@ bool Game::pat(const zw & kleur) {
 
 vector<pair<int, int>> Game::getThreats(const vector<pair<int, int>> & moves, const zw & color, SchaakStuk * s) {
     vector<pair<int, int>> threats;
-
     // Originele positie van SchaakStuk dat we steeds gaan verschuiven
     const pair<int, int> & originalPosition = make_pair(s->position.first, s->position.second);
 
     // Overloop elk vakje van het schaakBord
     for ( int i = 0; i < 8; i++ ) {
         for ( int j = 0; j < 8; j++ ) {
-
             // Zoeken naar vijanden
             if ( getPiece(i, j) != nullptr && getPiece(i, j)->getKleur() != color ) {
-
                 // Overlopen van de geldige zetten van het SchaakStuk dat geselecteerd is
                 for ( const pair<int, int> & k : moves ) {
-
                     // Verkrijg het SchaakStuk waar we naar gaan verplaatsen
                     SchaakStuk * oldPiece = getPiece(k.first, k.second);
 
@@ -363,3 +384,24 @@ bool Game::promotion(SchaakStuk * s) {
     return false;
 }
 
+// Checken of bepaalde vakjes in bedreiging staan
+bool Game::threatsCastle(const vector<pair<int, int>> & emptyPositions, const zw & color) {
+    // Overloop alle vakjes
+    for (int i = 0; i < 8; i++) {
+        for (int j = 0; j < 8; j++) {
+            SchaakStuk *enemy = getPiece(i, j);
+            // Vind een SchaakStuk van de vijand
+            if (enemy != nullptr && enemy->piece().type() != Piece::King && enemy->getKleur() != color) {
+                for (const pair<int, int> & k : emptyPositions) { // Overloop de vakjes die we willen checken
+                    const vector<pair<int, int>> enemyMoves = getPiece(i, j)->geldige_zetten(*this, true);
+                    // Als er een vakje in bedreiging staat wordt er onmiddelijk false teruggegeven
+                    if (find(enemyMoves.begin(), enemyMoves.end(), k) != enemyMoves.end()) {
+                        return false;
+                    }
+                }
+            }
+        }
+    }
+    // Als er geen bedreigingen zijn gevonden wordt er true teruggegeven
+    return true;
+}

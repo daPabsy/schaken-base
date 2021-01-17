@@ -415,46 +415,68 @@ vector<pair<int, int>> Koning::geldige_zetten(Game & game, const bool & kills) {
 
     // Er wordt steeds eerst gecheckt of het een
     // nullptr is zodat dit geen fouten kan opleveren
+
     // Beweeg naar beneden
-    if ( checkNullptr(game.getPiece(r + 1, k)) || game.getPiece(r + 1, k)->getKleur() != color ) {
-        possibleMoves.emplace_back(r + 1, k);
+    if ( 0 <= r + 1 && r + 1 <= 7 ) {
+        if ( checkNullptr(game.getPiece(r + 1, k)) || game.getPiece(r + 1, k)->getKleur() != color ) {
+            possibleMoves.emplace_back(r + 1, k);
+        }
     }
 
+
     // Beweeg naar rechts
-    if ( checkNullptr(game.getPiece(r, k + 1)) || game.getPiece(r, k + 1)->getKleur() != color ) {
-        possibleMoves.emplace_back(r, k + 1);
+    if ( 0 <= k + 1 && k + 1 <= 7 ) {
+        if ( checkNullptr(game.getPiece(r, k + 1)) || game.getPiece(r, k + 1)->getKleur() != color ) {
+            possibleMoves.emplace_back(r, k + 1);
+        }
     }
 
     // Beweeg naar boven
-    if ( checkNullptr(game.getPiece(r - 1, k)) || game.getPiece(r - 1, k)->getKleur() != color ) {
-        possibleMoves.emplace_back(r - 1, k);
+    if ( 0 <= r - 1 && r - 1 <= 7 ) {
+        if ( checkNullptr(game.getPiece(r - 1, k)) || game.getPiece(r - 1, k)->getKleur() != color ) {
+            possibleMoves.emplace_back(r - 1, k);
+        }
     }
 
     // Beweeg naar links
-    if ( checkNullptr(game.getPiece(r, k - 1)) || game.getPiece(r, k - 1)->getKleur() != color ) {
-        possibleMoves.emplace_back(r, k - 1);
+    if ( 0 <= k - 1 && k - 1 <= 7 ) {
+        if ( checkNullptr(game.getPiece(r, k - 1)) || game.getPiece(r, k - 1)->getKleur() != color ) {
+            possibleMoves.emplace_back(r, k - 1);
+        }
     }
 
     // Beweeg schuinRechtsBeneden
-    if ( checkNullptr(game.getPiece(r + 1, k + 1)) || game.getPiece(r + 1, k + 1)->getKleur() != color ) {
-        possibleMoves.emplace_back(r + 1, k + 1);
+    if ( 0 <= r + 1 && 0 <= k + 1 && r + 1 <= 7 && k + 1 <= 7 ) {
+        if ( checkNullptr(game.getPiece(r + 1, k + 1)) || game.getPiece(r + 1, k + 1)->getKleur() != color ) {
+            possibleMoves.emplace_back(r + 1, k + 1);
+        }
     }
 
     // Beweeg schuinRechtsBoven
-    if ( checkNullptr(game.getPiece(r - 1, k + 1)) || game.getPiece(r - 1, k + 1)->getKleur() != color ) {
-        possibleMoves.emplace_back(r - 1, k + 1);
+    if ( 0 <= r - 1 && 0 <= k + 1 && r - 1 <= 7 && k + 1 <= 7 ) {
+        if ( checkNullptr(game.getPiece(r - 1, k + 1)) || game.getPiece(r - 1, k + 1)->getKleur() != color ) {
+            possibleMoves.emplace_back(r - 1, k + 1);
+        }
     }
 
     // Beweeg schuinLinksBoven
-    if ( checkNullptr(game.getPiece(r - 1, k - 1)) || game.getPiece(r - 1, k - 1)->getKleur() != color ) {
-        possibleMoves.emplace_back(r - 1, k - 1);
+    if ( 0 <= r -1 && 0 <= k - 1 && r - 1 <= 7 && k - 1 <= 7 ) {
+        if ( checkNullptr(game.getPiece(r - 1, k - 1)) || game.getPiece(r - 1, k - 1)->getKleur() != color ) {
+            possibleMoves.emplace_back(r - 1, k - 1);
+        }
     }
 
     // Beweeg schuinLinksBeneden
-    if ( checkNullptr(game.getPiece(r + 1, k - 1)) || game.getPiece(r + 1, k - 1)->getKleur() != color ) {
-        possibleMoves.emplace_back(r + 1, k - 1);
+    if ( 0 <= r + 1 && 0 <= k - 1 && r + 1 <= 7 && k - 1 <= 7 ) {
+        if ( checkNullptr(game.getPiece(r + 1, k - 1)) || game.getPiece(r + 1, k - 1)->getKleur() != color ) {
+            possibleMoves.emplace_back(r + 1, k - 1);
+        }
     }
 
+    // Castle
+    if ( !game.schaak(color) ) {
+        castle(game, color, possibleMoves);
+    }
 
     // Wanneer de stap de dimensies van het chessBoard overschrijdt kan deze verwijdert worden
     int end = 0;
@@ -469,6 +491,108 @@ vector<pair<int, int>> Koning::geldige_zetten(Game & game, const bool & kills) {
     }
     possibleMoves.resize(end);
 
-
     return possibleMoves;
 }
+
+
+// Checkt voor een castle mogelijkheid
+void Koning::castle(Game & game, const zw & color, vector<pair<int, int>> & possibleMoves) {
+    int size = possibleMoves.size();
+    if ( getStartPosition() && color == wit ) { // Koning moet in de startPositie staan
+        SchaakStuk * rookLeft = game.getPiece(7, 0); // Rook moet op deze positie staan
+        if ( rookLeft != nullptr && rookLeft->getStartPosition()  ) {
+            const pair<int, int> & i = whiteCastleLeft(game, color);
+            if ( i.first != 0 && i.second != 0 ) {
+                possibleMoves.push_back(i);
+            }
+        }
+        SchaakStuk * rookRight = game.getPiece(7, 7);
+        if ( rookRight != nullptr && rookRight->getStartPosition() ) {
+            const pair<int, int> & i = whiteCastleRight(game, color);
+            if ( i.first != 0 && i.second != 0 ) {
+                possibleMoves.push_back(i);
+            }
+        }
+
+    }
+    else if ( getStartPosition() && color == zwart ) { // Koning moet in de startPositie staan
+        SchaakStuk * rookLeft = game.getPiece(0, 0); // Rook moet op deze positie staan
+        if ( rookLeft != nullptr && rookLeft->getStartPosition()  ) {
+            const pair<int, int> & i = blackCastleLeft(game, color);
+            if ( i.second != 0 ) {
+                possibleMoves.push_back(i);
+            }
+        }
+        SchaakStuk * rookRight = game.getPiece(0, 7);
+        if ( rookRight != nullptr && rookRight->getStartPosition() ) {
+            const pair<int, int> & i = blackCastleRight(game, color);
+            if ( i.second != 0 ) {
+                possibleMoves.push_back(i);
+            }
+        }
+    }
+}
+
+// Checkt of er ge-castled kan worden naar rechts voor een witte koning
+pair<int, int> Koning::whiteCastleRight(Game & game, const zw & color) {
+    pair<int, int> wcr = make_pair(0, 0); // 0, 0 wordt teruggegeven wanneer er geen castle mogelijk is
+    // Deze vakken moeten leeg zijn
+    if ( game.getPiece(7, 5) == nullptr && game.getPiece(7, 6) == nullptr ) {
+        // Deze vakken mogen niet aangevallen worden door een SchaakStuk van de tegenstander
+        vector<pair<int, int>> i;
+        i.push_back(make_pair(7, 5));
+        i.push_back(make_pair(7, 6));
+        if ( game.threatsCastle(i, color) ) {
+            wcr = make_pair(7, 6); // 0-0 castle naar rechts
+        }
+    }
+    return wcr;
+}
+
+// Checkt of er ge-castled kan worden naar links voor een witte koning
+pair<int, int> Koning::whiteCastleLeft(Game & game, const zw & color) {
+    pair<int, int> wcl = make_pair(0, 0); // 0, O wordt steeds teruggegeven bij geen castle mogelijkheid
+    if ( game.getPiece(7, 3) == nullptr && game.getPiece(7, 2) == nullptr && game.getPiece(7, 1) == nullptr ) {
+        // Deze vakken mogen niet aangevallen worden door een SchaakStuk van de tegenstander
+        vector<pair<int, int>> i;
+        i.push_back(make_pair(7, 3));
+        i.push_back(make_pair(7, 2));
+//        i.push_back(make_pair(7, 1));
+        if ( game.threatsCastle(i, color) ) {
+            wcl = make_pair(7, 2); // 0-0-0 castle naar links
+        }
+    }
+    return wcl;
+}
+
+// Checkt of er ge-castled kan worden naar rechts voor een witte koning
+pair<int, int> Koning::blackCastleRight(Game & game, const zw & color) {
+    pair<int, int> bcr = make_pair(0, 0); // 0, 0 wordt teruggegeven wanneer er geen castle mogelijk is
+    if ( game.getPiece(0, 6) == nullptr && game.getPiece(0, 5) == nullptr ) {
+        // Deze vakken mogen niet aangevallen worden door een SchaakStuk van de tegenstander
+        vector<pair<int, int>> i;
+        i.push_back(make_pair(0, 6));
+        i.push_back(make_pair(0, 5));
+        if ( game.threatsCastle(i, color) ) {
+            bcr = make_pair(0, 6); // 0-0 castle naar rechts
+        }
+    }
+    return bcr;
+}
+
+// Checkt of er ge-castled kan worden naar links voor een witte koning
+pair<int, int> Koning::blackCastleLeft(Game & game, const zw & color) {
+    pair<int, int> bcl = make_pair(0, 0); // 0, O wordt steeds teruggegeven bij geen castle mogelijkheid
+    if ( game.getPiece(0, 3) == nullptr && game.getPiece(0, 2) == nullptr && game.getPiece(0, 1) == nullptr ) {
+        // Deze vakken mogen niet aangevallen worden door een SchaakStuk van de tegenstander
+        vector<pair<int, int>> i;
+        i.push_back(make_pair(0, 3));
+        i.push_back(make_pair(0, 2));
+//        i.push_back(make_pair(0, 1));
+        if ( game.threatsCastle(i, color) ) {
+            bcl = make_pair(0, 2); // 0-0-0 castle naar links
+        }
+    }
+    return bcl;
+}
+

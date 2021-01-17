@@ -21,7 +21,55 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 
 }
 
+// Laat de bedreigde stukken zien van beide de kleur die aan de beurt is
+void MainWindow::actuallyDisplayThreats(const zw & color) {
+    if ( display_threats->isChecked() ) {
+        displayThreats(g.getTurnMove()); // Laat de bedreigde stukken zien van kleur die momenteel aan de beurt is
+    }
+}
 
+// Laat de de bedreigde stukken zien van de kleur die momenteel aan de beurt is
+void MainWindow::displayThreats(const zw & color) {
+    // Overloop alle vakjes
+    for ( int i = 0; i < 8; i++ ) {
+        for ( int j =0; j < 8; j++ ) {
+            // Vind een stuk van de eigen kleur
+            if ( g.getPiece(i, j) != nullptr && g.getPiece(i, j)->getKleur() == color ) {
+                const pair<int, int> p = make_pair(i, j);
+                for ( int k = 0; k < 8; k++ ) {
+                    for ( int l = 0; l < 8; l++ ) {
+                        // Vind een stuk van de andere kleur
+                        SchaakStuk * enemy = g.getPiece(k, l);
+                        if ( enemy != nullptr && enemy->getKleur() != color && enemy->piece().type() != Piece::King ) {
+                            const vector<pair<int, int>> & moves = enemy->geldige_zetten(g,
+                                                                                         false); // Verkrijg geldige zetten
+                            const vector<pair<int, int>> & possibleMoves = g.checkForKingCheck(moves, enemy); // Zetten waar King niet schaakmat staat
+                            for (const pair<int, int> & o : possibleMoves) { // Overloop de zetten
+                                // Bij een gelijkenis wordt deze gemarkeerd op het bord
+                                if (o == p) {
+                                    scene->setPieceThreat(i, j, true); // Markeer de bedreigingen
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Laat de stukken zien die geslagen kunnen worden door de kleur aan beurt
+// dit is gewoon de kleur verwisselen en de bedreigde stukken markeren
+void MainWindow::displayKills(const zw & color) {
+    if ( display_kills->isChecked() ) {
+        if ( color == zwart ) { // Verwissel kleur
+            displayThreats(wit); // Laat de bedreigde stukken zien van kleur die momenteel aan de beurt is
+        }
+        else if ( color == wit ) {
+            displayThreats(zwart);
+        }
+    }
+}
 
 // Laat geldige zetten zien op het schaakBord, worden blauw gemarkeerd
 void MainWindow::displayMoves(const int & r, const int & k) {
@@ -35,18 +83,17 @@ void MainWindow::displayMoves(const int & r, const int & k) {
             scene->setTileFocus(i.first, i.second, true); // Markeer de geldige zetten
         }
     }
-    // Koning mag niet schaak komen te staan
+        // Koning mag niet schaak komen te staan
     else {
         const vector<pair<int, int>> & possibleMoves = g.checkForKingCheck(moves, toMove);
         for ( const pair<int, int> & i : possibleMoves ) {
-            cout << i.first;
             scene->setTileFocus(i.first, i.second, true); // Markeer de geldige zetten
         }
     }
 }
 
 // Laat de bedreigingen zien van een bepaald SchaakStuk, worden rood gemarkeerd
-void MainWindow::displayThreats(const int & r, const int & k) {
+void MainWindow::displayThreatsMoves(const int & r, const int & k) {
 
     SchaakStuk * toMove = g.getPiece(r, k); // Verkrijg te verplaatsen SchaakStuk
     const vector<pair<int, int>> & moves = toMove->geldige_zetten(g, false); // Verkrijg geldige zetten
@@ -68,6 +115,9 @@ void MainWindow::displayThreats(const int & r, const int & k) {
     }
 }
 
+
+
+
 // Deze functie wordt opgeroepen telkens er op het schaakbord
 // geklikt wordt. x,y geeft de positie aan waar er geklikt
 // werd; r is de 0-based rij, k de 0-based kolom
@@ -78,10 +128,24 @@ void MainWindow::clicked(int r, int k) {
 
     if ( g.getMoving() == nullptr ) { // Er is nog GEEN SchaakStuk aangeklikt
         if ( g.getPiece(r, k) == nullptr ) { // Het aangeklikte SchaakStuk mag geen nullptr zijn
+
+            // TODO
+            // Laat de stukken zien die bedreigd worden
+            actuallyDisplayThreats(g.getTurnMove());
+            // Laat stukken zien van de andere kleur die veroverd kunnen worden
+            displayKills(g.getTurnMove());
+
             cout << "Select a valid piece!" << endl;
         }
             // SchaakStuk moet van de eigen kleur zijn
         else if ( g.getPiece(r, k)->getKleur() != g.getTurnMove() ) {
+
+            // TODO
+            // Laat de stukken zien die bedreigd worden
+            actuallyDisplayThreats(g.getTurnMove());
+            // Laat stukken zien van de andere kleur die veroverd kunnen worden
+            displayKills(g.getTurnMove());
+
             cout << "Select a piece of your own color!" << endl;
         }
         else {
@@ -92,10 +156,19 @@ void MainWindow::clicked(int r, int k) {
             // Markeert het SchaakStuk dat verplaatst moet worden groen
             scene->setTileSelect(r, k, true);
 
-            // Laat de bedreigingen zien door andere SchaakStukken
-            if ( display_threats->isChecked() ) { displayThreats(r, k); }
-            // Laat de geldige zetten zien van het geselecteerde SchaakStuk
-            if ( display_moves->isChecked() ) { displayMoves(r, k); }
+
+            if (display_threats->isChecked()) {
+                cout << "ye" << endl;
+                scene->setTileThreat(0,5,true);
+                scene->setTileThreat(3,6,true);
+                scene->setTileThreat(5,4,true);
+                scene->setTileThreat(6,3,true);
+            }
+
+//            // Laat de geldige zetten zien van het geselecteerde SchaakStuk
+//            if ( display_moves->isChecked() ) { displayMoves(r, k); }
+//            // Laat de bedreigingen zien door andere SchaakStukken wanneer er geklikt word op een SchaakStuk
+//            if ( display_threats->isChecked() ) { displayThreatsMoves(r, k); }
 
             // SchaakStuk is geselecteerd voor de volgende keer dat er geklikt wordt
             cout << "Selected a piece!" << endl;
@@ -107,7 +180,6 @@ void MainWindow::clicked(int r, int k) {
 
         // Verplaats gekozen SchaakStuk
         if ( g.move(g.getMoving(), moveTo) ) { // Verplaats
-
             scene->clearBoard(); // Clear chessBoard
             update(); // Maak chessBoard opnieuw visueel zichtbaar
 
@@ -116,8 +188,14 @@ void MainWindow::clicked(int r, int k) {
                 scene->clearBoard();
                 update(); // Update het bord weer
             }
-
             g.setTurnMove(); // Verander van beurt
+
+            // TODO
+            // Laat de stukken zien die bedreigd worden
+            actuallyDisplayThreats(g.getTurnMove());
+            // Laat stukken zien van de andere kleur die veroverd kunnen worden
+            displayKills(g.getTurnMove());
+
 
             // Er wordt eerst gecheckt op pat en daarna pas op schaakmat anders
             // krijgen we schaakmat bij pat
@@ -145,6 +223,12 @@ void MainWindow::clicked(int r, int k) {
         }
         // g.move geeft false terug, speler heeft een unvalid move geselecteerd
         else {
+
+            // TODO
+            // Laat de stukken zien die bedreigd worden
+            actuallyDisplayThreats(g.getTurnMove());
+            // Laat stukken zien van de andere kleur die veroverd kunnen worden
+            displayKills(g.getTurnMove());
             cout << "Select a valid move!" << endl;
         }
     }

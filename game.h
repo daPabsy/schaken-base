@@ -50,6 +50,10 @@ public:
 
     bool promotion(SchaakStuk * s);
 
+    void moveCastle(SchaakStuk * s, const pair<int, int> & p, const zw & color);
+
+    bool threatsCastle(const vector<pair<int, int>> & emptyPositions, const zw & color);
+
 
     // Verkrijg het te verplaatsen SchaakStuk ALS moving true is
     SchaakStuk * getMoving() const {
