@@ -295,19 +295,55 @@ void MainWindow::save() {
             return;
         }
         QDataStream out(&file);
-        out << QString("Rb") << QString("Hb") << QString("Bb") << QString("Qb") << QString("Kb") << QString("Bb") << QString("Hb") << QString("Rb");
-        for  (int i=0;i<8;i++) {
-            out << QString("Pb");
-        }
-        for  (int r=3;r<7;r++) {
-            for (int k=0;k<8;k++) {
-                out << QString(".");
+        // Alle vakjes overlopen
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) { // 1 extra voor het toevoegen van turn to move
+                SchaakStuk *piece = g.getPiece(i, j);
+
+                if (piece == nullptr) {
+                    out << QString("."); // Nullpointers worden als "." voorgesteld
+                } else {
+                    QString addString = "";
+
+                    auto type = piece->piece().type(); // Verkrijg het type van SchaakStuk
+
+                    // Elke letter stelt een ander type voor
+                    if (type == Piece::Pawn) {
+                        addString += "P";
+                    } else if (type == Piece::Rook) {
+                        addString += "T";
+                    } else if (type == Piece::Knight) {
+                        addString += "H";
+                    } else if (type == Piece::Bishop) {
+                        addString += "L";
+                    } else if (type == Piece::Queen) {
+                        addString += "Q";
+                    } else if (type == Piece::King) {
+                        addString += "K";
+                    }
+
+                    if (piece->getKleur() == wit) { // Kleur van SchaakStuk toevoegen aan string
+                        addString += "w";
+                    } else {
+                        addString += "z";
+                    }
+
+                    if (piece->getStartPosition()) { // Staat het SchaakStuk in startpositie?
+                        out << QString(addString + "Y");
+                    } else {
+                        out << QString(addString + "N");
+                    }
+                }
             }
         }
-        for  (int i=0;i<8;i++) {
-            out << QString("Pw");
+        // For loop is afgelopen
+        if(g.getTurnMove() == wit){
+            out << QString("WIT"); // Wit was aan de beurt
         }
-        out << QString("Rw") << QString("Hw") << QString("Bw") << QString("Qw") << QString("Kw") << QString("Bw") << QString("Hw") << QString("Rw");
+        else {
+            out << QString("ZWART"); // Zwart was aan de beurt
+        }
+
     }
 }
 
@@ -330,25 +366,74 @@ void MainWindow::open() {
         try {
             QDataStream in(&file);
             QString debugstring;
-            for (int r=0;r<8;r++) {
-                for (int k=0;k<8;k++) {
+            scene->clearBoard();
+
+            for (int r = 0; r < 8; r++) {
+                for (int k = 0; k < 8; k++) { // Een extra voor turn to move toe te voegen
                     QString piece;
                     in >> piece;
                     debugstring += "\t" + piece;
-                    if (in.status()!=QDataStream::Ok) {
-                        throw QString("Error reading file "+fileName);
+                    if (in.status() != QDataStream::Ok) {
+                        throw QString("Error reading file " + fileName);
+                    }
+                    if (piece.size() == 1) { // Anders kreeg ik index errors
+
+                        if (piece == ".") { // Nullpointer
+                            g.setNullptr(r, k, nullptr);
+                        }
+
+                    } else if (piece.size() == 3) {
+
+                        auto pieceType = piece[0]; // Type van SchaakStuk
+                        auto pieceColor = piece[1]; // Kleur van stuk
+                        auto pieceStart = piece[2]; // Stond SchaakStuk op startPositie
+                        bool i = false;
+
+                        if (pieceStart == "Y") { // Voor elk SchaakStuk kijken of deze in de startPositie stond
+                            i = true;
+                        }
+
+                        zw color = wit;
+                        if (pieceColor == "z") { // Voor elk SchaakStuk kijken welke kleur deze had
+                            color = zwart;
+                        }
+
+                        // Iedere letter stelt een ander SchaakStuk voor
+                        if (pieceType == "P") {
+                            g.setPiece(r, k, new Pion(color, i)); // Plaats nieuwe Pion op het bord
+                        } else if (pieceType == "T") {
+                            g.setPiece(r, k, new Toren(color, i));
+                        } else if (pieceType == "H") {
+                            g.setPiece(r, k, new Paard(color, i));
+                        } else if (pieceType == "L") {
+                            g.setPiece(r, k, new Loper(color, i));
+                        } else if (pieceType == "Q") {
+                            g.setPiece(r, k, new Koningin(color, i));
+                        } else if (pieceType == "K") {
+                            g.setPiece(r, k, new Koning(color, i));
+                        }
                     }
                 }
                 debugstring += "\n";
             }
-            QMessageBox::information(this, tr("Debug"),
-                                     debugstring);
+            // For loop is afgelopen
+            QString turnToMove;
+            in >> turnToMove;
+            if(turnToMove == "WHITE"){
+                g.setTurnMoveNew(wit); // Wit is de volgende zetter
+            }
+            else {
+                g.setTurnMoveNew(zwart); // Zwart is de volgende zetter
+            }
+
+//            QMessageBox::information(this, tr("Debug"),
+//                                     debugstring);
         } catch (QString& Q) {
             QMessageBox::information(this, tr("Error reading file"),
                                      Q);
         }
     }
-    update();
+    update(); // Updat het bord visueel
 }
 
 

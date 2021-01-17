@@ -28,7 +28,6 @@ public:
 
     void displayKills(const zw & color);
 
-
     void promotionBoard(SchaakStuk * s, const zw & color);
 
 private:

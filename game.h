@@ -88,6 +88,9 @@ public:
         turnToMove = zwart;
     }
 
+    // Veranderen van kleur bij openen nieuw bestand
+    void setTurnMoveNew(const zw & color) { turnToMove = color; }
+
 
 //    // Verkrijg de passage bool
 //    bool getPassant() const { return passage; }
