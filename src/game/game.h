@@ -6,7 +6,7 @@
 #ifndef SCHAKEN_GAME_H
 #define SCHAKEN_GAME_H
 
-#include "SchaakStuk.h"
+#include "chesspiece.h"
 using namespace std;
 
 

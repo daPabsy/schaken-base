@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include "game.h"
-#include "SchaakStuk.h"
+#include "chesspiece.h"
 #include <QCloseEvent>
 
 class ChessBoard;

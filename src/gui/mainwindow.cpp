@@ -389,27 +389,27 @@ void MainWindow::open() {
                         auto pieceStart = piece[2]; // Stond SchaakStuk op startPositie
                         bool i = false;
 
-                        if (pieceStart == "Y") { // Voor elk SchaakStuk kijken of deze in de startPositie stond
+                        if (pieceStart == QString("Y")) { // Voor elk SchaakStuk kijken of deze in de startPositie stond
                             i = true;
                         }
 
                         zw color = wit;
-                        if (pieceColor == "z") { // Voor elk SchaakStuk kijken welke kleur deze had
+                        if (pieceColor == QString("z")) { // Voor elk SchaakStuk kijken welke kleur deze had
                             color = zwart;
                         }
 
                         // Iedere letter stelt een ander SchaakStuk voor
-                        if (pieceType == "P") {
+                        if (pieceType == QString("P")) {
                             g.setPiece(r, k, new Pion(color, i)); // Plaats nieuwe Pion op het bord
-                        } else if (pieceType == "T") {
+                        } else if (pieceType == QString("T")) {
                             g.setPiece(r, k, new Toren(color, i));
-                        } else if (pieceType == "H") {
+                        } else if (pieceType == QString("H")) {
                             g.setPiece(r, k, new Paard(color, i));
-                        } else if (pieceType == "L") {
+                        } else if (pieceType == QString("L")) {
                             g.setPiece(r, k, new Loper(color, i));
-                        } else if (pieceType == "Q") {
+                        } else if (pieceType == QString("Q")) {
                             g.setPiece(r, k, new Koningin(color, i));
-                        } else if (pieceType == "K") {
+                        } else if (pieceType == QString("K")) {
                             g.setPiece(r, k, new Koning(color, i));
                         }
                     }

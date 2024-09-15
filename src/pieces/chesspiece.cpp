@@ -3,7 +3,7 @@
 //  Opmerkingen: (bvb aanpassingen van de opgave)
 //
 
-#include "SchaakStuk.h"
+#include "chesspiece.h"
 #include "game.h"
 #include "mainwindow.h"
 #include <iostream>
